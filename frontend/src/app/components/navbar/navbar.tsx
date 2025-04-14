@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import SearchBar from "./search";
 
 export default function NavbarPage() {
   const router = useRouter()
@@ -15,11 +16,7 @@ export default function NavbarPage() {
         width={300}
         height={300}
       />
-      <input
-        role="search-bar"
-        placeholder="search 🔍"
-        className="w-[200px] h-[40px] p-2 bg-gray-200 shadow-md flex items-center justify-center rounded-md"
-      ></input>
+      <SearchBar/>
       <div role="account log" className="flex gap-5">
         <div 
         onClick={()=> router.push("/register")}

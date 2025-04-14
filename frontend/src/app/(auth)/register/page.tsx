@@ -1,9 +1,10 @@
-import RegisterForm from "./components/form";
+import RoleReg from "./components/role";
+
 
 export default function RegisterPage(){
     return(
         <div>
-            <RegisterForm/>
+            <RoleReg/>
         </div>
     )
 }

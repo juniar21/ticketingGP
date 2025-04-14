@@ -11,14 +11,17 @@ const registerScheme = yup.object().shape({
     .string()
     .required("Please input the email")
     .email("please use the correct email"),
-  password: yup.string().required("Please use the correct Password"),
-  username: yup.string().required("Please input the username"),
+    username: yup.string().required("Please input the username"),
+    fullname: yup.string().required("please input the fullname"),
+    password: yup.string().required("Please use the correct Password"),
+
 });
 
 interface IRegForm {
   email: string;
   password: string;
   username: string;
+  fullname: string;
 }
 // interface IProps {
 //   onReload: () => void;
@@ -29,6 +32,7 @@ export default function RegisterForm() {
     email: "",
     password: "",
     username: "",
+    fullname: ""
   };
   const router = useRouter();
   const regUser = async (
@@ -71,7 +75,7 @@ export default function RegisterForm() {
               </div>
               <div className="flex justify-center mt-[30px] relative z-10">
                 <div className="bg-white rounded-2xl border border-slate-500/10 shadow-md max-sm:w-[300px] sm:w-[300px] md:w-[400px] max-sm:ml-0 sm:ml-0 md:ml-0">
-                  <div className="p-10 flex flex-col justify-center items-center gap-5">
+                  <div className="p-10 flex flex-col justify-center items-center gap-1">
                     <div>
                       <Image
                         className="hover:cursor-pointer hover:scale-110"
@@ -84,10 +88,13 @@ export default function RegisterForm() {
                         height={50}
                       />
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 mt-[-20px]">
+                      <div className="flex justify-center">
+                        <h1 className="font-audio text-[25px]">CUSTOMER</h1>
+                      </div>
                       <Field
                         name="email"
-                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
+                        className="mt-[15px] border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
                         placeholder="email"
                       />
                       {touched.email && errors.email ? (
@@ -110,6 +117,15 @@ export default function RegisterForm() {
                       />
                       {touched.username && errors.username ? (
                         <div className="text-red-500">{errors.username}</div>
+                      ) : null}
+                      <Field
+                        name="fullname"
+                        type="fullname"
+                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
+                        placeholder="fullname"
+                      />
+                      {touched.password && errors.password ? (
+                        <div className="text-red-500">{errors.password}</div>
                       ) : null}
                       <p className="text-center text-gray-300 font-light text-[15px]">
                         People who use our service may have uploaded your

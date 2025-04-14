@@ -1,9 +1,8 @@
 
-import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import { Session } from "next-auth";
-import { JWT } from "next-auth/jwt";
 
+import Credentials from "next-auth/providers/credentials";
+import NextAuth, { Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
@@ -31,7 +30,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         token.id = user.id;
         token.email = user.email;
         token.username = user.username;
-        token.fullname = user.fullname;
         token.avatar = user.avatar;
         token.accessToken = user.accessToken;
       }
@@ -42,7 +40,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         id: token.id as number,
         email: token.email as string,
         username: token.username as string,
-        fullname: token.fullname as string,
         avatar: token.avatar as string,
       };
       session.accessToken = token.accessToken as string;
