@@ -15,6 +15,7 @@ export class AuthRouter {
 
   private initializeRoute() {
     this.router.post("/", this.authCrontoller.register);
+    this.router.post("/login", this.authCrontoller.login)
   }
 
   getRouter(): Router {

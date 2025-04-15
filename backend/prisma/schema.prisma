@@ -26,4 +26,26 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   role      Role     @default(USER)
+
+  vouchered Voucher[]
+  points    Poin[]
+}
+
+model Voucher {
+  id        Int      @id @default(autoincrement())
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Poin {
+  id        Int      @id @default(autoincrement())
+  amount    Int
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
