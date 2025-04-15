@@ -11,10 +11,10 @@ const registerScheme = yup.object().shape({
     .string()
     .required("Please input the email")
     .email("please use the correct email"),
-    username: yup.string().required("Please input the username"),
-    fullname: yup.string().required("please input the fullname"),
-    password: yup.string().required("Please use the correct Password"),
-
+  username: yup.string().required("Please input the username"),
+  fullname: yup.string().required("please input the fullname"),
+  password: yup.string().required("Please use the correct Password"),
+  refcode: yup.string().required("Please input the valid referral code"),
 });
 
 interface IRegForm {
@@ -22,6 +22,7 @@ interface IRegForm {
   password: string;
   username: string;
   fullname: string;
+  refcode: string;
 }
 // interface IProps {
 //   onReload: () => void;
@@ -32,7 +33,8 @@ export default function RegisterForm() {
     email: "",
     password: "",
     username: "",
-    fullname: ""
+    fullname: "",
+    refcode: ""
   };
   const router = useRouter();
   const regUser = async (
@@ -126,6 +128,15 @@ export default function RegisterForm() {
                       />
                       {touched.password && errors.password ? (
                         <div className="text-red-500">{errors.password}</div>
+                      ) : null}
+                      <Field
+                        name="refcode"
+                        type="refcode"
+                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
+                        placeholder="Referral Code"
+                      />
+                      {touched.refcode && errors.refcode ? (
+                        <div className="text-red-500">{errors.refcode}</div>
                       ) : null}
                       <p className="text-center text-gray-300 font-light text-[15px]">
                         People who use our service may have uploaded your
