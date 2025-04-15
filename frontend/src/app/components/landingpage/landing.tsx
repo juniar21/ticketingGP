@@ -1,6 +1,5 @@
 import EventGP from "./events";
 import NavbarPage from "../navbar/navbar";
-import DropdownMenu from "./category";
 
 export default function LandingPage() {
   return (
@@ -23,20 +22,10 @@ export default function LandingPage() {
         </p>
       </div>
       <div className="flex justify-center gap-5 mt-[50px]">
-        <div role="card" className="w-[1400px] h-[600px] bg-white rounded-md shadow-md/20">
-          <h1 className="text-[50px] font-bold font-audio ml-[40px]">
-            2025 World Championship
-          </h1>
-          <DropdownMenu/>
-          <EventGP />
-        </div>
-      </div>
-      <div className="flex justify-center gap-5 mt-[50px]">
-        <div role="card" className="w-[1400px] h-[600px] bg-white rounded-md shadow-md/20">
-          <h1 className="text-[50px] font-bold font-audio ml-[40px]">
-            2025 Local Championship
-          </h1>
-          <DropdownMenu/>
+        <div
+          role="card"
+          className="w-[1400px] h-[600px] bg-white rounded-md shadow-md/20"
+        >
           <EventGP />
         </div>
       </div>
