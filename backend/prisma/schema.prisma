@@ -19,7 +19,7 @@ model User {
   email     String   @unique
   password  String
   username  String   @unique
-  referral  String   @unique
+  referral  String?   @unique
   fullname  String?
   Avatar    String?  @default("https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg")
   isVerify  Boolean  @default(false)

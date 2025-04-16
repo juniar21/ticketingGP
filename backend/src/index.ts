@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from "express"
 import { AuthRouter } from "./routers/auth.routes";
 import cors from "cors";
 
-const PORT = 8000
+const PORT = 8000;
 
 const app: Application = express();
 app.use(express.json());

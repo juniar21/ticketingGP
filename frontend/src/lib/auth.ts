@@ -1,9 +1,7 @@
-
-
+import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import NextAuth, { Session } from "next-auth";
+import { Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
-
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
@@ -19,17 +17,15 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   session: {
     strategy: "jwt",
-    maxAge: 60 * 60,
+    maxAge: 60 * 60, // 1 hour in second
   },
   callbacks: {
-    signIn: async () => {
-      return true;
-    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
         token.username = user.username;
+        token.fullname = user.fullname;
         token.avatar = user.avatar;
         token.accessToken = user.accessToken;
       }
@@ -40,6 +36,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         id: token.id as number,
         email: token.email as string,
         username: token.username as string,
+        fullname: token.fullname as string,
         avatar: token.avatar as string,
       };
       session.accessToken = token.accessToken as string;

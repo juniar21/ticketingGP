@@ -1,5 +1,5 @@
 "use client";
-import axios from "axios";
+import axios from "@/lib/axios";
 import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -42,7 +42,7 @@ export default function RegisterForm() {
     actions: FormikHelpers<IRegForm>
   ) => {
     try {
-      await axios.post("http://localhost:8000/api/auth", values);
+      await axios.post("/auth", values);
       actions.resetForm();
       toast.success("register success!");
       router.push("/");

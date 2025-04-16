@@ -1313,7 +1313,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral: string | null
     fullname: string | null
     Avatar: string | null
     isVerify: boolean
@@ -1420,7 +1420,7 @@ export namespace Prisma {
       email: string
       password: string
       username: string
-      referral: string
+      referral: string | null
       fullname: string | null
       Avatar: string | null
       isVerify: boolean
@@ -4669,7 +4669,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
-    referral?: StringFilter<"User"> | string
+    referral?: StringNullableFilter<"User"> | string | null
     fullname?: StringNullableFilter<"User"> | string | null
     Avatar?: StringNullableFilter<"User"> | string | null
     isVerify?: BoolFilter<"User"> | boolean
@@ -4685,7 +4685,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     username?: SortOrder
-    referral?: SortOrder
+    referral?: SortOrderInput | SortOrder
     fullname?: SortOrderInput | SortOrder
     Avatar?: SortOrderInput | SortOrder
     isVerify?: SortOrder
@@ -4720,7 +4720,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     username?: SortOrder
-    referral?: SortOrder
+    referral?: SortOrderInput | SortOrder
     fullname?: SortOrderInput | SortOrder
     Avatar?: SortOrderInput | SortOrder
     isVerify?: SortOrder
@@ -4742,7 +4742,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
-    referral?: StringWithAggregatesFilter<"User"> | string
+    referral?: StringNullableWithAggregatesFilter<"User"> | string | null
     fullname?: StringNullableWithAggregatesFilter<"User"> | string | null
     Avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     isVerify?: BoolWithAggregatesFilter<"User"> | boolean
@@ -4864,7 +4864,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -4880,7 +4880,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -4895,7 +4895,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -4911,7 +4911,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -4927,7 +4927,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -4940,7 +4940,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -4954,7 +4954,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5762,7 +5762,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5777,7 +5777,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5807,7 +5807,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5822,7 +5822,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5836,7 +5836,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5851,7 +5851,7 @@ export namespace Prisma {
     email: string
     password: string
     username: string
-    referral: string
+    referral?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5881,7 +5881,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5896,7 +5896,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Audiowide, Geist, Geist_Mono } from "next/font/google";
+import { Bounce, ToastContainer } from "react-toastify";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,6 +35,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${audio.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          draggable
+          theme="dark"
+          transition={Bounce}
+          closeOnClick
+        />
       </body>
     </html>
   );

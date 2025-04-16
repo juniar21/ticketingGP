@@ -42,7 +42,7 @@ const DropdownMenu: React.FC<{
               >
                 {category.name}
               </button>
-            
+            ))}
           </div>
         </div>
       )}
