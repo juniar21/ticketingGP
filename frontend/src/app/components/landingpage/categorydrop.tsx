@@ -21,7 +21,7 @@ const DropdownMenu: React.FC<{
     <div className="relative inline-block text-left ml-[40px] mt-[20px]">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="inline-flex justify-center w-full rounded-lg bg-red-400 px-4 py-2 text-white font-medium hover:bg-red-500 shadow-md/25 hover:cursor-pointer"
+        className="inline-flex justify-center w-full rounded-lg bg-black/45 border border-blue-500 px-4 py-2 text-white font-medium hover:bg-red-500 shadow-md/25 hover:cursor-pointer"
       >
         Category{" "}
         {isOpen ? (
@@ -42,7 +42,7 @@ const DropdownMenu: React.FC<{
               >
                 {category.name}
               </button>
-            
+            ))}
           </div>
         </div>
       )}

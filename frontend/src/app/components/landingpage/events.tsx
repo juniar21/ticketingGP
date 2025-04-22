@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import DropdownMenu from "./dropmenu";
+import DropdownMenu from "./categorydrop";
 
 interface Event {
   name: string;
@@ -42,7 +42,8 @@ export default function EventGP() {
     },
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState<string>("All Events");
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>("All Events");
 
   const filterEvents = (category: string) => {
     setSelectedCategory(category);
@@ -55,34 +56,38 @@ export default function EventGP() {
 
   return (
     <div>
-      <DropdownMenu onCategorySelect={filterEvents} />
-      <h1 className="font-audio text-[50px] ml-[40px] font-bold">{selectedCategory}</h1>
+      <div role="flex category & judul category" className="flex justify-between px-[90px]">
+        <h1 className="text-[30px] text-white sm:text-[40px] md:text-[50px] font-bold">
+          {selectedCategory}
+        </h1>
+        <DropdownMenu onCategorySelect={filterEvents} />
+      </div>
       <div className="mt-[30px] flex flex-col items-center">
-        <div className="flex gap-10 justify-center flex-wrap">
+        <div className="flex gap-5 sm:gap-10 justify-center flex-wrap">
           {filteredEvents.map((event, idx) => (
             <div
               key={idx}
-              className="bg-white w-[300px] h-[400px] shadow-md/30 flex flex-col rounded-md hover:scale-110"
+              className="bg-black w-[100%] sm:w-[300px] h-[400px] shadow-md/30 flex flex-col rounded-md hover:scale-110 mb-5 sm:mb-0"
             >
-              <Image
-                className="rounded-t-md"
-                src={event.image}
-                alt={event.name}
-                width={300}
-                height={100}
-              />
+              {/* Image Fix */}
+              <div className="relative w-full h-[200px] sm:h-[200px]">
+                <Image
+                  className="rounded-t-md object-cover"
+                  src={event.image}
+                  alt={event.name}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
               <div className="flex flex-col items-center justify-center">
-                <p className="text-[25px] text-black font-audio font-bold">
+                <p className="text-[20px] sm:text-[25px] text-white font-audio font-bold">
                   {event.name}
                 </p>
-                <p className="text-red-500 font-bold font-audio">
+                <p className="text-yellow-300 font-bold font-audio">
                   {event.date}
                 </p>
-                <button className="subpixel-antialiased font-extralight bg-red-500 w-[200px] h-[50px] rounded-4xl shadow-md/50 hover:bg-red-300 hover:cursor-pointer">
-                  Buy Now
-                </button>
-                <button className="mt-[10px] subpixel-antialiased font-extralight bg-slate-300 w-[200px] h-[50px] rounded-4xl shadow-md/50 hover:bg-amber-300 hover:cursor-pointer">
-                  VIP Pass
+                <button className="subpixel-antialiased font-extralight font-audio bg-blue-600/25 border border-sky-500 text-white w-[220px] sm:w-[250px] h-[60px] rounded-4xl shadow-md/50 hover:bg-sky-300/45 hover:cursor-pointer mt-4 sm:mt-6">
+                  Details
                 </button>
               </div>
             </div>

@@ -28,7 +28,7 @@ interface IRegForm {
 //   onReload: () => void;
 // }
 
-export default function RegisterForm() {
+export default function RegisterOrgForm() {
   const initialValues: IRegForm = {
     email: "",
     password: "",
@@ -81,7 +81,7 @@ export default function RegisterForm() {
                     <div className="flex flex-col gap-2 mt-[-20px]">
                       <div className="flex justify-center">
                         <h1 className=" text-white font-bold text-[25px] drop-shadow-md/90 ">
-                          CUSTOMER
+                          ORGANIZER
                         </h1>
                       </div>
                       <Field

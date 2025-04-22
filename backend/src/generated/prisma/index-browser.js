@@ -131,6 +131,21 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.VoucherScalarFieldEnum = {
+  id: 'id',
+  expiredAt: 'expiredAt',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.PoinScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  expiredAt: 'expiredAt',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -151,7 +166,9 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Voucher: 'Voucher',
+  Poin: 'Poin'
 };
 
 /**

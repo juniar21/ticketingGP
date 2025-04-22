@@ -18,6 +18,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Voucher
+ * 
+ */
+export type Voucher = $Result.DefaultSelection<Prisma.$VoucherPayload>
+/**
+ * Model Poin
+ * 
+ */
+export type Poin = $Result.DefaultSelection<Prisma.$PoinPayload>
 
 /**
  * Enums
@@ -170,6 +180,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.voucher`: Exposes CRUD operations for the **Voucher** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Vouchers
+    * const vouchers = await prisma.voucher.findMany()
+    * ```
+    */
+  get voucher(): Prisma.VoucherDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.poin`: Exposes CRUD operations for the **Poin** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Poins
+    * const poins = await prisma.poin.findMany()
+    * ```
+    */
+  get poin(): Prisma.PoinDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -610,7 +640,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Voucher: 'Voucher',
+    Poin: 'Poin'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -629,7 +661,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "voucher" | "poin"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -704,6 +736,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Voucher: {
+        payload: Prisma.$VoucherPayload<ExtArgs>
+        fields: Prisma.VoucherFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VoucherFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VoucherFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>
+          }
+          findFirst: {
+            args: Prisma.VoucherFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VoucherFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>
+          }
+          findMany: {
+            args: Prisma.VoucherFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>[]
+          }
+          create: {
+            args: Prisma.VoucherCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>
+          }
+          createMany: {
+            args: Prisma.VoucherCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VoucherCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>[]
+          }
+          delete: {
+            args: Prisma.VoucherDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>
+          }
+          update: {
+            args: Prisma.VoucherUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>
+          }
+          deleteMany: {
+            args: Prisma.VoucherDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VoucherUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VoucherUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>[]
+          }
+          upsert: {
+            args: Prisma.VoucherUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherPayload>
+          }
+          aggregate: {
+            args: Prisma.VoucherAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVoucher>
+          }
+          groupBy: {
+            args: Prisma.VoucherGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VoucherGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VoucherCountArgs<ExtArgs>
+            result: $Utils.Optional<VoucherCountAggregateOutputType> | number
+          }
+        }
+      }
+      Poin: {
+        payload: Prisma.$PoinPayload<ExtArgs>
+        fields: Prisma.PoinFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PoinFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PoinFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>
+          }
+          findFirst: {
+            args: Prisma.PoinFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PoinFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>
+          }
+          findMany: {
+            args: Prisma.PoinFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>[]
+          }
+          create: {
+            args: Prisma.PoinCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>
+          }
+          createMany: {
+            args: Prisma.PoinCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PoinCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>[]
+          }
+          delete: {
+            args: Prisma.PoinDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>
+          }
+          update: {
+            args: Prisma.PoinUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>
+          }
+          deleteMany: {
+            args: Prisma.PoinDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PoinUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PoinUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>[]
+          }
+          upsert: {
+            args: Prisma.PoinUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PoinPayload>
+          }
+          aggregate: {
+            args: Prisma.PoinAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePoin>
+          }
+          groupBy: {
+            args: Prisma.PoinGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PoinGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PoinCountArgs<ExtArgs>
+            result: $Utils.Optional<PoinCountAggregateOutputType> | number
           }
         }
       }
@@ -792,6 +972,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    voucher?: VoucherOmit
+    poin?: PoinOmit
   }
 
   /* Types for Logging */
@@ -880,6 +1062,45 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    vouchered: number
+    points: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vouchered?: boolean | UserCountOutputTypeCountVoucheredArgs
+    points?: boolean | UserCountOutputTypeCountPointsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountVoucheredArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VoucherWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPointsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PoinWhereInput
+  }
 
 
   /**
@@ -1132,6 +1353,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     role?: boolean
+    vouchered?: boolean | User$voucheredArgs<ExtArgs>
+    points?: boolean | User$pointsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1177,10 +1401,20 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "referral" | "fullname" | "Avatar" | "isVerify" | "createdAt" | "updatedAt" | "role", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vouchered?: boolean | User$voucheredArgs<ExtArgs>
+    points?: boolean | User$pointsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      vouchered: Prisma.$VoucherPayload<ExtArgs>[]
+      points: Prisma.$PoinPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       email: string
@@ -1587,6 +1821,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    vouchered<T extends User$voucheredArgs<ExtArgs> = {}>(args?: Subset<T, User$voucheredArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    points<T extends User$pointsArgs<ExtArgs> = {}>(args?: Subset<T, User$pointsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1644,6 +1880,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1662,6 +1902,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1679,6 +1923,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1728,6 +1976,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1776,6 +2028,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1818,6 +2074,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1866,6 +2126,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1933,6 +2197,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1959,6 +2227,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1979,6 +2251,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.vouchered
+   */
+  export type User$voucheredArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    where?: VoucherWhereInput
+    orderBy?: VoucherOrderByWithRelationInput | VoucherOrderByWithRelationInput[]
+    cursor?: VoucherWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VoucherScalarFieldEnum | VoucherScalarFieldEnum[]
+  }
+
+  /**
+   * User.points
+   */
+  export type User$pointsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    where?: PoinWhereInput
+    orderBy?: PoinOrderByWithRelationInput | PoinOrderByWithRelationInput[]
+    cursor?: PoinWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PoinScalarFieldEnum | PoinScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1990,6 +2310,2193 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Voucher
+   */
+
+  export type AggregateVoucher = {
+    _count: VoucherCountAggregateOutputType | null
+    _avg: VoucherAvgAggregateOutputType | null
+    _sum: VoucherSumAggregateOutputType | null
+    _min: VoucherMinAggregateOutputType | null
+    _max: VoucherMaxAggregateOutputType | null
+  }
+
+  export type VoucherAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type VoucherSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type VoucherMinAggregateOutputType = {
+    id: number | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    userId: number | null
+  }
+
+  export type VoucherMaxAggregateOutputType = {
+    id: number | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    userId: number | null
+  }
+
+  export type VoucherCountAggregateOutputType = {
+    id: number
+    expiredAt: number
+    createdAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type VoucherAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type VoucherSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type VoucherMinAggregateInputType = {
+    id?: true
+    expiredAt?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type VoucherMaxAggregateInputType = {
+    id?: true
+    expiredAt?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type VoucherCountAggregateInputType = {
+    id?: true
+    expiredAt?: true
+    createdAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type VoucherAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Voucher to aggregate.
+     */
+    where?: VoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vouchers to fetch.
+     */
+    orderBy?: VoucherOrderByWithRelationInput | VoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vouchers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Vouchers
+    **/
+    _count?: true | VoucherCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VoucherAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VoucherSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VoucherMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VoucherMaxAggregateInputType
+  }
+
+  export type GetVoucherAggregateType<T extends VoucherAggregateArgs> = {
+        [P in keyof T & keyof AggregateVoucher]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVoucher[P]>
+      : GetScalarType<T[P], AggregateVoucher[P]>
+  }
+
+
+
+
+  export type VoucherGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VoucherWhereInput
+    orderBy?: VoucherOrderByWithAggregationInput | VoucherOrderByWithAggregationInput[]
+    by: VoucherScalarFieldEnum[] | VoucherScalarFieldEnum
+    having?: VoucherScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VoucherCountAggregateInputType | true
+    _avg?: VoucherAvgAggregateInputType
+    _sum?: VoucherSumAggregateInputType
+    _min?: VoucherMinAggregateInputType
+    _max?: VoucherMaxAggregateInputType
+  }
+
+  export type VoucherGroupByOutputType = {
+    id: number
+    expiredAt: Date
+    createdAt: Date
+    userId: number
+    _count: VoucherCountAggregateOutputType | null
+    _avg: VoucherAvgAggregateOutputType | null
+    _sum: VoucherSumAggregateOutputType | null
+    _min: VoucherMinAggregateOutputType | null
+    _max: VoucherMaxAggregateOutputType | null
+  }
+
+  type GetVoucherGroupByPayload<T extends VoucherGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VoucherGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VoucherGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VoucherGroupByOutputType[P]>
+            : GetScalarType<T[P], VoucherGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VoucherSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["voucher"]>
+
+  export type VoucherSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["voucher"]>
+
+  export type VoucherSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["voucher"]>
+
+  export type VoucherSelectScalar = {
+    id?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+  }
+
+  export type VoucherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiredAt" | "createdAt" | "userId", ExtArgs["result"]["voucher"]>
+  export type VoucherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type VoucherIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type VoucherIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $VoucherPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Voucher"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      expiredAt: Date
+      createdAt: Date
+      userId: number
+    }, ExtArgs["result"]["voucher"]>
+    composites: {}
+  }
+
+  type VoucherGetPayload<S extends boolean | null | undefined | VoucherDefaultArgs> = $Result.GetResult<Prisma.$VoucherPayload, S>
+
+  type VoucherCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VoucherFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VoucherCountAggregateInputType | true
+    }
+
+  export interface VoucherDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Voucher'], meta: { name: 'Voucher' } }
+    /**
+     * Find zero or one Voucher that matches the filter.
+     * @param {VoucherFindUniqueArgs} args - Arguments to find a Voucher
+     * @example
+     * // Get one Voucher
+     * const voucher = await prisma.voucher.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VoucherFindUniqueArgs>(args: SelectSubset<T, VoucherFindUniqueArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Voucher that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VoucherFindUniqueOrThrowArgs} args - Arguments to find a Voucher
+     * @example
+     * // Get one Voucher
+     * const voucher = await prisma.voucher.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VoucherFindUniqueOrThrowArgs>(args: SelectSubset<T, VoucherFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Voucher that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherFindFirstArgs} args - Arguments to find a Voucher
+     * @example
+     * // Get one Voucher
+     * const voucher = await prisma.voucher.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VoucherFindFirstArgs>(args?: SelectSubset<T, VoucherFindFirstArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Voucher that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherFindFirstOrThrowArgs} args - Arguments to find a Voucher
+     * @example
+     * // Get one Voucher
+     * const voucher = await prisma.voucher.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VoucherFindFirstOrThrowArgs>(args?: SelectSubset<T, VoucherFindFirstOrThrowArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Vouchers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Vouchers
+     * const vouchers = await prisma.voucher.findMany()
+     * 
+     * // Get first 10 Vouchers
+     * const vouchers = await prisma.voucher.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const voucherWithIdOnly = await prisma.voucher.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VoucherFindManyArgs>(args?: SelectSubset<T, VoucherFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Voucher.
+     * @param {VoucherCreateArgs} args - Arguments to create a Voucher.
+     * @example
+     * // Create one Voucher
+     * const Voucher = await prisma.voucher.create({
+     *   data: {
+     *     // ... data to create a Voucher
+     *   }
+     * })
+     * 
+     */
+    create<T extends VoucherCreateArgs>(args: SelectSubset<T, VoucherCreateArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Vouchers.
+     * @param {VoucherCreateManyArgs} args - Arguments to create many Vouchers.
+     * @example
+     * // Create many Vouchers
+     * const voucher = await prisma.voucher.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VoucherCreateManyArgs>(args?: SelectSubset<T, VoucherCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Vouchers and returns the data saved in the database.
+     * @param {VoucherCreateManyAndReturnArgs} args - Arguments to create many Vouchers.
+     * @example
+     * // Create many Vouchers
+     * const voucher = await prisma.voucher.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Vouchers and only return the `id`
+     * const voucherWithIdOnly = await prisma.voucher.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VoucherCreateManyAndReturnArgs>(args?: SelectSubset<T, VoucherCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Voucher.
+     * @param {VoucherDeleteArgs} args - Arguments to delete one Voucher.
+     * @example
+     * // Delete one Voucher
+     * const Voucher = await prisma.voucher.delete({
+     *   where: {
+     *     // ... filter to delete one Voucher
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VoucherDeleteArgs>(args: SelectSubset<T, VoucherDeleteArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Voucher.
+     * @param {VoucherUpdateArgs} args - Arguments to update one Voucher.
+     * @example
+     * // Update one Voucher
+     * const voucher = await prisma.voucher.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VoucherUpdateArgs>(args: SelectSubset<T, VoucherUpdateArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Vouchers.
+     * @param {VoucherDeleteManyArgs} args - Arguments to filter Vouchers to delete.
+     * @example
+     * // Delete a few Vouchers
+     * const { count } = await prisma.voucher.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VoucherDeleteManyArgs>(args?: SelectSubset<T, VoucherDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Vouchers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Vouchers
+     * const voucher = await prisma.voucher.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VoucherUpdateManyArgs>(args: SelectSubset<T, VoucherUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Vouchers and returns the data updated in the database.
+     * @param {VoucherUpdateManyAndReturnArgs} args - Arguments to update many Vouchers.
+     * @example
+     * // Update many Vouchers
+     * const voucher = await prisma.voucher.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Vouchers and only return the `id`
+     * const voucherWithIdOnly = await prisma.voucher.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VoucherUpdateManyAndReturnArgs>(args: SelectSubset<T, VoucherUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Voucher.
+     * @param {VoucherUpsertArgs} args - Arguments to update or create a Voucher.
+     * @example
+     * // Update or create a Voucher
+     * const voucher = await prisma.voucher.upsert({
+     *   create: {
+     *     // ... data to create a Voucher
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Voucher we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VoucherUpsertArgs>(args: SelectSubset<T, VoucherUpsertArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Vouchers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherCountArgs} args - Arguments to filter Vouchers to count.
+     * @example
+     * // Count the number of Vouchers
+     * const count = await prisma.voucher.count({
+     *   where: {
+     *     // ... the filter for the Vouchers we want to count
+     *   }
+     * })
+    **/
+    count<T extends VoucherCountArgs>(
+      args?: Subset<T, VoucherCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VoucherCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Voucher.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VoucherAggregateArgs>(args: Subset<T, VoucherAggregateArgs>): Prisma.PrismaPromise<GetVoucherAggregateType<T>>
+
+    /**
+     * Group by Voucher.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VoucherGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VoucherGroupByArgs['orderBy'] }
+        : { orderBy?: VoucherGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VoucherGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVoucherGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Voucher model
+   */
+  readonly fields: VoucherFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Voucher.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VoucherClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Voucher model
+   */
+  interface VoucherFieldRefs {
+    readonly id: FieldRef<"Voucher", 'Int'>
+    readonly expiredAt: FieldRef<"Voucher", 'DateTime'>
+    readonly createdAt: FieldRef<"Voucher", 'DateTime'>
+    readonly userId: FieldRef<"Voucher", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Voucher findUnique
+   */
+  export type VoucherFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which Voucher to fetch.
+     */
+    where: VoucherWhereUniqueInput
+  }
+
+  /**
+   * Voucher findUniqueOrThrow
+   */
+  export type VoucherFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which Voucher to fetch.
+     */
+    where: VoucherWhereUniqueInput
+  }
+
+  /**
+   * Voucher findFirst
+   */
+  export type VoucherFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which Voucher to fetch.
+     */
+    where?: VoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vouchers to fetch.
+     */
+    orderBy?: VoucherOrderByWithRelationInput | VoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vouchers.
+     */
+    cursor?: VoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vouchers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vouchers.
+     */
+    distinct?: VoucherScalarFieldEnum | VoucherScalarFieldEnum[]
+  }
+
+  /**
+   * Voucher findFirstOrThrow
+   */
+  export type VoucherFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which Voucher to fetch.
+     */
+    where?: VoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vouchers to fetch.
+     */
+    orderBy?: VoucherOrderByWithRelationInput | VoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vouchers.
+     */
+    cursor?: VoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vouchers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vouchers.
+     */
+    distinct?: VoucherScalarFieldEnum | VoucherScalarFieldEnum[]
+  }
+
+  /**
+   * Voucher findMany
+   */
+  export type VoucherFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * Filter, which Vouchers to fetch.
+     */
+    where?: VoucherWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vouchers to fetch.
+     */
+    orderBy?: VoucherOrderByWithRelationInput | VoucherOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Vouchers.
+     */
+    cursor?: VoucherWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vouchers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vouchers.
+     */
+    skip?: number
+    distinct?: VoucherScalarFieldEnum | VoucherScalarFieldEnum[]
+  }
+
+  /**
+   * Voucher create
+   */
+  export type VoucherCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Voucher.
+     */
+    data: XOR<VoucherCreateInput, VoucherUncheckedCreateInput>
+  }
+
+  /**
+   * Voucher createMany
+   */
+  export type VoucherCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Vouchers.
+     */
+    data: VoucherCreateManyInput | VoucherCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Voucher createManyAndReturn
+   */
+  export type VoucherCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * The data used to create many Vouchers.
+     */
+    data: VoucherCreateManyInput | VoucherCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Voucher update
+   */
+  export type VoucherUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Voucher.
+     */
+    data: XOR<VoucherUpdateInput, VoucherUncheckedUpdateInput>
+    /**
+     * Choose, which Voucher to update.
+     */
+    where: VoucherWhereUniqueInput
+  }
+
+  /**
+   * Voucher updateMany
+   */
+  export type VoucherUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Vouchers.
+     */
+    data: XOR<VoucherUpdateManyMutationInput, VoucherUncheckedUpdateManyInput>
+    /**
+     * Filter which Vouchers to update
+     */
+    where?: VoucherWhereInput
+    /**
+     * Limit how many Vouchers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Voucher updateManyAndReturn
+   */
+  export type VoucherUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * The data used to update Vouchers.
+     */
+    data: XOR<VoucherUpdateManyMutationInput, VoucherUncheckedUpdateManyInput>
+    /**
+     * Filter which Vouchers to update
+     */
+    where?: VoucherWhereInput
+    /**
+     * Limit how many Vouchers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Voucher upsert
+   */
+  export type VoucherUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Voucher to update in case it exists.
+     */
+    where: VoucherWhereUniqueInput
+    /**
+     * In case the Voucher found by the `where` argument doesn't exist, create a new Voucher with this data.
+     */
+    create: XOR<VoucherCreateInput, VoucherUncheckedCreateInput>
+    /**
+     * In case the Voucher was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VoucherUpdateInput, VoucherUncheckedUpdateInput>
+  }
+
+  /**
+   * Voucher delete
+   */
+  export type VoucherDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+    /**
+     * Filter which Voucher to delete.
+     */
+    where: VoucherWhereUniqueInput
+  }
+
+  /**
+   * Voucher deleteMany
+   */
+  export type VoucherDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Vouchers to delete
+     */
+    where?: VoucherWhereInput
+    /**
+     * Limit how many Vouchers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Voucher without action
+   */
+  export type VoucherDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Voucher
+     */
+    select?: VoucherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Voucher
+     */
+    omit?: VoucherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Poin
+   */
+
+  export type AggregatePoin = {
+    _count: PoinCountAggregateOutputType | null
+    _avg: PoinAvgAggregateOutputType | null
+    _sum: PoinSumAggregateOutputType | null
+    _min: PoinMinAggregateOutputType | null
+    _max: PoinMaxAggregateOutputType | null
+  }
+
+  export type PoinAvgAggregateOutputType = {
+    id: number | null
+    amount: number | null
+    userId: number | null
+  }
+
+  export type PoinSumAggregateOutputType = {
+    id: number | null
+    amount: number | null
+    userId: number | null
+  }
+
+  export type PoinMinAggregateOutputType = {
+    id: number | null
+    amount: number | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    userId: number | null
+  }
+
+  export type PoinMaxAggregateOutputType = {
+    id: number | null
+    amount: number | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    userId: number | null
+  }
+
+  export type PoinCountAggregateOutputType = {
+    id: number
+    amount: number
+    expiredAt: number
+    createdAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type PoinAvgAggregateInputType = {
+    id?: true
+    amount?: true
+    userId?: true
+  }
+
+  export type PoinSumAggregateInputType = {
+    id?: true
+    amount?: true
+    userId?: true
+  }
+
+  export type PoinMinAggregateInputType = {
+    id?: true
+    amount?: true
+    expiredAt?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type PoinMaxAggregateInputType = {
+    id?: true
+    amount?: true
+    expiredAt?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type PoinCountAggregateInputType = {
+    id?: true
+    amount?: true
+    expiredAt?: true
+    createdAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type PoinAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Poin to aggregate.
+     */
+    where?: PoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Poins to fetch.
+     */
+    orderBy?: PoinOrderByWithRelationInput | PoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Poins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Poins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Poins
+    **/
+    _count?: true | PoinCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PoinAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PoinSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PoinMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PoinMaxAggregateInputType
+  }
+
+  export type GetPoinAggregateType<T extends PoinAggregateArgs> = {
+        [P in keyof T & keyof AggregatePoin]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePoin[P]>
+      : GetScalarType<T[P], AggregatePoin[P]>
+  }
+
+
+
+
+  export type PoinGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PoinWhereInput
+    orderBy?: PoinOrderByWithAggregationInput | PoinOrderByWithAggregationInput[]
+    by: PoinScalarFieldEnum[] | PoinScalarFieldEnum
+    having?: PoinScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PoinCountAggregateInputType | true
+    _avg?: PoinAvgAggregateInputType
+    _sum?: PoinSumAggregateInputType
+    _min?: PoinMinAggregateInputType
+    _max?: PoinMaxAggregateInputType
+  }
+
+  export type PoinGroupByOutputType = {
+    id: number
+    amount: number
+    expiredAt: Date
+    createdAt: Date
+    userId: number
+    _count: PoinCountAggregateOutputType | null
+    _avg: PoinAvgAggregateOutputType | null
+    _sum: PoinSumAggregateOutputType | null
+    _min: PoinMinAggregateOutputType | null
+    _max: PoinMaxAggregateOutputType | null
+  }
+
+  type GetPoinGroupByPayload<T extends PoinGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PoinGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PoinGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PoinGroupByOutputType[P]>
+            : GetScalarType<T[P], PoinGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PoinSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["poin"]>
+
+  export type PoinSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["poin"]>
+
+  export type PoinSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    amount?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["poin"]>
+
+  export type PoinSelectScalar = {
+    id?: boolean
+    amount?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    userId?: boolean
+  }
+
+  export type PoinOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "expiredAt" | "createdAt" | "userId", ExtArgs["result"]["poin"]>
+  export type PoinInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PoinIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PoinIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PoinPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Poin"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      amount: number
+      expiredAt: Date
+      createdAt: Date
+      userId: number
+    }, ExtArgs["result"]["poin"]>
+    composites: {}
+  }
+
+  type PoinGetPayload<S extends boolean | null | undefined | PoinDefaultArgs> = $Result.GetResult<Prisma.$PoinPayload, S>
+
+  type PoinCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PoinFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PoinCountAggregateInputType | true
+    }
+
+  export interface PoinDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Poin'], meta: { name: 'Poin' } }
+    /**
+     * Find zero or one Poin that matches the filter.
+     * @param {PoinFindUniqueArgs} args - Arguments to find a Poin
+     * @example
+     * // Get one Poin
+     * const poin = await prisma.poin.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PoinFindUniqueArgs>(args: SelectSubset<T, PoinFindUniqueArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Poin that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PoinFindUniqueOrThrowArgs} args - Arguments to find a Poin
+     * @example
+     * // Get one Poin
+     * const poin = await prisma.poin.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PoinFindUniqueOrThrowArgs>(args: SelectSubset<T, PoinFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Poin that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PoinFindFirstArgs} args - Arguments to find a Poin
+     * @example
+     * // Get one Poin
+     * const poin = await prisma.poin.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PoinFindFirstArgs>(args?: SelectSubset<T, PoinFindFirstArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Poin that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PoinFindFirstOrThrowArgs} args - Arguments to find a Poin
+     * @example
+     * // Get one Poin
+     * const poin = await prisma.poin.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PoinFindFirstOrThrowArgs>(args?: SelectSubset<T, PoinFindFirstOrThrowArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Poins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PoinFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Poins
+     * const poins = await prisma.poin.findMany()
+     * 
+     * // Get first 10 Poins
+     * const poins = await prisma.poin.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const poinWithIdOnly = await prisma.poin.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PoinFindManyArgs>(args?: SelectSubset<T, PoinFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Poin.
+     * @param {PoinCreateArgs} args - Arguments to create a Poin.
+     * @example
+     * // Create one Poin
+     * const Poin = await prisma.poin.create({
+     *   data: {
+     *     // ... data to create a Poin
+     *   }
+     * })
+     * 
+     */
+    create<T extends PoinCreateArgs>(args: SelectSubset<T, PoinCreateArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Poins.
+     * @param {PoinCreateManyArgs} args - Arguments to create many Poins.
+     * @example
+     * // Create many Poins
+     * const poin = await prisma.poin.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PoinCreateManyArgs>(args?: SelectSubset<T, PoinCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Poins and returns the data saved in the database.
+     * @param {PoinCreateManyAndReturnArgs} args - Arguments to create many Poins.
+     * @example
+     * // Create many Poins
+     * const poin = await prisma.poin.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Poins and only return the `id`
+     * const poinWithIdOnly = await prisma.poin.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PoinCreateManyAndReturnArgs>(args?: SelectSubset<T, PoinCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Poin.
+     * @param {PoinDeleteArgs} args - Arguments to delete one Poin.
+     * @example
+     * // Delete one Poin
+     * const Poin = await prisma.poin.delete({
+     *   where: {
+     *     // ... filter to delete one Poin
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PoinDeleteArgs>(args: SelectSubset<T, PoinDeleteArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Poin.
+     * @param {PoinUpdateArgs} args - Arguments to update one Poin.
+     * @example
+     * // Update one Poin
+     * const poin = await prisma.poin.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PoinUpdateArgs>(args: SelectSubset<T, PoinUpdateArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Poins.
+     * @param {PoinDeleteManyArgs} args - Arguments to filter Poins to delete.
+     * @example
+     * // Delete a few Poins
+     * const { count } = await prisma.poin.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PoinDeleteManyArgs>(args?: SelectSubset<T, PoinDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Poins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PoinUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Poins
+     * const poin = await prisma.poin.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PoinUpdateManyArgs>(args: SelectSubset<T, PoinUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Poins and returns the data updated in the database.
+     * @param {PoinUpdateManyAndReturnArgs} args - Arguments to update many Poins.
+     * @example
+     * // Update many Poins
+     * const poin = await prisma.poin.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Poins and only return the `id`
+     * const poinWithIdOnly = await prisma.poin.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PoinUpdateManyAndReturnArgs>(args: SelectSubset<T, PoinUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Poin.
+     * @param {PoinUpsertArgs} args - Arguments to update or create a Poin.
+     * @example
+     * // Update or create a Poin
+     * const poin = await prisma.poin.upsert({
+     *   create: {
+     *     // ... data to create a Poin
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Poin we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PoinUpsertArgs>(args: SelectSubset<T, PoinUpsertArgs<ExtArgs>>): Prisma__PoinClient<$Result.GetResult<Prisma.$PoinPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Poins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PoinCountArgs} args - Arguments to filter Poins to count.
+     * @example
+     * // Count the number of Poins
+     * const count = await prisma.poin.count({
+     *   where: {
+     *     // ... the filter for the Poins we want to count
+     *   }
+     * })
+    **/
+    count<T extends PoinCountArgs>(
+      args?: Subset<T, PoinCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PoinCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Poin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PoinAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PoinAggregateArgs>(args: Subset<T, PoinAggregateArgs>): Prisma.PrismaPromise<GetPoinAggregateType<T>>
+
+    /**
+     * Group by Poin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PoinGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PoinGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PoinGroupByArgs['orderBy'] }
+        : { orderBy?: PoinGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PoinGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPoinGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Poin model
+   */
+  readonly fields: PoinFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Poin.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PoinClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Poin model
+   */
+  interface PoinFieldRefs {
+    readonly id: FieldRef<"Poin", 'Int'>
+    readonly amount: FieldRef<"Poin", 'Int'>
+    readonly expiredAt: FieldRef<"Poin", 'DateTime'>
+    readonly createdAt: FieldRef<"Poin", 'DateTime'>
+    readonly userId: FieldRef<"Poin", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Poin findUnique
+   */
+  export type PoinFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Poin to fetch.
+     */
+    where: PoinWhereUniqueInput
+  }
+
+  /**
+   * Poin findUniqueOrThrow
+   */
+  export type PoinFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Poin to fetch.
+     */
+    where: PoinWhereUniqueInput
+  }
+
+  /**
+   * Poin findFirst
+   */
+  export type PoinFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Poin to fetch.
+     */
+    where?: PoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Poins to fetch.
+     */
+    orderBy?: PoinOrderByWithRelationInput | PoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Poins.
+     */
+    cursor?: PoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Poins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Poins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Poins.
+     */
+    distinct?: PoinScalarFieldEnum | PoinScalarFieldEnum[]
+  }
+
+  /**
+   * Poin findFirstOrThrow
+   */
+  export type PoinFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Poin to fetch.
+     */
+    where?: PoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Poins to fetch.
+     */
+    orderBy?: PoinOrderByWithRelationInput | PoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Poins.
+     */
+    cursor?: PoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Poins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Poins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Poins.
+     */
+    distinct?: PoinScalarFieldEnum | PoinScalarFieldEnum[]
+  }
+
+  /**
+   * Poin findMany
+   */
+  export type PoinFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Poins to fetch.
+     */
+    where?: PoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Poins to fetch.
+     */
+    orderBy?: PoinOrderByWithRelationInput | PoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Poins.
+     */
+    cursor?: PoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Poins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Poins.
+     */
+    skip?: number
+    distinct?: PoinScalarFieldEnum | PoinScalarFieldEnum[]
+  }
+
+  /**
+   * Poin create
+   */
+  export type PoinCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Poin.
+     */
+    data: XOR<PoinCreateInput, PoinUncheckedCreateInput>
+  }
+
+  /**
+   * Poin createMany
+   */
+  export type PoinCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Poins.
+     */
+    data: PoinCreateManyInput | PoinCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Poin createManyAndReturn
+   */
+  export type PoinCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * The data used to create many Poins.
+     */
+    data: PoinCreateManyInput | PoinCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Poin update
+   */
+  export type PoinUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Poin.
+     */
+    data: XOR<PoinUpdateInput, PoinUncheckedUpdateInput>
+    /**
+     * Choose, which Poin to update.
+     */
+    where: PoinWhereUniqueInput
+  }
+
+  /**
+   * Poin updateMany
+   */
+  export type PoinUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Poins.
+     */
+    data: XOR<PoinUpdateManyMutationInput, PoinUncheckedUpdateManyInput>
+    /**
+     * Filter which Poins to update
+     */
+    where?: PoinWhereInput
+    /**
+     * Limit how many Poins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Poin updateManyAndReturn
+   */
+  export type PoinUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * The data used to update Poins.
+     */
+    data: XOR<PoinUpdateManyMutationInput, PoinUncheckedUpdateManyInput>
+    /**
+     * Filter which Poins to update
+     */
+    where?: PoinWhereInput
+    /**
+     * Limit how many Poins to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Poin upsert
+   */
+  export type PoinUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Poin to update in case it exists.
+     */
+    where: PoinWhereUniqueInput
+    /**
+     * In case the Poin found by the `where` argument doesn't exist, create a new Poin with this data.
+     */
+    create: XOR<PoinCreateInput, PoinUncheckedCreateInput>
+    /**
+     * In case the Poin was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PoinUpdateInput, PoinUncheckedUpdateInput>
+  }
+
+  /**
+   * Poin delete
+   */
+  export type PoinDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
+    /**
+     * Filter which Poin to delete.
+     */
+    where: PoinWhereUniqueInput
+  }
+
+  /**
+   * Poin deleteMany
+   */
+  export type PoinDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Poins to delete
+     */
+    where?: PoinWhereInput
+    /**
+     * Limit how many Poins to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Poin without action
+   */
+  export type PoinDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Poin
+     */
+    select?: PoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Poin
+     */
+    omit?: PoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PoinInclude<ExtArgs> | null
   }
 
 
@@ -2022,6 +4529,27 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const VoucherScalarFieldEnum: {
+    id: 'id',
+    expiredAt: 'expiredAt',
+    createdAt: 'createdAt',
+    userId: 'userId'
+  };
+
+  export type VoucherScalarFieldEnum = (typeof VoucherScalarFieldEnum)[keyof typeof VoucherScalarFieldEnum]
+
+
+  export const PoinScalarFieldEnum: {
+    id: 'id',
+    amount: 'amount',
+    expiredAt: 'expiredAt',
+    createdAt: 'createdAt',
+    userId: 'userId'
+  };
+
+  export type PoinScalarFieldEnum = (typeof PoinScalarFieldEnum)[keyof typeof PoinScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2148,6 +4676,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    vouchered?: VoucherListRelationFilter
+    points?: PoinListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -2162,6 +4692,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: SortOrder
+    vouchered?: VoucherOrderByRelationAggregateInput
+    points?: PoinOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -2179,6 +4711,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    vouchered?: VoucherListRelationFilter
+    points?: PoinListRelationFilter
   }, "id" | "email" | "username" | "referral">
 
   export type UserOrderByWithAggregationInput = {
@@ -2217,6 +4751,115 @@ export namespace Prisma {
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
+  export type VoucherWhereInput = {
+    AND?: VoucherWhereInput | VoucherWhereInput[]
+    OR?: VoucherWhereInput[]
+    NOT?: VoucherWhereInput | VoucherWhereInput[]
+    id?: IntFilter<"Voucher"> | number
+    expiredAt?: DateTimeFilter<"Voucher"> | Date | string
+    createdAt?: DateTimeFilter<"Voucher"> | Date | string
+    userId?: IntFilter<"Voucher"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type VoucherOrderByWithRelationInput = {
+    id?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type VoucherWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: VoucherWhereInput | VoucherWhereInput[]
+    OR?: VoucherWhereInput[]
+    NOT?: VoucherWhereInput | VoucherWhereInput[]
+    expiredAt?: DateTimeFilter<"Voucher"> | Date | string
+    createdAt?: DateTimeFilter<"Voucher"> | Date | string
+    userId?: IntFilter<"Voucher"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type VoucherOrderByWithAggregationInput = {
+    id?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    _count?: VoucherCountOrderByAggregateInput
+    _avg?: VoucherAvgOrderByAggregateInput
+    _max?: VoucherMaxOrderByAggregateInput
+    _min?: VoucherMinOrderByAggregateInput
+    _sum?: VoucherSumOrderByAggregateInput
+  }
+
+  export type VoucherScalarWhereWithAggregatesInput = {
+    AND?: VoucherScalarWhereWithAggregatesInput | VoucherScalarWhereWithAggregatesInput[]
+    OR?: VoucherScalarWhereWithAggregatesInput[]
+    NOT?: VoucherScalarWhereWithAggregatesInput | VoucherScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Voucher"> | number
+    expiredAt?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
+    userId?: IntWithAggregatesFilter<"Voucher"> | number
+  }
+
+  export type PoinWhereInput = {
+    AND?: PoinWhereInput | PoinWhereInput[]
+    OR?: PoinWhereInput[]
+    NOT?: PoinWhereInput | PoinWhereInput[]
+    id?: IntFilter<"Poin"> | number
+    amount?: IntFilter<"Poin"> | number
+    expiredAt?: DateTimeFilter<"Poin"> | Date | string
+    createdAt?: DateTimeFilter<"Poin"> | Date | string
+    userId?: IntFilter<"Poin"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type PoinOrderByWithRelationInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PoinWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PoinWhereInput | PoinWhereInput[]
+    OR?: PoinWhereInput[]
+    NOT?: PoinWhereInput | PoinWhereInput[]
+    amount?: IntFilter<"Poin"> | number
+    expiredAt?: DateTimeFilter<"Poin"> | Date | string
+    createdAt?: DateTimeFilter<"Poin"> | Date | string
+    userId?: IntFilter<"Poin"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type PoinOrderByWithAggregationInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    _count?: PoinCountOrderByAggregateInput
+    _avg?: PoinAvgOrderByAggregateInput
+    _max?: PoinMaxOrderByAggregateInput
+    _min?: PoinMinOrderByAggregateInput
+    _sum?: PoinSumOrderByAggregateInput
+  }
+
+  export type PoinScalarWhereWithAggregatesInput = {
+    AND?: PoinScalarWhereWithAggregatesInput | PoinScalarWhereWithAggregatesInput[]
+    OR?: PoinScalarWhereWithAggregatesInput[]
+    NOT?: PoinScalarWhereWithAggregatesInput | PoinScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Poin"> | number
+    amount?: IntWithAggregatesFilter<"Poin"> | number
+    expiredAt?: DateTimeWithAggregatesFilter<"Poin"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Poin"> | Date | string
+    userId?: IntWithAggregatesFilter<"Poin"> | number
+  }
+
   export type UserCreateInput = {
     email: string
     password: string
@@ -2228,6 +4871,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.Role
+    vouchered?: VoucherCreateNestedManyWithoutUserInput
+    points?: PoinCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2242,6 +4887,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     role?: $Enums.Role
+    vouchered?: VoucherUncheckedCreateNestedManyWithoutUserInput
+    points?: PoinUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -2255,6 +4902,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    vouchered?: VoucherUpdateManyWithoutUserNestedInput
+    points?: PoinUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2269,6 +4918,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    vouchered?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+    points?: PoinUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2310,6 +4961,103 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  }
+
+  export type VoucherCreateInput = {
+    expiredAt: Date | string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutVoucheredInput
+  }
+
+  export type VoucherUncheckedCreateInput = {
+    id?: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+    userId: number
+  }
+
+  export type VoucherUpdateInput = {
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutVoucheredNestedInput
+  }
+
+  export type VoucherUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type VoucherCreateManyInput = {
+    id?: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+    userId: number
+  }
+
+  export type VoucherUpdateManyMutationInput = {
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoucherUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PoinCreateInput = {
+    amount: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutPointsInput
+  }
+
+  export type PoinUncheckedCreateInput = {
+    id?: number
+    amount: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+    userId: number
+  }
+
+  export type PoinUpdateInput = {
+    amount?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPointsNestedInput
+  }
+
+  export type PoinUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PoinCreateManyInput = {
+    id?: number
+    amount: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+    userId: number
+  }
+
+  export type PoinUpdateManyMutationInput = {
+    amount?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PoinUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2376,9 +5124,29 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type VoucherListRelationFilter = {
+    every?: VoucherWhereInput
+    some?: VoucherWhereInput
+    none?: VoucherWhereInput
+  }
+
+  export type PoinListRelationFilter = {
+    every?: PoinWhereInput
+    some?: PoinWhereInput
+    none?: PoinWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type VoucherOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PoinOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -2515,6 +5283,106 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type VoucherCountOrderByAggregateInput = {
+    id?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VoucherAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VoucherMaxOrderByAggregateInput = {
+    id?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VoucherMinOrderByAggregateInput = {
+    id?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VoucherSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PoinCountOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PoinAvgOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PoinMaxOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PoinMinOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PoinSumOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VoucherCreateNestedManyWithoutUserInput = {
+    create?: XOR<VoucherCreateWithoutUserInput, VoucherUncheckedCreateWithoutUserInput> | VoucherCreateWithoutUserInput[] | VoucherUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VoucherCreateOrConnectWithoutUserInput | VoucherCreateOrConnectWithoutUserInput[]
+    createMany?: VoucherCreateManyUserInputEnvelope
+    connect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+  }
+
+  export type PoinCreateNestedManyWithoutUserInput = {
+    create?: XOR<PoinCreateWithoutUserInput, PoinUncheckedCreateWithoutUserInput> | PoinCreateWithoutUserInput[] | PoinUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PoinCreateOrConnectWithoutUserInput | PoinCreateOrConnectWithoutUserInput[]
+    createMany?: PoinCreateManyUserInputEnvelope
+    connect?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+  }
+
+  export type VoucherUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<VoucherCreateWithoutUserInput, VoucherUncheckedCreateWithoutUserInput> | VoucherCreateWithoutUserInput[] | VoucherUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VoucherCreateOrConnectWithoutUserInput | VoucherCreateOrConnectWithoutUserInput[]
+    createMany?: VoucherCreateManyUserInputEnvelope
+    connect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+  }
+
+  export type PoinUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PoinCreateWithoutUserInput, PoinUncheckedCreateWithoutUserInput> | PoinCreateWithoutUserInput[] | PoinUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PoinCreateOrConnectWithoutUserInput | PoinCreateOrConnectWithoutUserInput[]
+    createMany?: PoinCreateManyUserInputEnvelope
+    connect?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2535,12 +5403,96 @@ export namespace Prisma {
     set?: $Enums.Role
   }
 
+  export type VoucherUpdateManyWithoutUserNestedInput = {
+    create?: XOR<VoucherCreateWithoutUserInput, VoucherUncheckedCreateWithoutUserInput> | VoucherCreateWithoutUserInput[] | VoucherUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VoucherCreateOrConnectWithoutUserInput | VoucherCreateOrConnectWithoutUserInput[]
+    upsert?: VoucherUpsertWithWhereUniqueWithoutUserInput | VoucherUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: VoucherCreateManyUserInputEnvelope
+    set?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    disconnect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    delete?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    connect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    update?: VoucherUpdateWithWhereUniqueWithoutUserInput | VoucherUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: VoucherUpdateManyWithWhereWithoutUserInput | VoucherUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: VoucherScalarWhereInput | VoucherScalarWhereInput[]
+  }
+
+  export type PoinUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PoinCreateWithoutUserInput, PoinUncheckedCreateWithoutUserInput> | PoinCreateWithoutUserInput[] | PoinUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PoinCreateOrConnectWithoutUserInput | PoinCreateOrConnectWithoutUserInput[]
+    upsert?: PoinUpsertWithWhereUniqueWithoutUserInput | PoinUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PoinCreateManyUserInputEnvelope
+    set?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    disconnect?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    delete?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    connect?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    update?: PoinUpdateWithWhereUniqueWithoutUserInput | PoinUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PoinUpdateManyWithWhereWithoutUserInput | PoinUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PoinScalarWhereInput | PoinScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type VoucherUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<VoucherCreateWithoutUserInput, VoucherUncheckedCreateWithoutUserInput> | VoucherCreateWithoutUserInput[] | VoucherUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: VoucherCreateOrConnectWithoutUserInput | VoucherCreateOrConnectWithoutUserInput[]
+    upsert?: VoucherUpsertWithWhereUniqueWithoutUserInput | VoucherUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: VoucherCreateManyUserInputEnvelope
+    set?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    disconnect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    delete?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    connect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+    update?: VoucherUpdateWithWhereUniqueWithoutUserInput | VoucherUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: VoucherUpdateManyWithWhereWithoutUserInput | VoucherUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: VoucherScalarWhereInput | VoucherScalarWhereInput[]
+  }
+
+  export type PoinUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PoinCreateWithoutUserInput, PoinUncheckedCreateWithoutUserInput> | PoinCreateWithoutUserInput[] | PoinUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PoinCreateOrConnectWithoutUserInput | PoinCreateOrConnectWithoutUserInput[]
+    upsert?: PoinUpsertWithWhereUniqueWithoutUserInput | PoinUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PoinCreateManyUserInputEnvelope
+    set?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    disconnect?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    delete?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    connect?: PoinWhereUniqueInput | PoinWhereUniqueInput[]
+    update?: PoinUpdateWithWhereUniqueWithoutUserInput | PoinUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PoinUpdateManyWithWhereWithoutUserInput | PoinUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PoinScalarWhereInput | PoinScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutVoucheredInput = {
+    create?: XOR<UserCreateWithoutVoucheredInput, UserUncheckedCreateWithoutVoucheredInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVoucheredInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutVoucheredNestedInput = {
+    create?: XOR<UserCreateWithoutVoucheredInput, UserUncheckedCreateWithoutVoucheredInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVoucheredInput
+    upsert?: UserUpsertWithoutVoucheredInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutVoucheredInput, UserUpdateWithoutVoucheredInput>, UserUncheckedUpdateWithoutVoucheredInput>
+  }
+
+  export type UserCreateNestedOneWithoutPointsInput = {
+    create?: XOR<UserCreateWithoutPointsInput, UserUncheckedCreateWithoutPointsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPointsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPointsNestedInput = {
+    create?: XOR<UserCreateWithoutPointsInput, UserUncheckedCreateWithoutPointsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPointsInput
+    upsert?: UserUpsertWithoutPointsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPointsInput, UserUpdateWithoutPointsInput>, UserUncheckedUpdateWithoutPointsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2707,6 +5659,301 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type VoucherCreateWithoutUserInput = {
+    expiredAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type VoucherUncheckedCreateWithoutUserInput = {
+    id?: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type VoucherCreateOrConnectWithoutUserInput = {
+    where: VoucherWhereUniqueInput
+    create: XOR<VoucherCreateWithoutUserInput, VoucherUncheckedCreateWithoutUserInput>
+  }
+
+  export type VoucherCreateManyUserInputEnvelope = {
+    data: VoucherCreateManyUserInput | VoucherCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PoinCreateWithoutUserInput = {
+    amount: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type PoinUncheckedCreateWithoutUserInput = {
+    id?: number
+    amount: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type PoinCreateOrConnectWithoutUserInput = {
+    where: PoinWhereUniqueInput
+    create: XOR<PoinCreateWithoutUserInput, PoinUncheckedCreateWithoutUserInput>
+  }
+
+  export type PoinCreateManyUserInputEnvelope = {
+    data: PoinCreateManyUserInput | PoinCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type VoucherUpsertWithWhereUniqueWithoutUserInput = {
+    where: VoucherWhereUniqueInput
+    update: XOR<VoucherUpdateWithoutUserInput, VoucherUncheckedUpdateWithoutUserInput>
+    create: XOR<VoucherCreateWithoutUserInput, VoucherUncheckedCreateWithoutUserInput>
+  }
+
+  export type VoucherUpdateWithWhereUniqueWithoutUserInput = {
+    where: VoucherWhereUniqueInput
+    data: XOR<VoucherUpdateWithoutUserInput, VoucherUncheckedUpdateWithoutUserInput>
+  }
+
+  export type VoucherUpdateManyWithWhereWithoutUserInput = {
+    where: VoucherScalarWhereInput
+    data: XOR<VoucherUpdateManyMutationInput, VoucherUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type VoucherScalarWhereInput = {
+    AND?: VoucherScalarWhereInput | VoucherScalarWhereInput[]
+    OR?: VoucherScalarWhereInput[]
+    NOT?: VoucherScalarWhereInput | VoucherScalarWhereInput[]
+    id?: IntFilter<"Voucher"> | number
+    expiredAt?: DateTimeFilter<"Voucher"> | Date | string
+    createdAt?: DateTimeFilter<"Voucher"> | Date | string
+    userId?: IntFilter<"Voucher"> | number
+  }
+
+  export type PoinUpsertWithWhereUniqueWithoutUserInput = {
+    where: PoinWhereUniqueInput
+    update: XOR<PoinUpdateWithoutUserInput, PoinUncheckedUpdateWithoutUserInput>
+    create: XOR<PoinCreateWithoutUserInput, PoinUncheckedCreateWithoutUserInput>
+  }
+
+  export type PoinUpdateWithWhereUniqueWithoutUserInput = {
+    where: PoinWhereUniqueInput
+    data: XOR<PoinUpdateWithoutUserInput, PoinUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PoinUpdateManyWithWhereWithoutUserInput = {
+    where: PoinScalarWhereInput
+    data: XOR<PoinUpdateManyMutationInput, PoinUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PoinScalarWhereInput = {
+    AND?: PoinScalarWhereInput | PoinScalarWhereInput[]
+    OR?: PoinScalarWhereInput[]
+    NOT?: PoinScalarWhereInput | PoinScalarWhereInput[]
+    id?: IntFilter<"Poin"> | number
+    amount?: IntFilter<"Poin"> | number
+    expiredAt?: DateTimeFilter<"Poin"> | Date | string
+    createdAt?: DateTimeFilter<"Poin"> | Date | string
+    userId?: IntFilter<"Poin"> | number
+  }
+
+  export type UserCreateWithoutVoucheredInput = {
+    email: string
+    password: string
+    username: string
+    referral: string
+    fullname?: string | null
+    Avatar?: string | null
+    isVerify?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    points?: PoinCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutVoucheredInput = {
+    id?: number
+    email: string
+    password: string
+    username: string
+    referral: string
+    fullname?: string | null
+    Avatar?: string | null
+    isVerify?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    points?: PoinUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutVoucheredInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutVoucheredInput, UserUncheckedCreateWithoutVoucheredInput>
+  }
+
+  export type UserUpsertWithoutVoucheredInput = {
+    update: XOR<UserUpdateWithoutVoucheredInput, UserUncheckedUpdateWithoutVoucheredInput>
+    create: XOR<UserCreateWithoutVoucheredInput, UserUncheckedCreateWithoutVoucheredInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutVoucheredInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutVoucheredInput, UserUncheckedUpdateWithoutVoucheredInput>
+  }
+
+  export type UserUpdateWithoutVoucheredInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    referral?: StringFieldUpdateOperationsInput | string
+    fullname?: NullableStringFieldUpdateOperationsInput | string | null
+    Avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerify?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: PoinUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutVoucheredInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    referral?: StringFieldUpdateOperationsInput | string
+    fullname?: NullableStringFieldUpdateOperationsInput | string | null
+    Avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerify?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    points?: PoinUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutPointsInput = {
+    email: string
+    password: string
+    username: string
+    referral: string
+    fullname?: string | null
+    Avatar?: string | null
+    isVerify?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    vouchered?: VoucherCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPointsInput = {
+    id?: number
+    email: string
+    password: string
+    username: string
+    referral: string
+    fullname?: string | null
+    Avatar?: string | null
+    isVerify?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: $Enums.Role
+    vouchered?: VoucherUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPointsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPointsInput, UserUncheckedCreateWithoutPointsInput>
+  }
+
+  export type UserUpsertWithoutPointsInput = {
+    update: XOR<UserUpdateWithoutPointsInput, UserUncheckedUpdateWithoutPointsInput>
+    create: XOR<UserCreateWithoutPointsInput, UserUncheckedCreateWithoutPointsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPointsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPointsInput, UserUncheckedUpdateWithoutPointsInput>
+  }
+
+  export type UserUpdateWithoutPointsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    referral?: StringFieldUpdateOperationsInput | string
+    fullname?: NullableStringFieldUpdateOperationsInput | string | null
+    Avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerify?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    vouchered?: VoucherUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPointsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    referral?: StringFieldUpdateOperationsInput | string
+    fullname?: NullableStringFieldUpdateOperationsInput | string | null
+    Avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerify?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    vouchered?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type VoucherCreateManyUserInput = {
+    id?: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type PoinCreateManyUserInput = {
+    id?: number
+    amount: number
+    expiredAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type VoucherUpdateWithoutUserInput = {
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoucherUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VoucherUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PoinUpdateWithoutUserInput = {
+    amount?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PoinUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PoinUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    amount?: IntFieldUpdateOperationsInput | number
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
