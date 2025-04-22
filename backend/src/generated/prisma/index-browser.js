@@ -123,6 +123,7 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   username: 'username',
   referral: 'referral',
+  referredBy: 'referredBy',
   fullname: 'fullname',
   Avatar: 'Avatar',
   isVerify: 'isVerify',
@@ -135,6 +136,8 @@ exports.Prisma.VoucherScalarFieldEnum = {
   id: 'id',
   expiredAt: 'expiredAt',
   createdAt: 'createdAt',
+  percentage: 'percentage',
+  description: 'description',
   userId: 'userId'
 };
 

@@ -1133,6 +1133,7 @@ export namespace Prisma {
     password: string | null
     username: string | null
     referral: string | null
+    referredBy: string | null
     fullname: string | null
     Avatar: string | null
     isVerify: boolean | null
@@ -1147,6 +1148,7 @@ export namespace Prisma {
     password: string | null
     username: string | null
     referral: string | null
+    referredBy: string | null
     fullname: string | null
     Avatar: string | null
     isVerify: boolean | null
@@ -1161,6 +1163,7 @@ export namespace Prisma {
     password: number
     username: number
     referral: number
+    referredBy: number
     fullname: number
     Avatar: number
     isVerify: number
@@ -1185,6 +1188,7 @@ export namespace Prisma {
     password?: true
     username?: true
     referral?: true
+    referredBy?: true
     fullname?: true
     Avatar?: true
     isVerify?: true
@@ -1199,6 +1203,7 @@ export namespace Prisma {
     password?: true
     username?: true
     referral?: true
+    referredBy?: true
     fullname?: true
     Avatar?: true
     isVerify?: true
@@ -1213,6 +1218,7 @@ export namespace Prisma {
     password?: true
     username?: true
     referral?: true
+    referredBy?: true
     fullname?: true
     Avatar?: true
     isVerify?: true
@@ -1314,6 +1320,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy: string | null
     fullname: string | null
     Avatar: string | null
     isVerify: boolean
@@ -1347,6 +1354,7 @@ export namespace Prisma {
     password?: boolean
     username?: boolean
     referral?: boolean
+    referredBy?: boolean
     fullname?: boolean
     Avatar?: boolean
     isVerify?: boolean
@@ -1364,6 +1372,7 @@ export namespace Prisma {
     password?: boolean
     username?: boolean
     referral?: boolean
+    referredBy?: boolean
     fullname?: boolean
     Avatar?: boolean
     isVerify?: boolean
@@ -1378,6 +1387,7 @@ export namespace Prisma {
     password?: boolean
     username?: boolean
     referral?: boolean
+    referredBy?: boolean
     fullname?: boolean
     Avatar?: boolean
     isVerify?: boolean
@@ -1392,6 +1402,7 @@ export namespace Prisma {
     password?: boolean
     username?: boolean
     referral?: boolean
+    referredBy?: boolean
     fullname?: boolean
     Avatar?: boolean
     isVerify?: boolean
@@ -1400,7 +1411,7 @@ export namespace Prisma {
     role?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "referral" | "fullname" | "Avatar" | "isVerify" | "createdAt" | "updatedAt" | "role", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "referral" | "referredBy" | "fullname" | "Avatar" | "isVerify" | "createdAt" | "updatedAt" | "role", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vouchered?: boolean | User$voucheredArgs<ExtArgs>
     points?: boolean | User$pointsArgs<ExtArgs>
@@ -1421,6 +1432,7 @@ export namespace Prisma {
       password: string
       username: string
       referral: string
+      referredBy: string | null
       fullname: string | null
       Avatar: string | null
       isVerify: boolean
@@ -1857,6 +1869,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
     readonly referral: FieldRef<"User", 'String'>
+    readonly referredBy: FieldRef<"User", 'String'>
     readonly fullname: FieldRef<"User", 'String'>
     readonly Avatar: FieldRef<"User", 'String'>
     readonly isVerify: FieldRef<"User", 'Boolean'>
@@ -2331,11 +2344,13 @@ export namespace Prisma {
 
   export type VoucherAvgAggregateOutputType = {
     id: number | null
+    percentage: number | null
     userId: number | null
   }
 
   export type VoucherSumAggregateOutputType = {
     id: number | null
+    percentage: number | null
     userId: number | null
   }
 
@@ -2343,6 +2358,8 @@ export namespace Prisma {
     id: number | null
     expiredAt: Date | null
     createdAt: Date | null
+    percentage: number | null
+    description: string | null
     userId: number | null
   }
 
@@ -2350,6 +2367,8 @@ export namespace Prisma {
     id: number | null
     expiredAt: Date | null
     createdAt: Date | null
+    percentage: number | null
+    description: string | null
     userId: number | null
   }
 
@@ -2357,6 +2376,8 @@ export namespace Prisma {
     id: number
     expiredAt: number
     createdAt: number
+    percentage: number
+    description: number
     userId: number
     _all: number
   }
@@ -2364,11 +2385,13 @@ export namespace Prisma {
 
   export type VoucherAvgAggregateInputType = {
     id?: true
+    percentage?: true
     userId?: true
   }
 
   export type VoucherSumAggregateInputType = {
     id?: true
+    percentage?: true
     userId?: true
   }
 
@@ -2376,6 +2399,8 @@ export namespace Prisma {
     id?: true
     expiredAt?: true
     createdAt?: true
+    percentage?: true
+    description?: true
     userId?: true
   }
 
@@ -2383,6 +2408,8 @@ export namespace Prisma {
     id?: true
     expiredAt?: true
     createdAt?: true
+    percentage?: true
+    description?: true
     userId?: true
   }
 
@@ -2390,6 +2417,8 @@ export namespace Prisma {
     id?: true
     expiredAt?: true
     createdAt?: true
+    percentage?: true
+    description?: true
     userId?: true
     _all?: true
   }
@@ -2484,6 +2513,8 @@ export namespace Prisma {
     id: number
     expiredAt: Date
     createdAt: Date
+    percentage: number
+    description: string
     userId: number
     _count: VoucherCountAggregateOutputType | null
     _avg: VoucherAvgAggregateOutputType | null
@@ -2510,6 +2541,8 @@ export namespace Prisma {
     id?: boolean
     expiredAt?: boolean
     createdAt?: boolean
+    percentage?: boolean
+    description?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["voucher"]>
@@ -2518,6 +2551,8 @@ export namespace Prisma {
     id?: boolean
     expiredAt?: boolean
     createdAt?: boolean
+    percentage?: boolean
+    description?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["voucher"]>
@@ -2526,6 +2561,8 @@ export namespace Prisma {
     id?: boolean
     expiredAt?: boolean
     createdAt?: boolean
+    percentage?: boolean
+    description?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["voucher"]>
@@ -2534,10 +2571,12 @@ export namespace Prisma {
     id?: boolean
     expiredAt?: boolean
     createdAt?: boolean
+    percentage?: boolean
+    description?: boolean
     userId?: boolean
   }
 
-  export type VoucherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiredAt" | "createdAt" | "userId", ExtArgs["result"]["voucher"]>
+  export type VoucherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiredAt" | "createdAt" | "percentage" | "description" | "userId", ExtArgs["result"]["voucher"]>
   export type VoucherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2557,6 +2596,8 @@ export namespace Prisma {
       id: number
       expiredAt: Date
       createdAt: Date
+      percentage: number
+      description: string
       userId: number
     }, ExtArgs["result"]["voucher"]>
     composites: {}
@@ -2985,6 +3026,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Voucher", 'Int'>
     readonly expiredAt: FieldRef<"Voucher", 'DateTime'>
     readonly createdAt: FieldRef<"Voucher", 'DateTime'>
+    readonly percentage: FieldRef<"Voucher", 'Int'>
+    readonly description: FieldRef<"Voucher", 'String'>
     readonly userId: FieldRef<"Voucher", 'Int'>
   }
     
@@ -4520,6 +4563,7 @@ export namespace Prisma {
     password: 'password',
     username: 'username',
     referral: 'referral',
+    referredBy: 'referredBy',
     fullname: 'fullname',
     Avatar: 'Avatar',
     isVerify: 'isVerify',
@@ -4535,6 +4579,8 @@ export namespace Prisma {
     id: 'id',
     expiredAt: 'expiredAt',
     createdAt: 'createdAt',
+    percentage: 'percentage',
+    description: 'description',
     userId: 'userId'
   };
 
@@ -4670,6 +4716,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
     referral?: StringFilter<"User"> | string
+    referredBy?: StringNullableFilter<"User"> | string | null
     fullname?: StringNullableFilter<"User"> | string | null
     Avatar?: StringNullableFilter<"User"> | string | null
     isVerify?: BoolFilter<"User"> | boolean
@@ -4686,6 +4733,7 @@ export namespace Prisma {
     password?: SortOrder
     username?: SortOrder
     referral?: SortOrder
+    referredBy?: SortOrderInput | SortOrder
     fullname?: SortOrderInput | SortOrder
     Avatar?: SortOrderInput | SortOrder
     isVerify?: SortOrder
@@ -4705,6 +4753,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
+    referredBy?: StringNullableFilter<"User"> | string | null
     fullname?: StringNullableFilter<"User"> | string | null
     Avatar?: StringNullableFilter<"User"> | string | null
     isVerify?: BoolFilter<"User"> | boolean
@@ -4721,6 +4770,7 @@ export namespace Prisma {
     password?: SortOrder
     username?: SortOrder
     referral?: SortOrder
+    referredBy?: SortOrderInput | SortOrder
     fullname?: SortOrderInput | SortOrder
     Avatar?: SortOrderInput | SortOrder
     isVerify?: SortOrder
@@ -4743,6 +4793,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
     referral?: StringWithAggregatesFilter<"User"> | string
+    referredBy?: StringNullableWithAggregatesFilter<"User"> | string | null
     fullname?: StringNullableWithAggregatesFilter<"User"> | string | null
     Avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     isVerify?: BoolWithAggregatesFilter<"User"> | boolean
@@ -4758,6 +4809,8 @@ export namespace Prisma {
     id?: IntFilter<"Voucher"> | number
     expiredAt?: DateTimeFilter<"Voucher"> | Date | string
     createdAt?: DateTimeFilter<"Voucher"> | Date | string
+    percentage?: IntFilter<"Voucher"> | number
+    description?: StringFilter<"Voucher"> | string
     userId?: IntFilter<"Voucher"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -4766,6 +4819,8 @@ export namespace Prisma {
     id?: SortOrder
     expiredAt?: SortOrder
     createdAt?: SortOrder
+    percentage?: SortOrder
+    description?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -4777,6 +4832,8 @@ export namespace Prisma {
     NOT?: VoucherWhereInput | VoucherWhereInput[]
     expiredAt?: DateTimeFilter<"Voucher"> | Date | string
     createdAt?: DateTimeFilter<"Voucher"> | Date | string
+    percentage?: IntFilter<"Voucher"> | number
+    description?: StringFilter<"Voucher"> | string
     userId?: IntFilter<"Voucher"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -4785,6 +4842,8 @@ export namespace Prisma {
     id?: SortOrder
     expiredAt?: SortOrder
     createdAt?: SortOrder
+    percentage?: SortOrder
+    description?: SortOrder
     userId?: SortOrder
     _count?: VoucherCountOrderByAggregateInput
     _avg?: VoucherAvgOrderByAggregateInput
@@ -4800,6 +4859,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Voucher"> | number
     expiredAt?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
+    percentage?: IntWithAggregatesFilter<"Voucher"> | number
+    description?: StringWithAggregatesFilter<"Voucher"> | string
     userId?: IntWithAggregatesFilter<"Voucher"> | number
   }
 
@@ -4865,6 +4926,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -4881,6 +4943,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -4896,6 +4959,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -4912,6 +4976,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -4928,6 +4993,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -4941,6 +5007,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -4955,6 +5022,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -4966,6 +5034,8 @@ export namespace Prisma {
   export type VoucherCreateInput = {
     expiredAt: Date | string
     createdAt?: Date | string
+    percentage: number
+    description: string
     user: UserCreateNestedOneWithoutVoucheredInput
   }
 
@@ -4973,12 +5043,16 @@ export namespace Prisma {
     id?: number
     expiredAt: Date | string
     createdAt?: Date | string
+    percentage: number
+    description: string
     userId: number
   }
 
   export type VoucherUpdateInput = {
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    percentage?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVoucheredNestedInput
   }
 
@@ -4986,6 +5060,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    percentage?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -4993,18 +5069,24 @@ export namespace Prisma {
     id?: number
     expiredAt: Date | string
     createdAt?: Date | string
+    percentage: number
+    description: string
     userId: number
   }
 
   export type VoucherUpdateManyMutationInput = {
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    percentage?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type VoucherUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    percentage?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -5155,6 +5237,7 @@ export namespace Prisma {
     password?: SortOrder
     username?: SortOrder
     referral?: SortOrder
+    referredBy?: SortOrder
     fullname?: SortOrder
     Avatar?: SortOrder
     isVerify?: SortOrder
@@ -5173,6 +5256,7 @@ export namespace Prisma {
     password?: SortOrder
     username?: SortOrder
     referral?: SortOrder
+    referredBy?: SortOrder
     fullname?: SortOrder
     Avatar?: SortOrder
     isVerify?: SortOrder
@@ -5187,6 +5271,7 @@ export namespace Prisma {
     password?: SortOrder
     username?: SortOrder
     referral?: SortOrder
+    referredBy?: SortOrder
     fullname?: SortOrder
     Avatar?: SortOrder
     isVerify?: SortOrder
@@ -5292,11 +5377,14 @@ export namespace Prisma {
     id?: SortOrder
     expiredAt?: SortOrder
     createdAt?: SortOrder
+    percentage?: SortOrder
+    description?: SortOrder
     userId?: SortOrder
   }
 
   export type VoucherAvgOrderByAggregateInput = {
     id?: SortOrder
+    percentage?: SortOrder
     userId?: SortOrder
   }
 
@@ -5304,6 +5392,8 @@ export namespace Prisma {
     id?: SortOrder
     expiredAt?: SortOrder
     createdAt?: SortOrder
+    percentage?: SortOrder
+    description?: SortOrder
     userId?: SortOrder
   }
 
@@ -5311,11 +5401,14 @@ export namespace Prisma {
     id?: SortOrder
     expiredAt?: SortOrder
     createdAt?: SortOrder
+    percentage?: SortOrder
+    description?: SortOrder
     userId?: SortOrder
   }
 
   export type VoucherSumOrderByAggregateInput = {
     id?: SortOrder
+    percentage?: SortOrder
     userId?: SortOrder
   }
 
@@ -5664,12 +5757,16 @@ export namespace Prisma {
   export type VoucherCreateWithoutUserInput = {
     expiredAt: Date | string
     createdAt?: Date | string
+    percentage: number
+    description: string
   }
 
   export type VoucherUncheckedCreateWithoutUserInput = {
     id?: number
     expiredAt: Date | string
     createdAt?: Date | string
+    percentage: number
+    description: string
   }
 
   export type VoucherCreateOrConnectWithoutUserInput = {
@@ -5728,6 +5825,8 @@ export namespace Prisma {
     id?: IntFilter<"Voucher"> | number
     expiredAt?: DateTimeFilter<"Voucher"> | Date | string
     createdAt?: DateTimeFilter<"Voucher"> | Date | string
+    percentage?: IntFilter<"Voucher"> | number
+    description?: StringFilter<"Voucher"> | string
     userId?: IntFilter<"Voucher"> | number
   }
 
@@ -5763,6 +5862,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5778,6 +5878,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5808,6 +5909,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5823,6 +5925,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5837,6 +5940,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5852,6 +5956,7 @@ export namespace Prisma {
     password: string
     username: string
     referral: string
+    referredBy?: string | null
     fullname?: string | null
     Avatar?: string | null
     isVerify?: boolean
@@ -5882,6 +5987,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5897,6 +6003,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     referral?: StringFieldUpdateOperationsInput | string
+    referredBy?: NullableStringFieldUpdateOperationsInput | string | null
     fullname?: NullableStringFieldUpdateOperationsInput | string | null
     Avatar?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
@@ -5910,6 +6017,8 @@ export namespace Prisma {
     id?: number
     expiredAt: Date | string
     createdAt?: Date | string
+    percentage: number
+    description: string
   }
 
   export type PoinCreateManyUserInput = {
@@ -5922,18 +6031,24 @@ export namespace Prisma {
   export type VoucherUpdateWithoutUserInput = {
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    percentage?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type VoucherUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    percentage?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type VoucherUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    percentage?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type PoinUpdateWithoutUserInput = {

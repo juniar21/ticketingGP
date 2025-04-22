@@ -29,4 +29,14 @@ export class AuthMiddleware {
             res.status(400).send(err)
         }
     }
+
+    verifyUser(req: Request, res: Response, next: NextFunction){
+        try {
+            if (req.user?.role !== "USER") throw {message: "CUSTOMER Only"};
+            next()
+        } catch (err) {
+            console.log(err);
+            res.status(400).send(err)
+        }
+    }
 }
