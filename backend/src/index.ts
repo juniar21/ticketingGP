@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express"
 import { AuthRouter } from "./routers/auth.routes";
 import cors from "cors";
+import { AuthRouterO } from "./routers/authO.routes";
 
 const PORT = 8000;
 
@@ -17,6 +18,9 @@ app.get("/", (req:Request, res:Response) =>{
 
 const authRouter = new AuthRouter();
 app.use("/api/auth", authRouter.getRouter());
+
+const authRouterO = new AuthRouterO();
+app.use("/api/auth", authRouterO.getRouter());
 
 
 app.listen(PORT, () => {

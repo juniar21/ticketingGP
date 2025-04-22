@@ -1,29 +1,28 @@
 import { Router } from "express";
-import { AuthController } from "../controllers/auth.controller";
+import { AuthControllerO } from "../controllers/authO.controller";
 import { AuthMiddleware } from "../middleware/auth.middleware";
 import { validateRegister } from "../middleware/validation";
 
-export class AuthRouter {
+export class AuthRouterO {
   private router: Router;
-  private authCrontoller: AuthController;
+  private authCrontoller: AuthControllerO;
   private authMiddleware: AuthMiddleware;
 
   constructor() {
     this.router = Router();
-    this.authCrontoller = new AuthController();
+    this.authCrontoller = new AuthControllerO();
     this.authMiddleware = new AuthMiddleware();
     this.initializeRoute();
   }
 
   private initializeRoute() {
     this.router.post(
-      "/",validateRegister,
+      "/organizer/register",validateRegister,
       this.authCrontoller.register
     );
-    this.router.post("/login", this.authCrontoller.login);
+    this.router.post("/organizer/login", this.authCrontoller.login);
     this.router.patch(
-      "/verify",
-      this.authMiddleware.verifyUser,
+      "/organizer/verify",
       this.authMiddleware.verifyToken,
       this.authCrontoller.verify
     );

@@ -1,51 +1,50 @@
 "use client";
 import axios from "@/lib/axios";
 import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 
-const registerScheme = yup.object().shape({
-  email: yup
-    .string()
-    .required("Please input the email")
-    .email("please use the correct email"),
+const loginScheme = yup.object().shape({
   username: yup.string().required("Please input the username"),
-  fullname: yup.string().required("please input the fullname"),
   password: yup.string().required("Please use the correct Password"),
-  refcode: yup.string().required("Please input the valid referral code"),
 });
 
-interface IRegForm {
-  email: string;
-  password: string;
+interface ILogForm {
   username: string;
-  fullname: string;
-  refcode: string;
+  password: string;
 }
 // interface IProps {
 //   onReload: () => void;
 // }
 
-export default function RegisterForm() {
-  const initialValues: IRegForm = {
-    email: "",
-    password: "",
+export default function LoginForm() {
+  const initialValues: ILogForm = {
     username: "",
-    fullname: "",
-    refcode: ""
+    password: "",
   };
   const router = useRouter();
   const regUser = async (
-    values: IRegForm,
-    actions: FormikHelpers<IRegForm>
+    values: ILogForm,
+    actions: FormikHelpers<ILogForm>
   ) => {
     try {
-      await axios.post("/auth", values);
+      const { data } = await axios.post("/auth/oragnizer/login", values);
+      const user = data.data;
+
+      await signIn("credentials", {
+        redirectTo: "/",
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        fullname: user.fullname,
+        avatar: user.avatar ?? "",
+        accessToken: data.access_token,
+      });
       actions.resetForm();
-      toast.success("register success!");
-      router.push("/customer/login");
+      toast.success("login success!");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log(error);
@@ -57,10 +56,10 @@ export default function RegisterForm() {
     <div>
       <Formik
         initialValues={initialValues}
-        validationSchema={registerScheme}
+        validationSchema={loginScheme}
         onSubmit={regUser}
       >
-        {(props: FormikProps<IRegForm>) => {
+        {(props: FormikProps<ILogForm>) => {
           const { errors, touched, isSubmitting } = props;
           return (
             <Form className="relative">
@@ -92,15 +91,16 @@ export default function RegisterForm() {
                     </div>
                     <div className="flex flex-col gap-2 mt-[-20px]">
                       <div className="flex justify-center">
-                        <h1 className="font-audio text-[25px]">CUSTOMER</h1>
+                        <h1 className="font-audio text-[25px]">LOGIN</h1>
                       </div>
+                      
                       <Field
-                        name="email"
-                        className="mt-[15px] border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
-                        placeholder="email"
+                        name="username"
+                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
+                        placeholder="username"
                       />
-                      {touched.email && errors.email ? (
-                        <div className="text-red-500">{errors.email}</div>
+                      {touched.username && errors.username ? (
+                        <div className="text-red-500">{errors.username}</div>
                       ) : null}
                       <Field
                         name="password"
@@ -112,32 +112,6 @@ export default function RegisterForm() {
                         <div className="text-red-500">{errors.password}</div>
                       ) : null}
 
-                      <Field
-                        name="username"
-                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
-                        placeholder="username"
-                      />
-                      {touched.username && errors.username ? (
-                        <div className="text-red-500">{errors.username}</div>
-                      ) : null}
-                      <Field
-                        name="fullname"
-                        type="fullname"
-                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
-                        placeholder="fullname"
-                      />
-                      {touched.password && errors.password ? (
-                        <div className="text-red-500">{errors.password}</div>
-                      ) : null}
-                      <Field
-                        name="refcode"
-                        type="refcode"
-                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
-                        placeholder="Referral Code"
-                      />
-                      {touched.refcode && errors.refcode ? (
-                        <div className="text-red-500">{errors.refcode}</div>
-                      ) : null}
                       <p className="text-center text-gray-300 font-light text-[15px]">
                         People who use our service may have uploaded your
                         contact information to Moto GP.
@@ -151,7 +125,7 @@ export default function RegisterForm() {
                         onSubmit={() => router.push("/login")}
                         className="bg-red-400 text-white w-[300px] h-[50px] rounded-md shadow-md hover:cursor-pointer hover:bg-red-300 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
                       >
-                        {isSubmitting ? "loading" : "Register"}
+                        {isSubmitting ? "loading" : "Login"}
                       </button>
                     </div>
                   </div>
@@ -162,10 +136,10 @@ export default function RegisterForm() {
                   <div className="text-black flex justify-center items-center gap-3 p-3">
                     <p>Sudah punya akun?</p>
                     <p
-                      onClick={() => router.push("/login")}
+                      onClick={() => router.push("/organizer")}
                       className="font-bold text-red-500 hover:cursor-pointer"
                     >
-                      Login
+                      Register
                     </p>
                   </div>
                 </div>

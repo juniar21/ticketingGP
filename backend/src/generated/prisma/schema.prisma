@@ -15,29 +15,31 @@ enum Role {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  username  String   @unique
-  referral  String?  @unique
-  fullname  String?
-  Avatar    String?  @default("https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg")
-  isVerify  Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  role      Role     @default(USER)
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String
+  username   String   @unique
+  referral   String   @unique
+  referredBy String?
+  fullname   String?
+  Avatar     String?  @default("https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg")
+  isVerify   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  role       Role     @default(USER)
 
   vouchered Voucher[]
   points    Poin[]
 }
 
 model Voucher {
-  id        Int      @id @default(autoincrement())
-  expiredAt DateTime
-  createdAt DateTime @default(now())
-
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
+  id          Int      @id @default(autoincrement())
+  expiredAt   DateTime
+  createdAt   DateTime @default(now())
+  percentage  Int // misal: 10 berarti 10%
+  description String
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model Poin {

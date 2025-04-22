@@ -8,7 +8,7 @@ import path from "path";
 import fs from "fs";
 import handlebars from "handlebars";
 
-export class AuthController {
+export class AuthControllerO {
   async register(req: Request, res: Response) {
     try {
       const { fullname, username, email, password } = req.body;
@@ -27,7 +27,7 @@ export class AuthController {
       }
 
       const user = await prisma.user.create({
-        data: { fullname, username, email, password: hashedPass, referral, referredBy: referral || null },
+        data: { fullname, username, email, password: hashedPass, referral, role: "PROMOTOR"},
       });
 
       const payload = { id: user.id, Role: user.role };
@@ -35,7 +35,7 @@ export class AuthController {
         expiresIn: "1h",
       });
 
-      const link = `${process.env.URL_FE}/verify/${token}`;
+      const link = `${process.env.URL_FE}/organizer/verify/${token}`;
 
       const templatePath = path.join(__dirname, "../templates", `verify.hbs`);
       const templateSource = fs.readFileSync(templatePath, "utf-8");
@@ -91,33 +91,6 @@ export class AuthController {
       });
   
       if (!user) throw { message: "User not found" };
-  
-      // Update user: isVerify true
-      
-      // Proses reward berdasarkan referral code yang dipakai saat register
-      if (user.referredBy) {
-        const referer = await prisma.user.findUnique({
-          where: { referral: user.referredBy } // atau bisa kamu simpan di user table
-      });
-      
-      if (referer) {
-        await prisma.poin.create({
-          data: {
-            amount: 10000,
-            expiredAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-            userId: user.id
-          }
-        });};
-        
-        await prisma.voucher.create({
-          data: {
-            percentage: 10,
-            description: 'Voucher referral bonus',
-            expiredAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-            userId: user.id
-          }
-        });
-      }
       
       await prisma.user.update({
         where: { id: user.id },

@@ -14,7 +14,6 @@ const registerScheme = yup.object().shape({
   username: yup.string().required("Please input the username"),
   fullname: yup.string().required("please input the fullname"),
   password: yup.string().required("Please use the correct Password"),
-  refcode: yup.string().required("Please input the valid referral code"),
 });
 
 interface IRegForm {
@@ -22,7 +21,6 @@ interface IRegForm {
   password: string;
   username: string;
   fullname: string;
-  refcode: string;
 }
 // interface IProps {
 //   onReload: () => void;
@@ -34,7 +32,7 @@ export default function RegisterForm() {
     password: "",
     username: "",
     fullname: "",
-    refcode: ""
+   
   };
   const router = useRouter();
   const regUser = async (
@@ -42,10 +40,10 @@ export default function RegisterForm() {
     actions: FormikHelpers<IRegForm>
   ) => {
     try {
-      await axios.post("/auth", values);
+      await axios.post("/auth/organizer/register", values);
       actions.resetForm();
       toast.success("register success!");
-      router.push("/customer/login");
+      router.push("/organizer/login");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log(error);
@@ -92,7 +90,7 @@ export default function RegisterForm() {
                     </div>
                     <div className="flex flex-col gap-2 mt-[-20px]">
                       <div className="flex justify-center">
-                        <h1 className="font-audio text-[25px]">CUSTOMER</h1>
+                        <h1 className="font-audio text-[25px]">ORGANIZER</h1>
                       </div>
                       <Field
                         name="email"
@@ -129,15 +127,6 @@ export default function RegisterForm() {
                       {touched.password && errors.password ? (
                         <div className="text-red-500">{errors.password}</div>
                       ) : null}
-                      <Field
-                        name="refcode"
-                        type="refcode"
-                        className="border border-slate-500/5 w-[300px] text-black rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
-                        placeholder="Referral Code"
-                      />
-                      {touched.refcode && errors.refcode ? (
-                        <div className="text-red-500">{errors.refcode}</div>
-                      ) : null}
                       <p className="text-center text-gray-300 font-light text-[15px]">
                         People who use our service may have uploaded your
                         contact information to Moto GP.
@@ -148,7 +137,7 @@ export default function RegisterForm() {
                       </p>
                       <button
                         type="submit"
-                        onSubmit={() => router.push("/login")}
+                        onSubmit={() => router.push("/organizer/login")}
                         className="bg-red-400 text-white w-[300px] h-[50px] rounded-md shadow-md hover:cursor-pointer hover:bg-red-300 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
                       >
                         {isSubmitting ? "loading" : "Register"}
@@ -162,7 +151,7 @@ export default function RegisterForm() {
                   <div className="text-black flex justify-center items-center gap-3 p-3">
                     <p>Sudah punya akun?</p>
                     <p
-                      onClick={() => router.push("/login")}
+                      onClick={() => router.push("/organizer/login")}
                       className="font-bold text-red-500 hover:cursor-pointer"
                     >
                       Login
