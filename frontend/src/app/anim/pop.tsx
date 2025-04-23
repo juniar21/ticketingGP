@@ -6,9 +6,9 @@ export interface IAnimate {
   children: ReactNode;
 }
 
-export default function AnimasiPop({ children }: IAnimate) {
+export default function PopModalProf({ children }: IAnimate) {
   return (
-    <motion.div
+    <motion.div className="top-[80px]"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0, opacity: 0 }}

@@ -18,7 +18,7 @@ const registerScheme = yup.object().shape({
   password: yup.string().required("Please use the correct Password"),
 });
 
-interface IRegForm {
+interface IRegOForm {
   email: string;
   password: string;
   username: string;
@@ -29,7 +29,7 @@ interface IRegForm {
 // }
 
 export default function RegisterOrgForm() {
-  const initialValues: IRegForm = {
+  const initialValues: IRegOForm = {
     email: "",
     password: "",
     username: "",
@@ -37,11 +37,11 @@ export default function RegisterOrgForm() {
   };
   const router = useRouter();
   const regUser = async (
-    values: IRegForm,
-    actions: FormikHelpers<IRegForm>
+    values: IRegOForm,
+    actions: FormikHelpers<IRegOForm>
   ) => {
     try {
-      await axios.post("/auth/organizer/register", values);
+      await axios.post("auth/organizer/register", values);
       actions.resetForm();
       toast.success("register success!");
       router.push("/login");
@@ -59,7 +59,7 @@ export default function RegisterOrgForm() {
         validationSchema={registerScheme}
         onSubmit={regUser}
       >
-        {(props: FormikProps<IRegForm>) => {
+        {(props: FormikProps<IRegOForm>) => {
           const { errors, touched, isSubmitting } = props;
           return (
             <Form className="relative">
@@ -78,7 +78,15 @@ export default function RegisterOrgForm() {
                 <div className="bg-sky-950/80 mt-[20px] rounded-2xl border border-slate-500/10 shadow-md max-sm:w-[300px] sm:w-[300px] md:w-[400px] max-sm:ml-0 sm:ml-0 md:ml-0">
                   <div className="p-10 flex flex-col justify-center items-center gap-1">
                     <div className="flex flex-col gap-2 mt-[-20px]">
-                      <div className="flex justify-center">
+                      <div className="flex flex-col items-center justify-center">
+                        <div>
+                          <p
+                            onClick={() => router.push("/")}
+                            className="font-extrabold text-[50px] text-blue-400 drop-shadow-md/50 cursor-pointer"
+                          >
+                            GP.TIX
+                          </p>
+                        </div>
                         <h1 className=" text-white font-bold text-[25px] drop-shadow-md/90 ">
                           ORGANIZER
                         </h1>
