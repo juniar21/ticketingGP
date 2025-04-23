@@ -30,6 +30,7 @@ model User {
 
   vouchered Voucher[]
   points    Poin[]
+  orders    Order[]
 }
 
 model Voucher {
@@ -50,4 +51,49 @@ model Poin {
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  location    String
+  date        DateTime
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tickets Ticket[]
+}
+
+model Ticket {
+  id        Int      @id @default(autoincrement())
+  eventId   Int
+  price     Int // harga tiket
+  stock     Int // jumlah tiket tersedia
+  type      String // misalnya: VIP, Reguler, dll
+  createdAt DateTime @default(now())
+
+  event  Event   @relation(fields: [eventId], references: [id])
+  orders Order[]
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  userId     Int
+  ticketId   Int
+  quantity   Int
+  totalPrice Int
+  status     OrderStatus @default(PENDING)
+  createdAt  DateTime    @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+  EXPIRED
 }

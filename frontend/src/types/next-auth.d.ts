@@ -7,6 +7,9 @@ declare module "next-auth" {
       email: string;
       username?: string;
       avatar?: string;
+      role?: string;
+      fullname?: string;
+      refferal?: string;
     };
     accessToken?: string;
   }
@@ -17,6 +20,9 @@ declare module "next-auth" {
     username?: string;
     avatar?: string;
     accessToken?: string;
+    role?: string;
+    fullname?: string;
+    refferal?: string;
   }
 
   interface User {
@@ -25,5 +31,8 @@ declare module "next-auth" {
     username?: string;
     avatar?: string;
     accessToken?: string;
+    role?: string;
+    fullname?: string;
+    refferal?: string;
   }
 }

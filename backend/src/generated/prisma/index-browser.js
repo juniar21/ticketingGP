@@ -149,6 +149,40 @@ exports.Prisma.PoinScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.EventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  userId: 'userId',
+  location: 'location',
+  date: 'date',
+  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TicketScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  price: 'price',
+  quota: 'quota',
+  category: 'category',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  ticketId: 'ticketId',
+  quantity: 'quantity',
+  amount: 'amount',
+  status: 'status',
+  createdAt: 'createdAt',
+  expiredAt: 'expiredAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -168,10 +202,20 @@ exports.Role = exports.$Enums.Role = {
   PROMOTOR: 'PROMOTOR'
 };
 
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Voucher: 'Voucher',
-  Poin: 'Poin'
+  Poin: 'Poin',
+  Event: 'Event',
+  Ticket: 'Ticket',
+  Order: 'Order'
 };
 
 /**

@@ -5,30 +5,41 @@ import AnimasiPop from "@/app/anim/pop";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { signOut, useSession } from "next-auth/react";
+import GesturesButtonProf from "@/app/anim/gesturesProf";
+import PopModalProf from "@/app/anim/pop";
 
 export default function NavbarPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu
   // State to control modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // Fungsi untuk modal
+  // State dashboard profile
+  const [isProfOpen, setIsProfOpen] = useState(false);
+  // Fungsi untuk modal register
   const openModal = () => {
     setIsModalOpen(true);
   };
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  //fungsi modal menu profile
+  const toggleProf = () => {
+    setIsProfOpen((prev) => !prev);
+  };
   // Toggle the menu visibility
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
+  // user login
+  const { data: session } = useSession();
 
   return (
     <div className="h-[60px] sm:h-[70px] md:h-[80px] px-4 sm:px-6 lg:px-10 bg-black/30 sticky top-0 flex justify-between items-center z-20">
       <div className="flex items-center">
         <p className="text-blue-500 font-extrabold text-[30px]">GP.TIXET</p>
       </div>
+
       {/* mobile menu */}
       <div className="sm:hidden flex items-center">
         <button onClick={toggleMenu} className="text-xl">
@@ -39,26 +50,78 @@ export default function NavbarPage() {
           )}
         </button>
       </div>
-
-      {/* Desktop Login and Register Buttons */}
-      <div className="hidden sm:flex gap-3 sm:gap-5">
-        <GesturesButton>
-          <div
-            onClick={openModal}
-            className="bg-black/35 border text-white border-blue-500 w-[100px] h-[40px] rounded-md flex justify-center items-center shadow-md hover:cursor-pointer"
-          >
-            Register
-          </div>
-        </GesturesButton>
-        <GesturesButton>
-          <div
-            onClick={() => router.push("/login")}
-            className="bg-black/35 border text-white border-blue-500 w-[100px] h-[40px] rounded-md flex justify-center items-center shadow-md hover:cursor-pointer"
-          >
-            Log In
-          </div>
-        </GesturesButton>
-      </div>
+      {/* Desktop Login */}
+      {session ? (
+        <div className="flex items-center gap-3">
+          <h1 className="text-white text-[20px]">{session?.user?.username}</h1>
+          <GesturesButton>
+            <button
+              onClick={toggleProf}
+              className="bg-black/60 text-white border border-blue-500 rounded-md w-[100px] h-[40px] text-[18px] hover:cursor-pointer"
+            >
+              Menu
+            </button>
+          </GesturesButton>
+        </div>
+      ) : (
+        <div className="hidden sm:flex gap-3 sm:gap-5">
+          <GesturesButton>
+            <div
+              onClick={openModal}
+              className="bg-black/35 border text-white border-blue-500 w-[100px] h-[40px] rounded-md flex justify-center items-center shadow-md hover:cursor-pointer"
+            >
+              Register
+            </div>
+          </GesturesButton>
+          <GesturesButton>
+            <div
+              onClick={() => router.push("/login")}
+              className="bg-black/35 border text-white border-blue-500 w-[100px] h-[40px] rounded-md flex justify-center items-center shadow-md hover:cursor-pointer"
+            >
+              Log In
+            </div>
+          </GesturesButton>
+        </div>
+      )}
+      {/*modal profile*/}
+      {isProfOpen && (
+        <div className="fixed inset-y-0 right-0 top-[80px] flex flex-col items-center gap-3 justify-center bg-black/70 rounded-md shadow-md/50 w-[300px] h-[500px] p-5">
+          <PopModalProf>
+            <div className="flex flex-col gap-5">
+              <GesturesButtonProf>
+                <button className="text-white w-[200px] h-[50px] bg-black border border-blue-500 rounded-md hover:cursor-pointer hover:bg-sky-800">
+                  Profile
+                </button>
+              </GesturesButtonProf>
+              <GesturesButtonProf>
+                {session?.user.role === "PROMOTOR" ? (
+                  <button
+                    onClick={() => router.push("/DashOrganizer")}
+                    className="text-white w-[200px] h-[50px] bg-black border border-blue-500 rounded-md hover:cursor-pointer hover:bg-sky-800"
+                  >
+                    Dashboard
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => router.push("/DashCustomer")}
+                    className="text-white w-[200px] h-[50px] bg-black border border-blue-500 rounded-md hover:cursor-pointer hover:bg-sky-800"
+                  >
+                    Dashboard
+                  </button>
+                )}
+              </GesturesButtonProf>
+              <GesturesButtonProf>
+                <button
+                  onClick={() => signOut({ redirectTo: "/" })}
+                  className="text-white w-[200px] h-[50px] bg-red-500/30 border border-blue-500 rounded-md hover:cursor-pointer hover:bg-red-500"
+                >
+                  Log Out
+                </button>
+              </GesturesButtonProf>
+            </div>
+          </PopModalProf>
+        </div>
+      )}
 
       {/* Mobile Menu Dropdown */}
       {isMenuOpen && (

@@ -2,7 +2,6 @@ import Credentials from "next-auth/providers/credentials";
 import NextAuth, { Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
-
 export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
@@ -30,6 +29,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         token.username = user.username;
         token.avatar = user.avatar;
         token.accessToken = user.accessToken;
+        token.role = user.role;
+        token.fullname = user.fullname;
+        token.refferal = user.refferal;
       }
       return token;
     },
@@ -39,6 +41,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         email: token.email as string,
         username: token.username as string,
         avatar: token.avatar as string,
+        role: token.role as string,
+        fullname: token.fullname as string,
+        refferal: token.refferal as string,
       };
       session.accessToken = token.accessToken as string;
       return session;

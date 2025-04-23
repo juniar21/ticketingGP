@@ -81,7 +81,15 @@ export default function RegisterForm() {
                 <div className="bg-sky-950/80 mt-[20px] rounded-2xl border border-slate-500/10 shadow-md max-sm:w-[300px] sm:w-[300px] md:w-[400px] max-sm:ml-0 sm:ml-0 md:ml-0">
                   <div className="p-10 flex flex-col justify-center items-center gap-1">
                     <div className="flex flex-col gap-2 mt-[-20px]">
-                      <div className="flex justify-center">
+                      <div className="flex flex-col items-center justify-center">
+                        <div>
+                          <p
+                            onClick={() => router.push("/")}
+                            className="font-extrabold text-[50px] text-blue-400 drop-shadow-md/50 cursor-pointer"
+                          >
+                            GP.TIX
+                          </p>
+                        </div>
                         <h1 className=" text-white font-bold text-[25px] drop-shadow-md/90 ">
                           CUSTOMER
                         </h1>

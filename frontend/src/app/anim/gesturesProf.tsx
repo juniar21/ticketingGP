@@ -4,9 +4,9 @@ import { ReactNode } from "react";
 export interface IAnimate {
   children: ReactNode;
 }
-export default function GesturesButton({ children }: IAnimate) {
+export default function GesturesButtonProf({ children }: IAnimate) {
   return (
-    <motion.div className="rounded-md"
+    <motion.div className="rounded-md h-[50px]"
       initial={{ backgroundColor: "#050505" }}
       whileHover={{ scale: 1.1 ,backgroundColor: "#0a2381"}}
       whileTap={{ scale: 0.8 }}
