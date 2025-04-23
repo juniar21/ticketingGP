@@ -1,6 +1,8 @@
 "use client";
-import axios from "axios";
+
+import axios from "@/lib/axios";
 import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -30,10 +32,20 @@ export default function LoginForm() {
     actions: FormikHelpers<ILogForm>
   ) => {
     try {
-      await axios.post("http://localhost:8000/api/auth/login", values);
+      const { data } = await axios.post("/auth/login", values);
+      const user = data.data;
+
+      await signIn("credentials", {
+        redirectTo: "/",
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        fullname: user.fullname,
+        avatar: user.avatar ?? "",
+        accessToken: data.access_token,
+      });
       actions.resetForm();
-      toast.success("register success!");
-      router.push("/");
+      toast.success("login success!");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log(error);

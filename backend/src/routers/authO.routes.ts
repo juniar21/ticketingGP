@@ -20,12 +20,6 @@ export class AuthRouterO {
       "/organizer/register",validateRegister,
       this.authCrontoller.register
     );
-    this.router.post("/organizer/login", this.authCrontoller.login);
-    this.router.patch(
-      "/organizer/verify",
-      this.authMiddleware.verifyToken,
-      this.authCrontoller.verify
-    );
   }
 
   getRouter(): Router {

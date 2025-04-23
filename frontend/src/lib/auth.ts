@@ -1,5 +1,3 @@
-
-
 import Credentials from "next-auth/providers/credentials";
 import NextAuth, { Session } from "next-auth";
 import { JWT } from "next-auth/jwt";

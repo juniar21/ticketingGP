@@ -11,7 +11,7 @@ import handlebars from "handlebars";
 export class AuthController {
   async register(req: Request, res: Response) {
     try {
-      const { fullname, username, email, password } = req.body;
+      const { fullname, username, email, password, referredBy } = req.body;
 
       // Generate unique referral code
 
@@ -19,15 +19,33 @@ export class AuthController {
       const hashedPass = await hash(password, salt);
 
       let referral = "";
-  
+
       while (true) {
         referral = generateReferralCode(fullname);
         const found = await prisma.user.findUnique({ where: { referral } });
         if (!found) break;
       }
 
+      console.log("Referred By:", referredBy);4
+
+      let referrer = null;
+      if (referredBy) {
+        referrer = await prisma.user.findUnique({
+          where: { referral: referredBy },
+        });
+        console.log("Referrer:", referrer);
+        if (!referrer) throw { message: "Invalid referral code" };
+      }
+
       const user = await prisma.user.create({
-        data: { fullname, username, email, password: hashedPass, referral, referredBy: referral || null },
+        data: {
+          fullname,
+          username,
+          email,
+          password: hashedPass,
+          referral,
+          referredBy: referrer ? referrer.referral : null, // Use referrer.referral, not referredBy directly
+        },
       });
 
       const payload = { id: user.id, Role: user.role };
@@ -89,41 +107,42 @@ export class AuthController {
       const user = await prisma.user.findUnique({
         where: { id: req.user?.id },
       });
-  
+
       if (!user) throw { message: "User not found" };
-  
+
       // Update user: isVerify true
-      
+
       // Proses reward berdasarkan referral code yang dipakai saat register
       if (user.referredBy) {
         const referer = await prisma.user.findUnique({
-          where: { referral: user.referredBy } // atau bisa kamu simpan di user table
-      });
-      
-      if (referer) {
-        await prisma.poin.create({
-          data: {
-            amount: 10000,
-            expiredAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-            userId: user.id
-          }
-        });};
-        
+          where: { referral: user.referredBy }, // atau bisa kamu simpan di user table
+        });
+
+        if (referer) {
+          await prisma.poin.create({
+            data: {
+              amount: 10000,
+              expiredAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+              userId: referer.id,
+            },
+          });
+        }
+
         await prisma.voucher.create({
           data: {
             percentage: 10,
-            description: 'Voucher referral bonus',
+            description: "Voucher referral bonus",
             expiredAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-            userId: user.id
-          }
+            userId: user.id,
+          },
         });
       }
-      
+
       await prisma.user.update({
         where: { id: user.id },
         data: {
           isVerify: true,
-        }
+        },
       });
       res.status(200).send({
         message: "Verified Successfully!",

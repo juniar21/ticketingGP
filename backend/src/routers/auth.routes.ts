@@ -17,13 +17,12 @@ export class AuthRouter {
 
   private initializeRoute() {
     this.router.post(
-      "/",validateRegister,
+      "/customer/register",validateRegister,
       this.authCrontoller.register
     );
     this.router.post("/login", this.authCrontoller.login);
     this.router.patch(
       "/verify",
-      this.authMiddleware.verifyUser,
       this.authMiddleware.verifyToken,
       this.authCrontoller.verify
     );

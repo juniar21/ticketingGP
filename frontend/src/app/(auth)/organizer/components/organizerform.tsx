@@ -1,6 +1,7 @@
 "use client";
 import GesturesButton from "@/app/anim/gestures";
-import axios from "axios";
+import axios from "@/lib/axios";
+
 import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -22,7 +23,6 @@ interface IRegForm {
   password: string;
   username: string;
   fullname: string;
-  refcode: string;
 }
 // interface IProps {
 //   onReload: () => void;
@@ -34,7 +34,6 @@ export default function RegisterOrgForm() {
     password: "",
     username: "",
     fullname: "",
-    refcode: "",
   };
   const router = useRouter();
   const regUser = async (
@@ -42,10 +41,10 @@ export default function RegisterOrgForm() {
     actions: FormikHelpers<IRegForm>
   ) => {
     try {
-      await axios.post("http://localhost:8000/api/auth", values);
+      await axios.post("/auth/organizer/register", values);
       actions.resetForm();
       toast.success("register success!");
-      router.push("/");
+      router.push("/login");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log(error);
@@ -127,17 +126,7 @@ export default function RegisterOrgForm() {
                           {errors.password}
                         </div>
                       ) : null}
-                      <Field
-                        name="refcode"
-                        type="refcode"
-                        className="border border-slate-500 bg-slate-800 w-[300px] text-white rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
-                        placeholder="Referral Code"
-                      />
-                      {touched.refcode && errors.refcode ? (
-                        <div className="text-red-500 font-bold drop-shadow-md/90">
-                          {errors.refcode}
-                        </div>
-                      ) : null}
+
                       <GesturesButton>
                         <button
                           type="submit"

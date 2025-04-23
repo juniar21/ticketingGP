@@ -1,6 +1,7 @@
 "use client";
 import GesturesButton from "@/app/anim/gestures";
-import axios from "axios";
+import axios from "@/lib/axios";
+
 import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,6 +16,7 @@ const registerScheme = yup.object().shape({
   username: yup.string().required("Please input the username"),
   fullname: yup.string().required("please input the fullname"),
   password: yup.string().required("Please use the correct Password"),
+  referredBy: yup.string(),
 });
 
 interface IRegForm {
@@ -22,7 +24,7 @@ interface IRegForm {
   password: string;
   username: string;
   fullname: string;
-  refcode: string;
+  referredBy: string;
 }
 // interface IProps {
 //   onReload: () => void;
@@ -34,7 +36,7 @@ export default function RegisterForm() {
     password: "",
     username: "",
     fullname: "",
-    refcode: "",
+    referredBy: "",
   };
   const router = useRouter();
   const regUser = async (
@@ -42,10 +44,10 @@ export default function RegisterForm() {
     actions: FormikHelpers<IRegForm>
   ) => {
     try {
-      await axios.post("http://localhost:8000/api/auth", values);
+      await axios.post("/auth/customer/register", values);
       actions.resetForm();
       toast.success("register success!");
-      router.push("/");
+      router.push("/login");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log(error);
@@ -128,14 +130,14 @@ export default function RegisterForm() {
                         </div>
                       ) : null}
                       <Field
-                        name="refcode"
-                        type="refcode"
+                        name="referredBy"
+                        type="referredBy"
                         className="border border-slate-500 bg-slate-800 w-[300px] text-white rounded-md shadow-md h-[50px] p-5 max-sm:w-[250px] sm:w-[250px] md:w-[320px]"
                         placeholder="Referral Code"
                       />
-                      {touched.refcode && errors.refcode ? (
+                      {touched.password && errors.password ? (
                         <div className="text-red-500 font-bold drop-shadow-md/90">
-                          {errors.refcode}
+                          {errors.password}
                         </div>
                       ) : null}
                       <GesturesButton>

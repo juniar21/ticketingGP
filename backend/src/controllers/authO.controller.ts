@@ -35,7 +35,7 @@ export class AuthControllerO {
         expiresIn: "1h",
       });
 
-      const link = `${process.env.URL_FE}/organizer/verify/${token}`;
+      const link = `${process.env.URL_FE}/verify/${token}`;
 
       const templatePath = path.join(__dirname, "../templates", `verify.hbs`);
       const templateSource = fs.readFileSync(templatePath, "utf-8");
@@ -58,52 +58,4 @@ export class AuthControllerO {
     }
   }
 
-  async login(req: Request, res: Response) {
-    try {
-      const { username, password } = req.body;
-      const user = await prisma.user.findUnique({ where: { username } });
-      if (!user) throw { message: "User not found" };
-      if (!user.isVerify) throw { message: "User is not verify" };
-
-      const isValidPass = await compare(password, user.password);
-      if (!isValidPass) throw { message: "Incorrect Password" };
-
-      const payload = { id: user.id, Role: user.role };
-      const token = sign(payload, process.env.KEY_JWT!, {
-        expiresIn: "1h",
-      });
-
-      res.status(200).send({
-        message: "Login Succsesfully!",
-        data: user,
-        token,
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(400).send(err);
-    }
-  }
-
-  async verify(req: Request, res: Response) {
-    try {
-      const user = await prisma.user.findUnique({
-        where: { id: req.user?.id },
-      });
-  
-      if (!user) throw { message: "User not found" };
-      
-      await prisma.user.update({
-        where: { id: user.id },
-        data: {
-          isVerify: true,
-        }
-      });
-      res.status(200).send({
-        message: "Verified Successfully!",
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(400).send(err);
-    }
-  }
 }
