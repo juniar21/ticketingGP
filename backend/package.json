@@ -33,6 +33,7 @@
     "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.10.1",
-    "prisma": "^6.6.0"
+    "prisma": "^6.6.0",
+    "xendit-node": "^6.3.0"
   }
 }

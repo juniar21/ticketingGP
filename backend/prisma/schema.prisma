@@ -55,7 +55,7 @@ model Poin {
 }
 
 model Event {
-  id          String      @id @default(uuid())
+  id          String   @id @default(uuid())
   title       String
   description String?
   userId      Int
@@ -83,17 +83,18 @@ model Ticket {
 }
 
 model Order {
-  id        String      @id @default(uuid())
-  userId    Int
-  ticketId  String
-  quantity  Int
-  amount    Int
-  status    OrderStatus
-  createdAt DateTime    @default(now())
-  expiredAt DateTime
-  updatedAt DateTime
-  user      User        @relation(fields: [userId], references: [id])
-  ticket    Ticket      @relation(fields: [ticketId], references: [id])
+  id         String      @id @default(uuid())
+  userId     Int
+  ticketId   String
+  quantity   Int
+  amount     Int
+  status     OrderStatus @default(PENDING)
+  invoiceUrl String?
+  createdAt  DateTime    @default(now())
+  expiredAt  DateTime
+  updatedAt  DateTime
+  user       User        @relation(fields: [userId], references: [id])
+  ticket     Ticket      @relation(fields: [ticketId], references: [id])
 }
 
 enum OrderStatus {

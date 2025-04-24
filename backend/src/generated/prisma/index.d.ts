@@ -7323,6 +7323,7 @@ export namespace Prisma {
     quantity: number | null
     amount: number | null
     status: $Enums.OrderStatus | null
+    invoiceUrl: string | null
     createdAt: Date | null
     expiredAt: Date | null
     updatedAt: Date | null
@@ -7335,6 +7336,7 @@ export namespace Prisma {
     quantity: number | null
     amount: number | null
     status: $Enums.OrderStatus | null
+    invoiceUrl: string | null
     createdAt: Date | null
     expiredAt: Date | null
     updatedAt: Date | null
@@ -7347,6 +7349,7 @@ export namespace Prisma {
     quantity: number
     amount: number
     status: number
+    invoiceUrl: number
     createdAt: number
     expiredAt: number
     updatedAt: number
@@ -7373,6 +7376,7 @@ export namespace Prisma {
     quantity?: true
     amount?: true
     status?: true
+    invoiceUrl?: true
     createdAt?: true
     expiredAt?: true
     updatedAt?: true
@@ -7385,6 +7389,7 @@ export namespace Prisma {
     quantity?: true
     amount?: true
     status?: true
+    invoiceUrl?: true
     createdAt?: true
     expiredAt?: true
     updatedAt?: true
@@ -7397,6 +7402,7 @@ export namespace Prisma {
     quantity?: true
     amount?: true
     status?: true
+    invoiceUrl?: true
     createdAt?: true
     expiredAt?: true
     updatedAt?: true
@@ -7496,6 +7502,7 @@ export namespace Prisma {
     quantity: number
     amount: number
     status: $Enums.OrderStatus
+    invoiceUrl: string | null
     createdAt: Date
     expiredAt: Date
     updatedAt: Date
@@ -7527,6 +7534,7 @@ export namespace Prisma {
     quantity?: boolean
     amount?: boolean
     status?: boolean
+    invoiceUrl?: boolean
     createdAt?: boolean
     expiredAt?: boolean
     updatedAt?: boolean
@@ -7541,6 +7549,7 @@ export namespace Prisma {
     quantity?: boolean
     amount?: boolean
     status?: boolean
+    invoiceUrl?: boolean
     createdAt?: boolean
     expiredAt?: boolean
     updatedAt?: boolean
@@ -7555,6 +7564,7 @@ export namespace Prisma {
     quantity?: boolean
     amount?: boolean
     status?: boolean
+    invoiceUrl?: boolean
     createdAt?: boolean
     expiredAt?: boolean
     updatedAt?: boolean
@@ -7569,12 +7579,13 @@ export namespace Prisma {
     quantity?: boolean
     amount?: boolean
     status?: boolean
+    invoiceUrl?: boolean
     createdAt?: boolean
     expiredAt?: boolean
     updatedAt?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "ticketId" | "quantity" | "amount" | "status" | "createdAt" | "expiredAt" | "updatedAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "ticketId" | "quantity" | "amount" | "status" | "invoiceUrl" | "createdAt" | "expiredAt" | "updatedAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     ticket?: boolean | TicketDefaultArgs<ExtArgs>
@@ -7601,6 +7612,7 @@ export namespace Prisma {
       quantity: number
       amount: number
       status: $Enums.OrderStatus
+      invoiceUrl: string | null
       createdAt: Date
       expiredAt: Date
       updatedAt: Date
@@ -8035,6 +8047,7 @@ export namespace Prisma {
     readonly quantity: FieldRef<"Order", 'Int'>
     readonly amount: FieldRef<"Order", 'Int'>
     readonly status: FieldRef<"Order", 'OrderStatus'>
+    readonly invoiceUrl: FieldRef<"Order", 'String'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly expiredAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
@@ -8542,6 +8555,7 @@ export namespace Prisma {
     quantity: 'quantity',
     amount: 'amount',
     status: 'status',
+    invoiceUrl: 'invoiceUrl',
     createdAt: 'createdAt',
     expiredAt: 'expiredAt',
     updatedAt: 'updatedAt'
@@ -9053,6 +9067,7 @@ export namespace Prisma {
     quantity?: IntFilter<"Order"> | number
     amount?: IntFilter<"Order"> | number
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+    invoiceUrl?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     expiredAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
@@ -9067,6 +9082,7 @@ export namespace Prisma {
     quantity?: SortOrder
     amount?: SortOrder
     status?: SortOrder
+    invoiceUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     expiredAt?: SortOrder
     updatedAt?: SortOrder
@@ -9084,6 +9100,7 @@ export namespace Prisma {
     quantity?: IntFilter<"Order"> | number
     amount?: IntFilter<"Order"> | number
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+    invoiceUrl?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     expiredAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
@@ -9098,6 +9115,7 @@ export namespace Prisma {
     quantity?: SortOrder
     amount?: SortOrder
     status?: SortOrder
+    invoiceUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     expiredAt?: SortOrder
     updatedAt?: SortOrder
@@ -9118,6 +9136,7 @@ export namespace Prisma {
     quantity?: IntWithAggregatesFilter<"Order"> | number
     amount?: IntWithAggregatesFilter<"Order"> | number
     status?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
+    invoiceUrl?: StringNullableWithAggregatesFilter<"Order"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     expiredAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
@@ -9516,7 +9535,8 @@ export namespace Prisma {
     id?: string
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -9530,7 +9550,8 @@ export namespace Prisma {
     ticketId: string
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -9541,6 +9562,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9555,6 +9577,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9566,7 +9589,8 @@ export namespace Prisma {
     ticketId: string
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -9577,6 +9601,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9589,6 +9614,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10038,6 +10064,7 @@ export namespace Prisma {
     quantity?: SortOrder
     amount?: SortOrder
     status?: SortOrder
+    invoiceUrl?: SortOrder
     createdAt?: SortOrder
     expiredAt?: SortOrder
     updatedAt?: SortOrder
@@ -10056,6 +10083,7 @@ export namespace Prisma {
     quantity?: SortOrder
     amount?: SortOrder
     status?: SortOrder
+    invoiceUrl?: SortOrder
     createdAt?: SortOrder
     expiredAt?: SortOrder
     updatedAt?: SortOrder
@@ -10068,6 +10096,7 @@ export namespace Prisma {
     quantity?: SortOrder
     amount?: SortOrder
     status?: SortOrder
+    invoiceUrl?: SortOrder
     createdAt?: SortOrder
     expiredAt?: SortOrder
     updatedAt?: SortOrder
@@ -10692,7 +10721,8 @@ export namespace Prisma {
     id?: string
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -10704,7 +10734,8 @@ export namespace Prisma {
     ticketId: string
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -10835,6 +10866,7 @@ export namespace Prisma {
     quantity?: IntFilter<"Order"> | number
     amount?: IntFilter<"Order"> | number
     status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+    invoiceUrl?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     expiredAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
@@ -11221,7 +11253,8 @@ export namespace Prisma {
     id?: string
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -11233,7 +11266,8 @@ export namespace Prisma {
     userId: number
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -11462,7 +11496,8 @@ export namespace Prisma {
     ticketId: string
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -11527,6 +11562,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11539,6 +11575,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11550,6 +11587,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11633,7 +11671,8 @@ export namespace Prisma {
     userId: number
     quantity: number
     amount: number
-    status: $Enums.OrderStatus
+    status?: $Enums.OrderStatus
+    invoiceUrl?: string | null
     createdAt?: Date | string
     expiredAt: Date | string
     updatedAt: Date | string
@@ -11644,6 +11683,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11656,6 +11696,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11667,6 +11708,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
     status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    invoiceUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

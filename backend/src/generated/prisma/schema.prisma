@@ -31,6 +31,7 @@ model User {
   vouchered Voucher[]
   points    Poin[]
   orders    Order[]
+  Event     Event[]
 }
 
 model Voucher {
@@ -54,41 +55,46 @@ model Poin {
 }
 
 model Event {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(uuid())
   title       String
   description String?
-  location    String
+  userId      Int
+  location    String?
   date        DateTime
   image       String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   tickets Ticket[]
+  user    User     @relation(fields: [userId], references: [id])
 }
 
 model Ticket {
-  id        Int      @id @default(autoincrement())
-  eventId   Int
+  id        String   @id @default(uuid())
+  eventId   String
   price     Int // harga tiket
-  stock     Int // jumlah tiket tersedia
-  type      String // misalnya: VIP, Reguler, dll
+  quota     Int // jumlah tiket tersedia
+  category  String // misalnya: VIP, Reguler, dll
   createdAt DateTime @default(now())
+  updatedAt DateTime
 
   event  Event   @relation(fields: [eventId], references: [id])
   orders Order[]
 }
 
 model Order {
-  id         Int         @id @default(autoincrement())
+  id         String      @id @default(uuid())
   userId     Int
-  ticketId   Int
+  ticketId   String
   quantity   Int
-  totalPrice Int
+  amount     Int
   status     OrderStatus @default(PENDING)
+  invoiceUrl String?
   createdAt  DateTime    @default(now())
-
-  user   User   @relation(fields: [userId], references: [id])
-  ticket Ticket @relation(fields: [ticketId], references: [id])
+  expiredAt  DateTime
+  updatedAt  DateTime
+  user       User        @relation(fields: [userId], references: [id])
+  ticket     Ticket      @relation(fields: [ticketId], references: [id])
 }
 
 enum OrderStatus {
