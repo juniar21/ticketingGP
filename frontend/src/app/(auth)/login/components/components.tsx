@@ -2,7 +2,7 @@
 
 import GesturesButton from "@/app/anim/gestures";
 import axios from "@/lib/axios";
-import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
+import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik"; 
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -45,7 +45,8 @@ export default function LoginForm() {
         avatar: user.avatar ?? "",
         accessToken: data.access_token,
         role: user.role,
-        refferal: user.refferal,
+        referral: user.referral,
+        expiredAt: user.expiredAt
       });
       actions.resetForm();
       toast.success("login success!");

@@ -1,7 +1,8 @@
 "use client";
-import GesturesButton from "@/app/anim/gestures";
+
 import { useSession } from "next-auth/react";
 import * as motion from "motion/react-client";
+
 
 export default function ProfileDashboard() {
   const { data: session } = useSession();
@@ -25,11 +26,12 @@ export default function ProfileDashboard() {
           {" "}
           {session?.user?.email}
         </p>
-        <p className="text-bold text-[25px]">Refferal Code</p>
+        <p className="text-bold text-[25px]">Refferal Code | </p>
         <p className="font-extralight text-[20px] border border-blue-500 p-2 rounded-md">
           {" "}
-          {session?.user?.refferal}
+          {session?.user?.referral}
         </p>
+        
         <div className="mt-[30px]">
           <motion.div className="w-[200px]"
             initial={{ backgroundColor: "#050505" }}

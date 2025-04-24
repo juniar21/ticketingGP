@@ -96,7 +96,7 @@ export default function NavbarPage() {
               <GesturesButtonProf>
                 {session?.user.role === "PROMOTOR" ? (
                   <button
-                    onClick={() => router.push("/DashOrganizer")}
+                    onClick={() => router.push("/DashboardOrg")}
                     className="text-white w-[200px] h-[50px] bg-black border border-blue-500 rounded-md hover:cursor-pointer hover:bg-sky-800"
                   >
                     Dashboard

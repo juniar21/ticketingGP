@@ -9,21 +9,24 @@ export default function NavOrganizer() {
   return (
     <div className="w-[400px] h-screen bg-black flex flex-col gap-3 p-5 items-center">
       <GesturesButtonDash>
-        <button className=" w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer">
-          {" "}
-          PROFILE{" "}
+        <button
+          onClick={() => router.push("/DashboardOrg")}
+          className=" w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer"
+        >
+          PROFILE
+        </button>
+      </GesturesButtonDash>
+      <GesturesButtonDash>
+        <button
+          onClick={() => router.push("/eventsOrg")}
+          className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer"
+        >
+          EVENTS
         </button>
       </GesturesButtonDash>
       <GesturesButtonDash>
         <button className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer">
-          {" "}
-          EVENTS{" "}
-        </button>
-      </GesturesButtonDash>
-      <GesturesButtonDash>
-        <button className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer">
-          {" "}
-          STATISTIK{" "}
+          STATISTIK
         </button>
       </GesturesButtonDash>
       <GesturesButtonDash>
@@ -31,8 +34,7 @@ export default function NavOrganizer() {
           onClick={() => router.push("/")}
           className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer"
         >
-          {" "}
-          BACK TO HOME{" "}
+          BACK TO HOME
         </button>
       </GesturesButtonDash>
     </div>
