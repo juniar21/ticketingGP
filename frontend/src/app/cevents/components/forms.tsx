@@ -39,7 +39,7 @@ export default function CreateForm() {
           const { errors, touched, isSubmitting } = props;
           return (
             <Form className="flex justify-center">
-              <div className="bg-black m-5 w-[700px] h-[750px] shadow-md/30 subpixel-antialiased rounded-md text-white">
+              <div className="bg-black m-5 w-[700px] h-[800px] shadow-md/30 subpixel-antialiased rounded-md text-white">
                 <CeventsTitle />
                 <div role="padding" className="p-5">
                   <h1 className="font-audio">Title</h1>
@@ -130,6 +130,9 @@ export default function CreateForm() {
                     {touched.title && errors.title ? (
                       <div className="text-red-500">{errors.title}</div>
                     ) : null}
+                  </div>
+                  <div>
+                    <button className="mt-[20px] rounded-md bg-black border border-blue-500 w-[100px] h-[50px]">{isSubmitting ? "Loading" : "Submit"}</button>
                   </div>
                 </div>
               </div>
