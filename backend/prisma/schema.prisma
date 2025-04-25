@@ -60,6 +60,9 @@ model Event {
   description String?
   userId      Int
   location    String?
+  circuit     String?
+  startTime   DateTime?
+  endTime     DateTime?
   date        DateTime
   image       String?
   createdAt   DateTime @default(now())

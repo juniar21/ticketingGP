@@ -4992,6 +4992,9 @@ export namespace Prisma {
     description: string | null
     userId: number | null
     location: string | null
+    circuit: string | null
+    startTime: Date | null
+    endTime: Date | null
     date: Date | null
     image: string | null
     createdAt: Date | null
@@ -5004,6 +5007,9 @@ export namespace Prisma {
     description: string | null
     userId: number | null
     location: string | null
+    circuit: string | null
+    startTime: Date | null
+    endTime: Date | null
     date: Date | null
     image: string | null
     createdAt: Date | null
@@ -5016,6 +5022,9 @@ export namespace Prisma {
     description: number
     userId: number
     location: number
+    circuit: number
+    startTime: number
+    endTime: number
     date: number
     image: number
     createdAt: number
@@ -5038,6 +5047,9 @@ export namespace Prisma {
     description?: true
     userId?: true
     location?: true
+    circuit?: true
+    startTime?: true
+    endTime?: true
     date?: true
     image?: true
     createdAt?: true
@@ -5050,6 +5062,9 @@ export namespace Prisma {
     description?: true
     userId?: true
     location?: true
+    circuit?: true
+    startTime?: true
+    endTime?: true
     date?: true
     image?: true
     createdAt?: true
@@ -5062,6 +5077,9 @@ export namespace Prisma {
     description?: true
     userId?: true
     location?: true
+    circuit?: true
+    startTime?: true
+    endTime?: true
     date?: true
     image?: true
     createdAt?: true
@@ -5161,6 +5179,9 @@ export namespace Prisma {
     description: string | null
     userId: number
     location: string | null
+    circuit: string | null
+    startTime: Date | null
+    endTime: Date | null
     date: Date
     image: string | null
     createdAt: Date
@@ -5192,6 +5213,9 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     location?: boolean
+    circuit?: boolean
+    startTime?: boolean
+    endTime?: boolean
     date?: boolean
     image?: boolean
     createdAt?: boolean
@@ -5207,6 +5231,9 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     location?: boolean
+    circuit?: boolean
+    startTime?: boolean
+    endTime?: boolean
     date?: boolean
     image?: boolean
     createdAt?: boolean
@@ -5220,6 +5247,9 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     location?: boolean
+    circuit?: boolean
+    startTime?: boolean
+    endTime?: boolean
     date?: boolean
     image?: boolean
     createdAt?: boolean
@@ -5233,13 +5263,16 @@ export namespace Prisma {
     description?: boolean
     userId?: boolean
     location?: boolean
+    circuit?: boolean
+    startTime?: boolean
+    endTime?: boolean
     date?: boolean
     image?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "userId" | "location" | "date" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "userId" | "location" | "circuit" | "startTime" | "endTime" | "date" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tickets?: boolean | Event$ticketsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5264,6 +5297,9 @@ export namespace Prisma {
       description: string | null
       userId: number
       location: string | null
+      circuit: string | null
+      startTime: Date | null
+      endTime: Date | null
       date: Date
       image: string | null
       createdAt: Date
@@ -5698,6 +5734,9 @@ export namespace Prisma {
     readonly description: FieldRef<"Event", 'String'>
     readonly userId: FieldRef<"Event", 'Int'>
     readonly location: FieldRef<"Event", 'String'>
+    readonly circuit: FieldRef<"Event", 'String'>
+    readonly startTime: FieldRef<"Event", 'DateTime'>
+    readonly endTime: FieldRef<"Event", 'DateTime'>
     readonly date: FieldRef<"Event", 'DateTime'>
     readonly image: FieldRef<"Event", 'String'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
@@ -8526,6 +8565,9 @@ export namespace Prisma {
     description: 'description',
     userId: 'userId',
     location: 'location',
+    circuit: 'circuit',
+    startTime: 'startTime',
+    endTime: 'endTime',
     date: 'date',
     image: 'image',
     createdAt: 'createdAt',
@@ -8916,6 +8958,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Event"> | string | null
     userId?: IntFilter<"Event"> | number
     location?: StringNullableFilter<"Event"> | string | null
+    circuit?: StringNullableFilter<"Event"> | string | null
+    startTime?: DateTimeNullableFilter<"Event"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"Event"> | Date | string | null
     date?: DateTimeFilter<"Event"> | Date | string
     image?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeFilter<"Event"> | Date | string
@@ -8930,6 +8975,9 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     userId?: SortOrder
     location?: SortOrderInput | SortOrder
+    circuit?: SortOrderInput | SortOrder
+    startTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
     date?: SortOrder
     image?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -8947,6 +8995,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Event"> | string | null
     userId?: IntFilter<"Event"> | number
     location?: StringNullableFilter<"Event"> | string | null
+    circuit?: StringNullableFilter<"Event"> | string | null
+    startTime?: DateTimeNullableFilter<"Event"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"Event"> | Date | string | null
     date?: DateTimeFilter<"Event"> | Date | string
     image?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeFilter<"Event"> | Date | string
@@ -8961,6 +9012,9 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     userId?: SortOrder
     location?: SortOrderInput | SortOrder
+    circuit?: SortOrderInput | SortOrder
+    startTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
     date?: SortOrder
     image?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -8981,6 +9035,9 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Event"> | string | null
     userId?: IntWithAggregatesFilter<"Event"> | number
     location?: StringNullableWithAggregatesFilter<"Event"> | string | null
+    circuit?: StringNullableWithAggregatesFilter<"Event"> | string | null
+    startTime?: DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
+    endTime?: DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
     date?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     image?: StringNullableWithAggregatesFilter<"Event"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
@@ -9376,6 +9433,9 @@ export namespace Prisma {
     title: string
     description?: string | null
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -9390,6 +9450,9 @@ export namespace Prisma {
     description?: string | null
     userId: number
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -9402,6 +9465,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9416,6 +9482,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9429,6 +9498,9 @@ export namespace Prisma {
     description?: string | null
     userId: number
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -9440,6 +9512,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9452,6 +9527,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9946,6 +10024,17 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type TicketListRelationFilter = {
     every?: TicketWhereInput
     some?: TicketWhereInput
@@ -9962,6 +10051,9 @@ export namespace Prisma {
     description?: SortOrder
     userId?: SortOrder
     location?: SortOrder
+    circuit?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     date?: SortOrder
     image?: SortOrder
     createdAt?: SortOrder
@@ -9978,6 +10070,9 @@ export namespace Prisma {
     description?: SortOrder
     userId?: SortOrder
     location?: SortOrder
+    circuit?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     date?: SortOrder
     image?: SortOrder
     createdAt?: SortOrder
@@ -9990,6 +10085,9 @@ export namespace Prisma {
     description?: SortOrder
     userId?: SortOrder
     location?: SortOrder
+    circuit?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     date?: SortOrder
     image?: SortOrder
     createdAt?: SortOrder
@@ -9998,6 +10096,20 @@ export namespace Prisma {
 
   export type EventSumOrderByAggregateInput = {
     userId?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EventScalarRelationFilter = {
@@ -10362,6 +10474,10 @@ export namespace Prisma {
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type TicketUpdateManyWithoutEventNestedInput = {
     create?: XOR<TicketCreateWithoutEventInput, TicketUncheckedCreateWithoutEventInput> | TicketCreateWithoutEventInput[] | TicketUncheckedCreateWithoutEventInput[]
     connectOrCreate?: TicketCreateOrConnectWithoutEventInput | TicketCreateOrConnectWithoutEventInput[]
@@ -10652,6 +10768,31 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumOrderStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.OrderStatus | EnumOrderStatusFieldRefInput<$PrismaModel>
     in?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
@@ -10756,6 +10897,9 @@ export namespace Prisma {
     title: string
     description?: string | null
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -10768,6 +10912,9 @@ export namespace Prisma {
     title: string
     description?: string | null
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -10897,6 +11044,9 @@ export namespace Prisma {
     description?: StringNullableFilter<"Event"> | string | null
     userId?: IntFilter<"Event"> | number
     location?: StringNullableFilter<"Event"> | string | null
+    circuit?: StringNullableFilter<"Event"> | string | null
+    startTime?: DateTimeNullableFilter<"Event"> | Date | string | null
+    endTime?: DateTimeNullableFilter<"Event"> | Date | string | null
     date?: DateTimeFilter<"Event"> | Date | string
     image?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeFilter<"Event"> | Date | string
@@ -11225,6 +11375,9 @@ export namespace Prisma {
     title: string
     description?: string | null
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -11238,6 +11391,9 @@ export namespace Prisma {
     description?: string | null
     userId: number
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -11299,6 +11455,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11312,6 +11471,9 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11508,6 +11670,9 @@ export namespace Prisma {
     title: string
     description?: string | null
     location?: string | null
+    circuit?: string | null
+    startTime?: Date | string | null
+    endTime?: Date | string | null
     date: Date | string
     image?: string | null
     createdAt?: Date | string
@@ -11598,6 +11763,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11610,6 +11778,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11622,6 +11793,9 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
+    circuit?: NullableStringFieldUpdateOperationsInput | string | null
+    startTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
