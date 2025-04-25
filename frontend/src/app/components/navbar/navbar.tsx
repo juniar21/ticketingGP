@@ -37,7 +37,7 @@ export default function NavbarPage() {
   return (
     <div className="h-[60px] sm:h-[70px] md:h-[80px] px-4 sm:px-6 lg:px-10 bg-black/30 sticky top-0 flex justify-between items-center z-20">
       <div className="flex items-center">
-        <p className="text-blue-500 font-extrabold text-[30px]">GP.TIXET</p>
+        <p onClick={()=> router.push("/")} className="hover:cursor-pointer text-blue-500 font-extrabold text-[30px]">GP.TIXET</p>
       </div>
 
       {/* mobile menu */}

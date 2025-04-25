@@ -4,8 +4,10 @@ import Image from "next/image";
 import DropdownMenu from "./categorydrop";
 import AnimasiPopScroll from "@/app/anim/popscroll";
 import AnimasiTransition from "@/app/anim/transition";
+import { useRouter } from "next/navigation";
 
 interface Event {
+  id: number;
   name: string;
   date: string;
   category: string;
@@ -13,8 +15,10 @@ interface Event {
 }
 
 export default function EventGP() {
+  const router = useRouter();
   const events: Event[] = [
     {
+      id: 1,
       name: "BALI GP",
       date: "10-02",
       category: "GP Events",
@@ -22,6 +26,7 @@ export default function EventGP() {
         "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453192/gpjakarta_tklbgd.jpg",
     },
     {
+      id: 2,
       name: "Jakarta GP",
       date: "08-05",
       category: "GP Events",
@@ -29,6 +34,7 @@ export default function EventGP() {
         "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453138/gpbali_tktpfk.jpg",
     },
     {
+      id: 3,
       name: "Bandung RoadRace",
       date: "05-10",
       category: "RoadRace Events",
@@ -36,6 +42,7 @@ export default function EventGP() {
         "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453138/gpbali_tktpfk.jpg",
     },
     {
+      id: 4,
       name: "Purwadhika GP",
       date: "15-12",
       category: "GP Events",
@@ -94,7 +101,7 @@ export default function EventGP() {
                     <p className="text-yellow-300 font-bold font-audio">
                       {event.date}
                     </p>
-                    <button className="subpixel-antialiased font-extralight font-audio bg-blue-600/25 border border-sky-500 text-white w-[220px] sm:w-[250px] h-[60px] rounded-4xl shadow-md/50 hover:bg-sky-300/45 hover:cursor-pointer mt-4 sm:mt-6">
+                    <button onClick={()=> router.push(`/tdetail/${event.id}`) } className="subpixel-antialiased font-extralight font-audio bg-blue-600/25 border border-sky-500 text-white w-[220px] sm:w-[250px] h-[60px] rounded-4xl shadow-md/50 hover:bg-sky-300/45 hover:cursor-pointer mt-4 sm:mt-6">
                       Details
                     </button>
                   </div>
