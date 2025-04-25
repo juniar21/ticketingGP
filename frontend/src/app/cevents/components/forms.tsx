@@ -38,14 +38,14 @@ export default function CreateForm() {
         {(props: FormikProps<ICreateForm>) => {
           const { errors, touched, isSubmitting } = props;
           return (
-            <Form>
-              <div className="bg-white m-5 w-[700px] h-[750px] shadow-md/30 subpixel-antialiased">
+            <Form className="flex justify-center">
+              <div className="bg-black m-5 w-[700px] h-[750px] shadow-md/30 subpixel-antialiased rounded-md text-white">
                 <CeventsTitle />
                 <div role="padding" className="p-5">
                   <h1 className="font-audio">Title</h1>
                   <Field
                     name="title"
-                    className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-200"
+                    className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
                     placeholder="Title"
                   />
                   {touched.title && errors.title ? (
@@ -55,7 +55,7 @@ export default function CreateForm() {
                   <select
                     id="category"
                     name="category"
-                    className="w-[200px] h-[50px] border rounded-md bg-slate-200"
+                    className="w-[200px] h-[50px] border rounded-md bg-slate-800"
                     required
                   >
                     <option defaultValue="" disabled selected>
@@ -71,7 +71,7 @@ export default function CreateForm() {
                   ) : null}
                   <div
                     role="date"
-                    className="mt-[20px] bg-white w-[650] h-[300px] rounded-md shadow-md border border-black/30"
+                    className="mt-[20px] text-white bg-slate-800 w-[650] h-[300px] rounded-md shadow-md border border-black/30"
                   >
                     <div
                       role="date"
@@ -82,7 +82,7 @@ export default function CreateForm() {
                       </p>
                     </div>
                     <div className="p-3">
-                      <p className="block text-sm font-medium font-audio text-gray-700">
+                      <p className="block text-sm font-medium font-audio">
                         Date
                       </p>
                       <input
@@ -91,7 +91,7 @@ export default function CreateForm() {
                         name="date"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
-                      <p className="block pt-3 text-sm font-medium font-audio text-gray-700">
+                      <p className="block pt-3 text-sm font-medium font-audio">
                         Start Time
                       </p>
                       <input
@@ -100,7 +100,7 @@ export default function CreateForm() {
                         name="start-time"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
-                      <p className="block text-sm font-medium pt-3 text-gray-700 font-audio">
+                      <p className="block text-sm font-medium pt-3 font-audio">
                         End Time
                       </p>
                       <input
@@ -115,7 +115,7 @@ export default function CreateForm() {
                     <p className="font-audio">LOCATION</p>
                     <Field
                       name="title"
-                      className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-200"
+                      className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
                       placeholder="Location"
                     />
                     {touched.title && errors.title ? (
@@ -124,7 +124,7 @@ export default function CreateForm() {
                     <p className="font-audio pt-2">CIRCUIT</p>
                     <Field
                       name="title"
-                      className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-200"
+                      className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
                       placeholder="Circuit"
                     />
                     {touched.title && errors.title ? (

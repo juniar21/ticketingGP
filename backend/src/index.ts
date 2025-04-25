@@ -3,6 +3,7 @@ import { AuthRouter } from "./routers/auth.routes";
 import cors from "cors";
 import { AuthRouterO } from "./routers/authO.routes";
 import { OrderRouter } from "./routers/order.routes";
+import { PointsRouter } from "./routers/points.routes";
 
 const PORT = 8000;
 
@@ -25,6 +26,9 @@ app.use("/api/auth", authRouterO.getRouter());
 
 const order = new OrderRouter();
 app.use("/api/orders", order.getRouter());
+
+const pointAuth = new PointsRouter();
+app.use("/api/points", pointAuth.getRouter());
 
 
 app.listen(PORT, () => {

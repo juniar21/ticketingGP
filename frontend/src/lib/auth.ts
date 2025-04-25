@@ -31,7 +31,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         token.accessToken = user.accessToken;
         token.role = user.role;
         token.fullname = user.fullname;
-        token.refferal = user.refferal;
+        token.referral = user.referral;
+        token.expiredAt = user.expiredAt
       }
       return token;
     },
@@ -43,7 +44,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         avatar: token.avatar as string,
         role: token.role as string,
         fullname: token.fullname as string,
-        refferal: token.refferal as string,
+        referral: token.referral as string,
+        expiredAt: token.expiredAt as string,
       };
       session.accessToken = token.accessToken as string;
       return session;
