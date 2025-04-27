@@ -152,7 +152,7 @@ exports.Prisma.PoinScalarFieldEnum = {
 exports.Prisma.EventScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  description: 'description',
+  category: 'category',
   userId: 'userId',
   location: 'location',
   circuit: 'circuit',

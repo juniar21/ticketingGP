@@ -220,7 +220,7 @@ export default function Details() {
                         >
                           -
                         </button>
-                      </GesturesButton>
+                      </GesturesButton>2+=2
                       <p>{ticketCountVIP}</p>
                       <GesturesButton>
                         <button

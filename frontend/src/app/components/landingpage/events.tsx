@@ -5,6 +5,9 @@ import DropdownMenu from "./categorydrop";
 import AnimasiPopScroll from "@/app/anim/popscroll";
 import AnimasiTransition from "@/app/anim/transition";
 import { useRouter } from "next/navigation";
+//import { useSession } from "next-auth/react";
+//import axios from "@/lib/axios";
+
 
 interface Event {
   id: number;
@@ -16,7 +19,8 @@ interface Event {
 
 export default function EventGP() {
   const router = useRouter();
-  const events: Event[] = [
+  //const { data } = useSession();
+  const events1: Event[] = [
     {
       id: 1,
       name: "BALI GP",
@@ -50,7 +54,12 @@ export default function EventGP() {
         "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453138/gpbali_tktpfk.jpg",
     },
   ];
-
+  // const { data1 } = await axios.get("/getAllEve",{
+  //   headers: {
+  //     Authorization: `Bearer ${data?.accessToken}`,
+  //   },
+  // });
+  // const events2: Event[] = data1.events2;
   const [selectedCategory, setSelectedCategory] =
     useState<string>("All Events");
 
@@ -60,8 +69,8 @@ export default function EventGP() {
 
   const filteredEvents =
     selectedCategory === "All Events"
-      ? events
-      : events.filter((event) => event.category === selectedCategory);
+      ? events1
+      : events1.filter((event) => event.category === selectedCategory);
 
   return (
     <div>

@@ -57,7 +57,7 @@ model Poin {
 model Event {
   id          String   @id @default(uuid())
   title       String
-  description String?
+  category    String?
   userId      Int
   location    String?
   circuit     String?
