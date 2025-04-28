@@ -32,6 +32,7 @@ model User {
   points    Poin[]
   orders    Order[]
   Event     Event[]
+  reviews     Review[]
 }
 
 model Voucher {
@@ -69,6 +70,7 @@ model Event {
   updatedAt   DateTime @updatedAt
 
   tickets Ticket[]
+  reviews     Review[]
   user    User     @relation(fields: [userId], references: [id])
 }
 
@@ -105,4 +107,17 @@ enum OrderStatus {
   PAID
   CANCELLED
   EXPIRED
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  rating     Int      // nilai rating, misal 1-5
+  comment    String?  // komentar opsional
+  eventId    String   // event yang direview
+  userId     Int      // user yang kasih review
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  event      Event    @relation(fields: [eventId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
 }

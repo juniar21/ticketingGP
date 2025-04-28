@@ -2,7 +2,6 @@
 import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
-import CeventsTitle from "./crEvent";
 import axios from "@/lib/axios";
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
@@ -79,7 +78,7 @@ export default function CreateForm() {
         {(props: FormikProps<ITicketForm>) => {
           const { errors, touched } = props;
           return (
-            <Form className="flex justify-center">
+            <Form className="flex justify-center sticky top-25">
               <div className="bg-black m-5 w-[300px] h-[300px] shadow-md/30 subpixel-antialiased border border-blue-500 rounded-md text-white">
               
                 <div role="padding" className="p-5">
