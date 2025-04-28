@@ -75,10 +75,10 @@ export class EventsController {
 
   async GetEventAll(req: Request, res: Response){
     try {
-      const getEventAll = await prisma.event.findMany()
+      const events = await prisma.event.findMany()
       res.status(200).send({
         message: `Get All Events`,
-        getEventAll,
+        events,
       });
     } catch (err) {
       console.log(err);
