@@ -157,7 +157,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\JCWD-0608\\Mini-Project\\backend\\src\\generated\\prisma",
+      "value": "D:\\Ananta\\Purwadhika\\Mini Project\\miniproject\\miniproject-gpv.2\\ticketingGP\\backend\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -171,7 +171,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\JCWD-0608\\Mini-Project\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Ananta\\Purwadhika\\Mini Project\\miniproject\\miniproject-gpv.2\\ticketingGP\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -185,11 +185,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres.qvkmpkntgkywixbfgmvy:miniGp2121@@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+        "value": null
       }
     }
   },
