@@ -23,9 +23,8 @@ export class TicketRouter {
       this.ticketCrontoller.PostTicket
     );
     this.router.get(
-      "/getticket",
-      this.authMiddleware.verifyToken,
-      this.ticketCrontoller.PostTicket
+      "/getTicket",
+      this.ticketCrontoller.GetTicket
     );
   }
 

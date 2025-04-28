@@ -119,4 +119,25 @@ export class EventsController {
       res.status(400).send(err);
     }
   }
+  async GetEventTicket(req: Request, res: Response){
+    try {
+      const {eventId} = req.body
+      const data = await prisma.event.findFirst({
+        where: {
+          id: eventId, // atau kriteria lain
+        },
+        include: {
+          tickets: true, // ambil juga semua tiket yang terkait event ini
+        },
+      });
+      res.status(201).send({
+        message: "Data Getting",
+        data,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err)
+    }
+  }
+
 }

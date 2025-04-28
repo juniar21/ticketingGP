@@ -21,6 +21,7 @@ export class OrderRouter {
       this.orderCrontoller.CreateOrder
     );
     this.router.post("/status", this.orderCrontoller.updateStatus);
+    this.router.get("/getOrders", this.authMiddleware.verifyUser, this.orderCrontoller.GetOrder)
   }
 
   getRouter(): Router {

@@ -34,6 +34,7 @@ export interface IEvent {
     endTime : string,
     date : string,
     image : string
+    tickets: ITicket[]
 }
 
 export interface ITicket {

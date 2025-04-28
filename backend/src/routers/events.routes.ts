@@ -34,6 +34,7 @@ export class EventRoutes {
       this.authMiddleware.verifyToken,
       this.eventController.createPostCloud
     );
+    this.router.get("/getEveTic", this.eventController.GetEventTicket);
   }
 
   public getRouter(): Router {
