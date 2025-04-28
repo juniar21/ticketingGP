@@ -187,6 +187,16 @@ exports.Prisma.OrderScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ReviewScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  comment: 'comment',
+  eventId: 'eventId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -219,7 +229,8 @@ exports.Prisma.ModelName = {
   Poin: 'Poin',
   Event: 'Event',
   Ticket: 'Ticket',
-  Order: 'Order'
+  Order: 'Order',
+  Review: 'Review'
 };
 
 /**
