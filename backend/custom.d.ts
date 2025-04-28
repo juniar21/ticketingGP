@@ -1,14 +1,14 @@
 import "express";
 
 export type UserPayload = {
-    id : number;
-    role : "USER" | "PROMOTOR"
+  id: number;
+  Role: "USER" | "PROMOTOR";
 };
 
 declare global {
-    namespace Express {
-        export interface Request {
-            user?: UserPayload;
-        }
+  namespace Express {
+    export interface Request {
+      user?: UserPayload;
     }
+  }
 }

@@ -36,6 +36,7 @@ export default function TabComponent() {
             <p className="text-center text-white">
               No upcoming events scheduled
             </p>
+            
           ) : (
             <p className="text-center text-white">No ended events yet</p>
           )}

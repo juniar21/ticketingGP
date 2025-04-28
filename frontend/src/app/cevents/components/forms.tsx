@@ -3,28 +3,93 @@ import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
 import CeventsTitle from "./crEvent";
+import axios from "@/lib/axios";
+import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
 
 const createScheme = yup.object().shape({
-  title: yup.string().required("please input the title"),
-  cateogry: yup.string().required("please input the category"),
+  title: yup.string().required("Please input the title"),
+  image: yup.mixed().required("Please input the right type of files"),
+  category: yup.string().required("Please input the category"),
+  date: yup.string(),
+  startTime: yup.string(),
+  endTime: yup.string(),
+  location: yup.string().required("Please select location"),
+  circuit: yup.string().required("Please select circuit"),
 });
 interface ICreateForm {
   title: string;
   category: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  location: string;
+  circuit: string;
 }
+interface IValue{
+  image: null | File | Blob
+}
+
 export default function CreateForm() {
   const initialValues: ICreateForm = {
     title: "",
     category: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+    location: "",
+    circuit: "",
   };
   const router = useRouter();
+  const { data } = useSession();
+
+  const ImagePost = async (value: IValue) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", value.image as Blob)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const createEvent = async (
     values: ICreateForm,
-    actions: FormikHelpers<ICreateForm>
+    actions: FormikHelpers<ICreateForm>, 
   ) => {
     try {
-    } catch (error) {
+      
+      const startDateTime = new Date(
+        `${values.date}T${values.startTime}:00Z`
+      ).toISOString();
+      const endDateTime = new Date(
+        `${values.date}T${values.endTime}:00Z`
+      ).toISOString();
+      const dateTime = new Date(values.date).toISOString();
+      
+
+      await axios.post(
+        "/events",
+        {
+          title: values.title,
+          category: values.category,
+          startTime: startDateTime,
+          endTime: endDateTime,
+          date: dateTime,
+          location: values.location,
+          circuit: values.circuit,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${data?.accessToken}`,
+          },
+        }
+      );
+      actions.resetForm();
+      router.push("/");
+      toast.success("Events Created!");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.log(error);
+      toast.error(error.response?.data?.message || "Events Created Failed");
     }
   };
 
@@ -39,31 +104,47 @@ export default function CreateForm() {
           const { errors, touched, isSubmitting } = props;
           return (
             <Form className="flex justify-center">
-              <div className="bg-black m-5 w-[700px] h-[800px] shadow-md/30 subpixel-antialiased rounded-md text-white">
+              <div className="bg-black m-5 w-[600px] h-[850px] shadow-md/30 subpixel-antialiased rounded-md text-white">
                 <CeventsTitle />
                 <div role="padding" className="p-5">
                   <h1 className="font-audio">Title</h1>
                   <Field
                     name="title"
-                    className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
+                    className="border w-[550px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
                     placeholder="Title"
                   />
                   {touched.title && errors.title ? (
                     <div className="text-red-500">{errors.title}</div>
                   ) : null}
-                  <h1 className="font-audio pt-[20px]">Category</h1>
-                  <select
-                    id="category"
+                  <p className="font-audio">Photo</p>
+                  <input
+                    type="file"
+                    name="image"
+                    className="border w-[550px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800 hover:cursor-pointer"
+                    placeholder="image"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        ImagePost({ image: e.target.files[0] });
+                      }
+                    }}
+                  />
+                  {touched.title && errors.title ? (
+                    <div className="text-red-500">{errors.title}</div>
+                  ) : null}
+                  <h1 className="font-audio">Category</h1>
+                  <label htmlFor="category" className="block mb-2"></label>
+                  <Field
+                    as="select"
                     name="category"
+                    id="category"
                     className="w-[200px] h-[50px] border rounded-md bg-slate-800"
-                    required
                   >
-                    <option defaultValue="" disabled selected>
+                    <option value="" disabled>
                       Choose category
                     </option>
-                    <option value="category1">Category 1</option>
-                    <option value="category2">Category 2</option>
-                  </select>
+                    <option value="category1">GP Events</option>
+                    <option value="category2">RoadRace Events</option>
+                  </Field>
                   {touched.category && errors.category ? (
                     <div className="text-red-500 shadow-md">
                       {errors.category}
@@ -85,7 +166,7 @@ export default function CreateForm() {
                       <p className="block text-sm font-medium font-audio">
                         Date
                       </p>
-                      <input
+                      <Field
                         type="date"
                         id="date"
                         name="date"
@@ -94,45 +175,52 @@ export default function CreateForm() {
                       <p className="block pt-3 text-sm font-medium font-audio">
                         Start Time
                       </p>
-                      <input
+                      <Field
                         type="time"
-                        id="start-time"
-                        name="start-time"
+                        id="startTime"
+                        name="startTime"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
                       <p className="block text-sm font-medium pt-3 font-audio">
                         End Time
                       </p>
-                      <input
+                      <Field
                         type="time"
-                        id="end-time"
-                        name="end-time"
+                        id="endTime"
+                        name="endTime"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
                     </div>
                   </div>
+
                   <div className="pt-5">
                     <p className="font-audio">LOCATION</p>
                     <Field
-                      name="title"
-                      className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
-                      placeholder="Location"
+                      name="location"
+                      className="border w-[550px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
+                      placeholder="location"
                     />
-                    {touched.title && errors.title ? (
-                      <div className="text-red-500">{errors.title}</div>
+                    {touched.location && errors.location ? (
+                      <div className="text-red-500">{errors.location}</div>
                     ) : null}
                     <p className="font-audio pt-2">CIRCUIT</p>
                     <Field
-                      name="title"
-                      className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
-                      placeholder="Circuit"
+                      name="circuit"
+                      className="border w-[550px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
+                      placeholder="circuit"
                     />
-                    {touched.title && errors.title ? (
-                      <div className="text-red-500">{errors.title}</div>
+                    {touched.circuit && errors.circuit ? (
+                      <div className="text-red-500">{errors.circuit}</div>
                     ) : null}
                   </div>
                   <div>
-                    <button className="mt-[20px] rounded-md bg-black border border-blue-500 w-[100px] h-[50px]">{isSubmitting ? "Loading" : "Submit"}</button>
+                    <button
+                      type="submit"
+                      onSubmit={() => router.push("/")}
+                      className="mt-[20px] rounded-md bg-black border border-blue-500 w-[100px] h-[50px] hover:cursor-pointer hover:bg-blue-900/50"
+                    >
+                      {isSubmitting ? "loading" : "Submit"}
+                    </button>
                   </div>
                 </div>
               </div>

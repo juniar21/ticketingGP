@@ -32,7 +32,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         token.role = user.role;
         token.fullname = user.fullname;
         token.referral = user.referral;
-        token.expiredAt = user.expiredAt
+        token.expiredAt = user.expiredAt;
       }
       return token;
     },

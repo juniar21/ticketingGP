@@ -42,7 +42,7 @@ export default function Details() {
 
   // decrement VIP
   const decrementVIP = () => {
-    if (ticketCount >= 1) {
+    if (ticketCount >= 0) {
       setTicketCountVIP(ticketCountVIP - 1);
     }
   };
