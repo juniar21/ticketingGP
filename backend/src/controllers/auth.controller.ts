@@ -122,7 +122,7 @@ export class AuthController {
           await prisma.poin.create({
             data: {
               amount: 10000,
-              expiredAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+              expiredAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
               userId: referer.id,
             },
           });
@@ -132,7 +132,7 @@ export class AuthController {
           data: {
             percentage: 10,
             description: "Voucher referral bonus",
-            expiredAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+            expiredAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
             userId: user.id,
           },
         });

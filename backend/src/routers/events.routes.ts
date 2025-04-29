@@ -35,6 +35,7 @@ export class EventRoutes {
       this.eventController.createPostCloud
     );
     this.router.get("/getEveTic", this.eventController.GetEventTicket);
+    this.router.get("/dashmetric", this.authMiddleware.verifyToken,this.eventController.getDashboardMetrics)
   }
 
   public getRouter(): Router {
