@@ -86,10 +86,44 @@ export class Order {
     try {
       const userId = req.user?.id;
       if (!userId)
-        throw res.status(404).json({ message: "User NOT aUTHORIZED" });
+        throw res.status(404).json({ message: "User NOT FOUND" });
 
       const orders = await prisma.order.findMany({
-        where: { userId },
+        where: {
+          ticket: {
+            event: {
+              userId: userId, // Ini kunci utamanya
+            },
+          },
+        },
+        include: {
+          ticket: {
+            include: {
+              event: true, // kalau mau sekalian ambil data event
+            },
+          },
+          user: true, // kalau mau ambil data user yang beli
+        },
+      });
+  
+      res.status(200).json({
+        message: "Orders fetched successfully",
+        data: orders,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+
+  async GetOrderTicket(req: Request, res: Response) {
+    try {
+      const userId = req.user?.id;
+      if (!userId)
+        throw res.status(404).json({ message: "User NOT FOUND" });
+
+      const orders = await prisma.order.findMany({
+        where: { userId, },
         orderBy: { createdAt: "desc" },
         include: {
           ticket: true,
@@ -97,6 +131,9 @@ export class Order {
       });
 
       res.status(200).json({ message: "User's orders fetched", data: orders });
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
   }
 }

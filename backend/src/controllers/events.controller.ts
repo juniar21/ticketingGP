@@ -50,7 +50,7 @@ export class EventsController {
       if (!userId)
         throw res.status(404).json({ message: "User NOT aUTHORIZED" });
 
-      const getEvent = await prisma.event.findMany({
+      const data = await prisma.event.findMany({
         where: {
           userId: req.user?.id,
         },
@@ -65,7 +65,7 @@ export class EventsController {
       });
       res.status(200).send({
         message: `Get Events ${userId}`,
-        getEvent,
+        data,
       });
     } catch (err) {
       console.log(err);

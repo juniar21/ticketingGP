@@ -82,7 +82,7 @@ export default function EventGP() {
                       {event.circuit}
                     </p>
                     <p className="text-yellow-300 font-bold font-audio">
-                      {event.date}
+                    {new Date(event.date).toLocaleString()}
                     </p>
                     <button onClick={()=> router.push(`/tdetail/${event.idEvent}`) } className="subpixel-antialiased font-extralight font-audio bg-blue-600/25 border border-sky-500 text-white w-[220px] sm:w-[250px] h-[60px] rounded-4xl shadow-md/50 hover:bg-sky-300/45 hover:cursor-pointer mt-4 sm:mt-6">
                       Details
