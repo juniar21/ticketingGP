@@ -67,4 +67,28 @@ export class ticketController {
       res.status(400).send(err);
     }
   }
+
+  async GetTicketById(req: Request, res: Response) {
+    try {
+      const { eventId } = req.params;
+  
+      if (!eventId) {
+        throw res.status(400).json({ message: "Event ID is required" });
+      }
+  
+      const tickets = await prisma.ticket.findMany({
+        where: {
+          eventId,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+  
+      res.status(200).json({ message: "Tickets fetched", data: tickets });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Failed to fetch tickets" });
+    }
+  }
 }

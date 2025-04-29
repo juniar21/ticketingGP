@@ -7,43 +7,39 @@ import { OrderStatus } from "../generated/prisma";
 export class Order {
   async CreateOrder(req: Request, res: Response) {
     try {
-      const orders = req.body;
-
       await prisma.$transaction(async (tx) => {
-        for (const orderData of orders) {
-          const { ticketId, quantity, amount } = orderData;
-          const order = await tx.order.create({
-            data: {
-              ticketId,
-              quantity,
-              amount,
-              status: "PENDING",
-              expiredAt: new Date(Date.now() + 60 * 60 * 1000),
-              updatedAt: new Date(),
-              userId: req.user?.id!,
-            },
-          });
-          await tx.ticket.update({
-            data: { quota: { decrement: quantity } },
-            where: { id: ticketId },
-          });
-          const data: CreateInvoiceRequest = {
+        const { ticketId, quantity, amount } = req.body;
+        const order = await tx.order.create({
+          data: {
+            ticketId,
+            quantity,
             amount,
-            invoiceDuration: "172800",
-            externalId: order.id,
-            description: `Invoice order with id ${order.id}`,
-            currency: "IDR",
-            reminderTime: 1,
-          };
-          const invoice = await xendit.Invoice.createInvoice({ data });
+            status: "PENDING",
+            expiredAt: new Date(Date.now() + 60 * 60 * 1000),
+            updatedAt: new Date(),
+            userId: req.user?.id!,
+          },
+        });
+        await tx.ticket.update({
+          data: { quota: { decrement: quantity } },
+          where: { id: ticketId },
+        });
+        const data: CreateInvoiceRequest = {
+          amount,
+          invoiceDuration: "172800",
+          externalId: order.id,
+          description: `Invoice order with id ${order.id}`,
+          currency: "IDR",
+          reminderTime: 1,
+        };
+        const invoice = await xendit.Invoice.createInvoice({ data });
 
-          await tx.order.update({
-            data: { invoiceUrl: invoice.invoiceUrl },
-            where: { id: order.id },
-          });
+        await tx.order.update({
+          data: { invoiceUrl: invoice.invoiceUrl },
+          where: { id: order.id },
+        });
 
-          res.status(201).send({ message: "Order Created!", invoice });
-        }
+        res.status(201).send({ message: "Order Created!", invoice });
       });
     } catch (err) {
       console.log(err);
@@ -85,8 +81,7 @@ export class Order {
   async GetOrder(req: Request, res: Response) {
     try {
       const userId = req.user?.id;
-      if (!userId)
-        throw res.status(404).json({ message: "User NOT FOUND" });
+      if (!userId) throw res.status(404).json({ message: "User NOT FOUND" });
 
       const orders = await prisma.order.findMany({
         where: {
@@ -105,7 +100,7 @@ export class Order {
           user: true, // kalau mau ambil data user yang beli
         },
       });
-  
+
       res.status(200).json({
         message: "Orders fetched successfully",
         data: orders,
@@ -119,11 +114,10 @@ export class Order {
   async GetOrderTicket(req: Request, res: Response) {
     try {
       const userId = req.user?.id;
-      if (!userId)
-        throw res.status(404).json({ message: "User NOT FOUND" });
+      if (!userId) throw res.status(404).json({ message: "User NOT FOUND" });
 
       const orders = await prisma.order.findMany({
-        where: { userId, },
+        where: { userId },
         orderBy: { createdAt: "desc" },
         include: {
           ticket: true,

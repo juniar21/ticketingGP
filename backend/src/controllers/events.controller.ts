@@ -200,5 +200,23 @@ export class EventsController {
       res.status(400).send(err)
     }
   }
+  async getEventById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+  
+      const event = await prisma.event.findUnique({
+        where: { id },
+      });
+  
+      if (!event) {
+        throw res.status(404).json({ message: "Event not found" });
+      }
+      
+      res.status(200).json(event);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
 
 }
