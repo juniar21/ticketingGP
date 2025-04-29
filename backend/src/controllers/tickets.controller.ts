@@ -9,7 +9,7 @@ export class ticketController {
       if (!userId) {
         throw res.status(401).json({ message: "User Not Found" });
       }
-
+      
       const { eventId, price, quota, category } = req.body;
 
       const event = await prisma.event.findFirst({

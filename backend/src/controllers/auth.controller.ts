@@ -26,7 +26,7 @@ export class AuthController {
         if (!found) break;
       }
 
-      console.log("Referred By:", referredBy);4
+      console.log("Referred By:", referredBy);
 
       let referrer = null;
       if (referredBy) {

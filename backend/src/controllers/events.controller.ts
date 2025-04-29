@@ -17,7 +17,7 @@ export class EventsController {
         startTime,
         endTime,
         date,
-        //image,
+        image,
       } = req.body;
 
       const event = await prisma.event.create({
@@ -29,7 +29,7 @@ export class EventsController {
           startTime,
           endTime,
           date,
-          //image,
+          image,
           userId: req.user?.id!,
         },
       });

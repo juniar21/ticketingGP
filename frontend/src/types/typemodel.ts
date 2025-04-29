@@ -25,7 +25,7 @@ export interface IPoin {
 }
 
 export interface IEvent {
-    idEvent : string,
+    id : string,
     title : string,
     category : string,
     location : string,

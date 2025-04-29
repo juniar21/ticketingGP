@@ -18,12 +18,22 @@ export default function NavCustomer() {
       </GesturesButtonDash>
       <GesturesButtonDash>
         <button
+          onClick={() => router.push("/points")}
+          className=" w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer"
+        >
+          MY POINTS
+        </button>
+      </GesturesButtonDash>
+
+      <GesturesButtonDash>
+        <button
           onClick={() => router.push("/order")}
           className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer"
         >
           ORDER HISTORY
         </button>
       </GesturesButtonDash>
+
       <GesturesButtonDash>
         <button
           onClick={() => router.push("/")}

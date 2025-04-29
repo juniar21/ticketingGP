@@ -42,7 +42,7 @@ const StasMonth = () => {
       };
   
       fetchOrders();
-    }, []);
+    }, [data?.accessToken]);
 
   useEffect(() => {
     if (orders.length > 0) {

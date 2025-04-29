@@ -71,7 +71,8 @@ export default function EventGP() {
                   <div className="relative w-full h-[200px] sm:h-[200px]">
                     <Image
                       className="rounded-t-md object-cover"
-                      src={event.image}
+                      src={event.image ||  "https://res.cloudinary.com/dtsxir6lv/image/upload/v1745220492/download_psaf0b.jpg"
+                      }
                       alt={event.title}
                       layout="fill"
                       objectFit="cover"
@@ -84,7 +85,7 @@ export default function EventGP() {
                     <p className="text-yellow-300 font-bold font-audio">
                     {new Date(event.date).toLocaleString()}
                     </p>
-                    <button onClick={()=> router.push(`/tdetail/${event.idEvent}`) } className="subpixel-antialiased font-extralight font-audio bg-blue-600/25 border border-sky-500 text-white w-[220px] sm:w-[250px] h-[60px] rounded-4xl shadow-md/50 hover:bg-sky-300/45 hover:cursor-pointer mt-4 sm:mt-6">
+                    <button onClick={()=> router.push(`/tdetail/${event.id}`) } className="subpixel-antialiased font-extralight font-audio bg-blue-600/25 border border-sky-500 text-white w-[220px] sm:w-[250px] h-[60px] rounded-4xl shadow-md/50 hover:bg-sky-300/45 hover:cursor-pointer mt-4 sm:mt-6">
                       Details
                     </button>
                   </div>

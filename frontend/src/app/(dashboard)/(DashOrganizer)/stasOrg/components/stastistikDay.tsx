@@ -51,7 +51,7 @@ const StasDay = () => {
     };
 
     fetchOrders();
-  }, []);
+  }, [data?.accessToken]);
 
   useEffect(() => {
     if (orders.length > 0) {

@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
 import GesturesButtonProf from "@/app/anim/gesturesProf";
 import PopModalProf from "@/app/anim/pop";
+import Image from "next/image";
 
 export default function NavbarPage() {
   const router = useRouter();
@@ -37,7 +38,12 @@ export default function NavbarPage() {
   return (
     <div className="h-[60px] sm:h-[70px] md:h-[80px] px-4 sm:px-6 lg:px-10 bg-black/30 sticky top-0 flex justify-between items-center z-20">
       <div className="flex items-center">
-        <p onClick={()=> router.push("/")} className="hover:cursor-pointer text-blue-500 font-extrabold text-[30px]">GP.TIXET</p>
+        <p
+          onClick={() => router.push("/")}
+          className="hover:cursor-pointer text-blue-500 font-extrabold text-[30px]"
+        >
+          GP.TIXET
+        </p>
       </div>
 
       {/* mobile menu */}
@@ -53,7 +59,20 @@ export default function NavbarPage() {
       {/* Desktop Login */}
       {session ? (
         <div className="flex items-center gap-3">
-          <h1 className="text-white text-[20px]">{session?.user?.username}</h1>
+          {/* <h1 className="text-white text-[20px]">{session?.user?.username}</h1> */}
+          <div>
+            <Image
+              className="rounded-full object-cover"
+              src={
+                session?.user?.avatar ||
+                "https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg"
+              }
+              alt={session?.user?.email}
+              height={40}
+              width={40}
+            />
+             <h1 className="text-white text-[10px]">{session?.user?.username}</h1>
+          </div>
           <GesturesButton>
             <button
               onClick={toggleProf}
