@@ -17,8 +17,9 @@ export class EventsController {
         startTime,
         endTime,
         date,
-        image,
       } = req.body;
+
+      const image = req.file?.filename; 
 
       const event = await prisma.event.create({
         data: {
@@ -98,15 +99,18 @@ export class EventsController {
         date, } = req.body;
       const { secure_url } = await cloudinaryUpload(req.file, "ig");
 
+      const start = new Date(`${date}T${startTime}`);
+      const end = new Date(`${date}T${endTime}`);
+
       await prisma.event.create({
         data: { image: secure_url, 
           title,
           category,
           location,
           circuit,
-          startTime,
-          endTime,
-          date,
+          startTime: start,
+          endTime: end,
+          date: new Date(date),
           userId: req.user?.id!, },
       });
 
