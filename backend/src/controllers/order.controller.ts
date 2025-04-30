@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import prisma from "../prisma";
 import xendit from "../helpers/xendit";
 import { CreateInvoiceRequest } from "xendit-node/invoice/models";
-import { OrderStatus } from "../generated/prisma";
+import { OrderStatus } from "prisma/generated/client";
+
 
 export class Order {
   async CreateOrder(req: Request, res: Response) {

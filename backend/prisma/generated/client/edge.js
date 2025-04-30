@@ -215,7 +215,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\JCWD-0608\\Mini-Project\\backend\\src\\generated\\prisma",
+      "value": "D:\\JCWD-0608\\Mini-Project\\backend\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -233,26 +233,27 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
+    "rootEnvPath": "../../../.env",
     "schemaEnvPath": "../../../.env"
   },
-  "relativePath": "../../../prisma",
+  "relativePath": "../..",
   "clientVersion": "6.6.0",
   "engineVersion": "f676762280b54cd07c770017ed3711ddde35f37a",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres.qvkmpkntgkywixbfgmvy:miniGp2121@@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+        "value": null
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nenum Role {\n  USER\n  PROMOTOR\n}\n\nmodel User {\n  id         Int      @id @default(autoincrement())\n  email      String   @unique\n  password   String\n  username   String   @unique\n  referral   String   @unique\n  referredBy String?\n  fullname   String?\n  Avatar     String?  @default(\"https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg\")\n  isVerify   Boolean  @default(false)\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  role       Role     @default(USER)\n\n  vouchered Voucher[]\n  points    Poin[]\n  orders    Order[]\n  Event     Event[]\n  reviews   Review[]\n}\n\nmodel Voucher {\n  id          Int      @id @default(autoincrement())\n  expiredAt   DateTime\n  createdAt   DateTime @default(now())\n  percentage  Int // misal: 10 berarti 10%\n  description String\n  userId      Int\n  user        User     @relation(fields: [userId], references: [id])\n}\n\nmodel Poin {\n  id        Int      @id @default(autoincrement())\n  amount    Int\n  expiredAt DateTime\n  createdAt DateTime @default(now())\n\n  userId Int\n  user   User @relation(fields: [userId], references: [id])\n}\n\nmodel Event {\n  id        String    @id @default(uuid())\n  title     String\n  category  String?\n  userId    Int\n  location  String?\n  circuit   String?\n  startTime DateTime?\n  endTime   DateTime?\n  date      DateTime\n  image     String?\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n\n  tickets Ticket[]\n  reviews Review[]\n  user    User     @relation(fields: [userId], references: [id])\n}\n\nmodel Ticket {\n  id        String   @id @default(uuid())\n  eventId   String\n  price     Int // harga tiket\n  quota     Int // jumlah tiket tersedia\n  category  String // misalnya: VIP, Reguler, dll\n  createdAt DateTime @default(now())\n  updatedAt DateTime\n\n  event  Event   @relation(fields: [eventId], references: [id])\n  orders Order[]\n}\n\nmodel Order {\n  id         String      @id @default(uuid())\n  userId     Int\n  ticketId   String\n  quantity   Int\n  amount     Int\n  status     OrderStatus @default(PENDING)\n  invoiceUrl String?\n  createdAt  DateTime    @default(now())\n  expiredAt  DateTime\n  updatedAt  DateTime\n  user       User        @relation(fields: [userId], references: [id])\n  ticket     Ticket      @relation(fields: [ticketId], references: [id])\n}\n\nenum OrderStatus {\n  PENDING\n  PAID\n  CANCELLED\n  EXPIRED\n}\n\nmodel Review {\n  id        String   @id @default(uuid())\n  rating    Int // nilai rating, misal 1-5\n  comment   String? // komentar opsional\n  eventId   String // event yang direview\n  userId    Int // user yang kasih review\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  event Event @relation(fields: [eventId], references: [id])\n  user  User  @relation(fields: [userId], references: [id])\n}\n",
-  "inlineSchemaHash": "a1347488794083535d6b781954d2dea40fe44e0af1818b7d65e8bb70f3aa96cb",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nenum Role {\n  USER\n  PROMOTOR\n}\n\nmodel User {\n  id         Int      @id @default(autoincrement())\n  email      String   @unique\n  password   String\n  username   String   @unique\n  referral   String   @unique\n  referredBy String?\n  fullname   String?\n  Avatar     String?  @default(\"https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg\")\n  isVerify   Boolean  @default(false)\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  role       Role     @default(USER)\n\n  vouchered Voucher[]\n  points    Poin[]\n  orders    Order[]\n  Event     Event[]\n  reviews   Review[]\n}\n\nmodel Voucher {\n  id          Int      @id @default(autoincrement())\n  expiredAt   DateTime\n  createdAt   DateTime @default(now())\n  percentage  Int // misal: 10 berarti 10%\n  description String\n  userId      Int\n  user        User     @relation(fields: [userId], references: [id])\n}\n\nmodel Poin {\n  id        Int      @id @default(autoincrement())\n  amount    Int\n  expiredAt DateTime\n  createdAt DateTime @default(now())\n\n  userId Int\n  user   User @relation(fields: [userId], references: [id])\n}\n\nmodel Event {\n  id        String    @id @default(uuid())\n  title     String\n  category  String?\n  userId    Int\n  location  String?\n  circuit   String?\n  startTime DateTime?\n  endTime   DateTime?\n  date      DateTime\n  image     String?\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n\n  tickets Ticket[]\n  reviews Review[]\n  user    User     @relation(fields: [userId], references: [id])\n}\n\nmodel Ticket {\n  id        String   @id @default(uuid())\n  eventId   String\n  price     Int // harga tiket\n  quota     Int // jumlah tiket tersedia\n  category  String // misalnya: VIP, Reguler, dll\n  createdAt DateTime @default(now())\n  updatedAt DateTime\n\n  event  Event   @relation(fields: [eventId], references: [id])\n  orders Order[]\n}\n\nmodel Order {\n  id         String      @id @default(uuid())\n  userId     Int\n  ticketId   String\n  quantity   Int\n  amount     Int\n  status     OrderStatus @default(PENDING)\n  invoiceUrl String?\n  createdAt  DateTime    @default(now())\n  expiredAt  DateTime\n  updatedAt  DateTime\n  user       User        @relation(fields: [userId], references: [id])\n  ticket     Ticket      @relation(fields: [ticketId], references: [id])\n}\n\nenum OrderStatus {\n  PENDING\n  PAID\n  CANCELLED\n  EXPIRED\n}\n\nmodel Review {\n  id        String   @id @default(uuid())\n  rating    Int // nilai rating, misal 1-5\n  comment   String? // komentar opsional\n  eventId   String // event yang direview\n  userId    Int // user yang kasih review\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  event Event @relation(fields: [eventId], references: [id])\n  user  User  @relation(fields: [userId], references: [id])\n}\n",
+  "inlineSchemaHash": "1abd79b6663a38cc6b4c86534a9d6267d3556667305b7509f8931319c6d485d4",
   "copyEngine": true
 }
 config.dirname = '/'
