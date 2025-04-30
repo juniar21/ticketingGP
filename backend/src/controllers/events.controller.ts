@@ -7,7 +7,7 @@ export class EventsController {
     try {
       const userId = req.user?.id;
       if (!userId)
-        throw res.status(404).json({ message: "User NOT aUTHORIZED" });
+        throw res.status(404).json({ message: "User NOT Found" });
 
       const {
         title,
@@ -17,8 +17,9 @@ export class EventsController {
         startTime,
         endTime,
         date,
-        //image,
       } = req.body;
+
+      const image = req.file?.filename; 
 
       const event = await prisma.event.create({
         data: {
@@ -29,7 +30,7 @@ export class EventsController {
           startTime,
           endTime,
           date,
-          //image,
+          image,
           userId: req.user?.id!,
         },
       });
@@ -48,7 +49,7 @@ export class EventsController {
     try {
       const userId = req.user?.id;
       if (!userId)
-        throw res.status(404).json({ message: "User NOT aUTHORIZED" });
+        throw res.status(404).json({ message: "User NOT Found" });
 
       const data = await prisma.event.findMany({
         where: {
@@ -93,6 +94,9 @@ export class EventsController {
         req.body;
       const { secure_url } = await cloudinaryUpload(req.file, "ig");
 
+      const start = new Date(`${date}T${startTime}`);
+      const end = new Date(`${date}T${endTime}`);
+
       await prisma.event.create({
         data: {
           title,
@@ -100,11 +104,10 @@ export class EventsController {
           category,
           location,
           circuit,
-          startTime,
-          endTime,
-          date,
-          userId: req.user?.id!,
-        },
+          startTime: start,
+          endTime: end,
+          date: new Date(date),
+          userId: req.user?.id!, },
       });
 
       res.status(201).send({
@@ -136,4 +139,80 @@ export class EventsController {
       res.status(400).send(err);
     }
   }
+
+  async getDashboardMetrics (req: Request, res: Response){
+    try {
+      const userId = req.user?.id;
+      if (!userId)
+        throw res.status(404).json({ message: "User NOT Found" }); // asumsi ambil dari URL param
+  
+      // 1. Total Events dibuat oleh organizer ini
+      const totalEvents = await prisma.event.count({
+        where: { userId: userId },
+      });
+  
+      // 2. Ambil semua eventId yang dimiliki organizer ini
+      const organizerEvents = await prisma.event.findMany({
+        where: { userId: userId },
+        select: { id: true },
+      });
+      const eventIds = organizerEvents.map(event => event.id);
+  
+      // 3. Ambil semua ticketId yang terkait eventIds tersebut
+      const tickets = await prisma.ticket.findMany({
+        where: { eventId: { in: eventIds } },
+        select: { id: true },
+      });
+      const ticketIds = tickets.map(ticket => ticket.id);
+  
+      // 4. Total Orders berdasarkan ticket-tickernya
+      const totalOrders = await prisma.order.count({
+        where: { ticketId: { in: ticketIds } },
+      });
+  
+      // 5. Total Profit (jumlah amount semua order)
+      const totalProfitResult = await prisma.order.aggregate({
+        where: { ticketId: { in: ticketIds } },
+        _sum: {
+          amount: true,
+        },
+      });
+      const totalProfit = totalProfitResult._sum.amount || 0;
+  
+      // 6. Total Tickets yang dibuat di event-event ini
+      const totalTickets = await prisma.ticket.count({
+        where: { eventId: { in: eventIds } },
+      });
+  
+      throw res.status(200).send({
+        message: "Data Getting",
+        totalEvents,
+        totalOrders,
+        totalProfit,
+        totalTickets,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(400).send(err)
+    }
+  }
+  async getEventById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+  
+      const event = await prisma.event.findUnique({
+        where: { id },
+      });
+  
+      if (!event) {
+        throw res.status(404).json({ message: "Event not found" });
+      }
+      
+      res.status(200).json(event);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
+
 }

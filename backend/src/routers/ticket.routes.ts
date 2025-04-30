@@ -26,6 +26,11 @@ export class TicketRouter {
       "/getTicket",
       this.ticketCrontoller.GetTicket
     );
+    this.router.get(
+      "/:eventId",
+      this.ticketCrontoller.GetTicketById
+    );
+    
   }
 
   getRouter(): Router {

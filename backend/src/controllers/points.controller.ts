@@ -5,8 +5,7 @@ export class PointsController {
   async getPointsVoucher(req: Request, res: Response) {
     try {
       const userId = req.user?.id;
-      if (!userId)
-        throw res.status(404).json({ message: "User NOT aUTHORIZED" });
+      if (!userId) throw res.status(404).json({ message: "User not found" });
 
       const user = await prisma.user.findUnique({
         where: {
@@ -21,16 +20,19 @@ export class PointsController {
 
       const now = new Date();
 
-      const validPoints = user.points.filter(
-        (p: { expiredAt: Date }) => p.expiredAt > now
-      );
-      const validVouchers = user.vouchered.filter(
-        (v: { expiredAt: Date }) => v.expiredAt > now
+      const validPoints = user.points.filter((p) => p.expiredAt > now);
+      const validVouchers = user.vouchered.filter((v) => v.expiredAt > now);
+
+      const totalValidPoints = validPoints.reduce((sum, p) => sum + p.amount, 0);
+      const totalValidVouchers = validVouchers.reduce(
+        (sum, v) => sum + v.percentage,
+        0
       );
 
       res.status(200).json({
         message: "This Voucher and Point",
-        user,
+        totalValidPoints,
+        totalValidVouchers,
       });
     } catch (err) {
       console.error(err);

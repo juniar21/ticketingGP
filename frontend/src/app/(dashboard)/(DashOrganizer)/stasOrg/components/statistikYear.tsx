@@ -50,7 +50,7 @@ const StasYear = () => {
         };
     
         fetchOrders();
-      }, []);
+      }, [data?.accessToken]);
   useEffect(() => {
     if (orders.length > 0) {
       const grouped: { [key: string]: number } = {};
