@@ -6,8 +6,8 @@ import CeventsTitle from "./crEvent";
 import axios from "@/lib/axios";
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
-import ImageUploader from "./ImageUploaders";
- // Pastikan komponen ini ada dan bekerja dengan baik
+import ImageUploader from "./ImageUploaders"
+// Pastikan komponen ini ada dan bekerja dengan baik
 
 const createScheme = yup.object().shape({
   title: yup.string().required("Please input the title"),
@@ -77,7 +77,7 @@ export default function CreateForm() {
       });
 
       // Reset form setelah submit
-      router.push("/"); // Redirect ke halaman utama
+      router.push("/eventsOrg"); // Redirect ke halaman utama
       toast.success("Event Created Successfully!");
     } catch (error: any) {
       console.log(error);
@@ -141,26 +141,40 @@ export default function CreateForm() {
                     </div>
                   )}
 
-                  <div role="date" className="mt-[20px] text-white bg-slate-800 w-[650] h-[300px] rounded-md shadow-md border border-black/30">
-                    <div role="date" className=" bg-blue-500 w-[650] h-[50px] rounded-t-md flex justify-center items-center">
-                      <p className="font-audio subpixel-antialiased font-bold text-[25px]">DATE</p>
+                  <div
+                    role="date"
+                    className="mt-[20px] text-white bg-slate-800 w-[650] h-[300px] rounded-md shadow-md border border-black/30"
+                  >
+                    <div
+                      role="date"
+                      className=" bg-blue-500 w-[650] h-[50px] rounded-t-md flex justify-center items-center"
+                    >
+                      <p className="font-audio subpixel-antialiased font-bold text-[25px]">
+                        DATE
+                      </p>
                     </div>
                     <div className="p-3">
-                      <p className="block text-sm font-medium font-audio">Date</p>
+                      <p className="block text-sm font-medium font-audio">
+                        Date
+                      </p>
                       <Field
                         type="date"
                         id="date"
                         name="date"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
-                      <p className="block pt-3 text-sm font-medium font-audio">Start Time</p>
+                      <p className="block pt-3 text-sm font-medium font-audio">
+                        Start Time
+                      </p>
                       <Field
                         type="time"
                         id="startTime"
                         name="startTime"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
-                      <p className="block text-sm font-medium pt-3 font-audio">End Time</p>
+                      <p className="block text-sm font-medium pt-3 font-audio">
+                        End Time
+                      </p>
                       <Field
                         type="time"
                         id="endTime"

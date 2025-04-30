@@ -110,7 +110,47 @@ export class Order {
       res.status(400).send(err);
     }
   }
-
+  async GetOrderById(req: Request, res: Response) {
+    try {
+      const userId = req.user?.id;
+      const orderId = req.params.id; // Get the order ID from the request params
+  
+      if (!userId) {
+         res.status(404).json({ message: "User NOT FOUND" });
+      }
+  
+      // Check if the order exists and belongs to the user
+      const order = await prisma.order.findUnique({
+        where: {
+          id: orderId,
+        },
+        include: {
+          ticket: {
+            include: {
+              event: true, // Fetch event data if needed
+            },
+          },
+          user: true, // Fetch user who purchased the order
+        },
+      });
+  
+      if (!order) {
+        throw res.status(404).json({ message: "Order not found" });
+      }
+  
+      if (order.ticket?.event?.userId !== userId) {
+         res.status(403).json({ message: "You do not have access to this order" });
+      }
+  
+      res.status(200).json({
+        message: "Order fetched successfully",
+        data: order,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
   async GetOrderTicket(req: Request, res: Response) {
     try {
       const userId = req.user?.id;
