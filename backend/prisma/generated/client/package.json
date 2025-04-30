@@ -1,140 +1,44 @@
 {
-  "name": "prisma-client-81ef70a527bd8a0dab5588dc535f461b34badf48757448ca07dd80a4f3964562",
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "types": "index.d.ts",
-  "browser": "index-browser.js",
-  "exports": {
-    "./client": {
-      "require": {
-        "node": "./index.js",
-        "edge-light": "./wasm.js",
-        "workerd": "./wasm.js",
-        "worker": "./wasm.js",
-        "browser": "./index-browser.js",
-        "default": "./index.js"
-      },
-      "import": {
-        "node": "./index.js",
-        "edge-light": "./wasm.js",
-        "workerd": "./wasm.js",
-        "worker": "./wasm.js",
-        "browser": "./index-browser.js",
-        "default": "./index.js"
-      },
-      "default": "./index.js"
-    },
-    "./package.json": "./package.json",
-    ".": {
-      "require": {
-        "node": "./index.js",
-        "edge-light": "./wasm.js",
-        "workerd": "./wasm.js",
-        "worker": "./wasm.js",
-        "browser": "./index-browser.js",
-        "default": "./index.js"
-      },
-      "import": {
-        "node": "./index.js",
-        "edge-light": "./wasm.js",
-        "workerd": "./wasm.js",
-        "worker": "./wasm.js",
-        "browser": "./index-browser.js",
-        "default": "./index.js"
-      },
-      "default": "./index.js"
-    },
-    "./edge": {
-      "types": "./edge.d.ts",
-      "require": "./edge.js",
-      "import": "./edge.js",
-      "default": "./edge.js"
-    },
-    "./react-native": {
-      "types": "./react-native.d.ts",
-      "require": "./react-native.js",
-      "import": "./react-native.js",
-      "default": "./react-native.js"
-    },
-    "./extension": {
-      "types": "./extension.d.ts",
-      "require": "./extension.js",
-      "import": "./extension.js",
-      "default": "./extension.js"
-    },
-    "./index-browser": {
-      "types": "./index.d.ts",
-      "require": "./index-browser.js",
-      "import": "./index-browser.js",
-      "default": "./index-browser.js"
-    },
-    "./index": {
-      "types": "./index.d.ts",
-      "require": "./index.js",
-      "import": "./index.js",
-      "default": "./index.js"
-    },
-    "./wasm": {
-      "types": "./wasm.d.ts",
-      "require": "./wasm.js",
-      "import": "./wasm.mjs",
-      "default": "./wasm.mjs"
-    },
-    "./runtime/client": {
-      "types": "./runtime/client.d.ts",
-      "require": "./runtime/client.js",
-      "import": "./runtime/client.mjs",
-      "default": "./runtime/client.mjs"
-    },
-    "./runtime/library": {
-      "types": "./runtime/library.d.ts",
-      "require": "./runtime/library.js",
-      "import": "./runtime/library.mjs",
-      "default": "./runtime/library.mjs"
-    },
-    "./runtime/binary": {
-      "types": "./runtime/binary.d.ts",
-      "require": "./runtime/binary.js",
-      "import": "./runtime/binary.mjs",
-      "default": "./runtime/binary.mjs"
-    },
-    "./runtime/wasm": {
-      "types": "./runtime/wasm.d.ts",
-      "require": "./runtime/wasm.js",
-      "import": "./runtime/wasm.mjs",
-      "default": "./runtime/wasm.mjs"
-    },
-    "./runtime/edge": {
-      "types": "./runtime/edge.d.ts",
-      "require": "./runtime/edge.js",
-      "import": "./runtime/edge-esm.js",
-      "default": "./runtime/edge-esm.js"
-    },
-    "./runtime/react-native": {
-      "types": "./runtime/react-native.d.ts",
-      "require": "./runtime/react-native.js",
-      "import": "./runtime/react-native.js",
-      "default": "./runtime/react-native.js"
-    },
-    "./generator-build": {
-      "require": "./generator-build/index.js",
-      "import": "./generator-build/index.js",
-      "default": "./generator-build/index.js"
-    },
-    "./sql": {
-      "require": {
-        "types": "./sql.d.ts",
-        "node": "./sql.js",
-        "default": "./sql.js"
-      },
-      "import": {
-        "types": "./sql.d.ts",
-        "node": "./sql.mjs",
-        "default": "./sql.mjs"
-      },
-      "default": "./sql.js"
-    },
-    "./*": "./*"
+  "scripts": {
+    "build": "tsc && cp -rv src/templates dist",
+    "start": "tsc && node./dist/index.js",
+    "dev": "ts-node-dev ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "6.6.0",
-  "sideEffects": false
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.14.1",
+    "@types/nodemailer": "^6.4.17",
+    "@types/streamifier": "^0.1.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.6.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "handlebars": "^4.7.8",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.2",
+    "nodemailer": "^6.10.1",
+    "prisma": "^6.6.0",
+    "streamifier": "^0.1.1",
+    "xendit-node": "^6.3.0"
+  }
 }
