@@ -25,13 +25,9 @@ export default function NavOrganizer() {
         </button>
       </GesturesButtonDash>
       <GesturesButtonDash>
-        <button className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer"
-        onClick={()=> router.push("/orderOrg")}>
-          ORDER HISTORY
-        </button>
-      </GesturesButtonDash>
-      <GesturesButtonDash>
-        <button className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer">
+        <button
+         onClick={() => router.push("/stasOrg")} 
+        className="w-[300px] h-[80px] bg-slate-900 text-white text-[20px] rounded-md border border-blue-500 hover:cursor-pointer">
           STATISTIK
         </button>
       </GesturesButtonDash>

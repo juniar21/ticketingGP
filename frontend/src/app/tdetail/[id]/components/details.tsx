@@ -1,10 +1,72 @@
 "use client";
 import GesturesButton from "@/app/anim/gestures";
+import axios from "@/lib/axios";
+import { IEvent, IOrder } from "@/types/typemodel";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Details() {
+  const router = useRouter();
+  const { data } = useSession();
+    //const { datas } = useSession();
+    const [event1, setEvents] = useState<IEvent[]>([]); 
+    const { data: session } = useSession();
+    const onGet = async () => {
+    try {
+      const {data} = await axios.get("/events/getEveTic",{
+        // headers: {
+        //   Authorization: `Bearer ${datas?.accessToken}`,
+        // },
+      });
+      const event: IEvent[] = data.event1;
+      console.log(event);
+      
+      setEvents(event)
+    } catch (err) {
+      console.log(err);
+      }
+    }
+    //dibuatin tombol agar onCreateOrder agar mentrigger
+    const onCreateOrder = async () => {
+      try {
+        const [orders, setOrders] = useState<IOrder[]>([]);
+        const [ticketId, setTicketId] = useState<string>("");
+        const [quantity, setQuantity] = useState<number>(1);
+        const [amount, setAmount] = useState<number>(0);
+
+        const body = {
+          ticketId,
+          quantity,
+          amount,
+        };
+  
+        const response = await axios.post("/orders", body, {
+          headers: {
+            Authorization: `Bearer ${data?.accessToken}`, // kalau perlu token
+          },
+        });
+  
+        console.log("Order created:", response.data);
+  
+        // Simpan order yang baru dibuat ke state
+        setOrders((prev) => [...prev, response.data]); 
+      } catch (err) {
+        console.log("Error create order:", err);
+      }
+    };
+
+
+     // const filteredEvents =
+    //   selectedCategory === "All Events"
+    //     ? events
+    //     : events.filter((events) => events.category === selectedCategory);
+    
+    useEffect(() => {
+      onGet();
+        }, []);
+
   const events = {
     name: "BALI GP",
     date: "10-02",
@@ -18,7 +80,6 @@ export default function Details() {
     priceRegular: 250000,
     priceVIP: 500000,
   };
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState("description");
   // State for keeping track of the number of tickets
   const [ticketCount, setTicketCount] = useState(0);

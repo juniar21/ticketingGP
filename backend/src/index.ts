@@ -6,7 +6,7 @@ import { OrderRouter } from "./routers/order.routes";
 import { PointsRouter } from "./routers/points.routes";
 import { EventRoutes } from "./routers/events.routes";
 import path from "path";
-import { TicketRouter } from "./routers/ticket.contoller";
+import { TicketRouter } from "./routers/ticket.routes";
 
 const PORT = 8000;
 

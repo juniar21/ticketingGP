@@ -50,7 +50,7 @@ export class EventsController {
       if (!userId)
         throw res.status(404).json({ message: "User NOT aUTHORIZED" });
 
-      const getEvent = await prisma.event.findMany({
+      const data = await prisma.event.findMany({
         where: {
           userId: req.user?.id,
         },
@@ -58,14 +58,14 @@ export class EventsController {
           user: {
             select: {
               id: true,
-              username: true
+              username: true,
             },
           },
         },
       });
       res.status(200).send({
         message: `Get Events ${userId}`,
-        getEvent,
+        data,
       });
     } catch (err) {
       console.log(err);
@@ -73,46 +73,63 @@ export class EventsController {
     }
   }
 
-  async GetEventAll(req: Request, res: Response){
+  async GetEventAll(req: Request, res: Response) {
     try {
-      const events = await prisma.event.findMany()
+      const events = await prisma.event.findMany();
       res.status(200).send({
         message: `Get All Events`,
         events,
       });
     } catch (err) {
       console.log(err);
-      res.status(400).send(err)
+      res.status(400).send(err);
     }
   }
 
   async createPostCloud(req: Request, res: Response) {
     try {
       if (!req.file) throw { message: "image empty" };
-      const { title,
-        category,
-        location,
-        circuit,
-        startTime,
-        endTime,
-        date, } = req.body;
+      const { title, category, date, startTime, endTime, location, circuit } =
+        req.body;
       const { secure_url } = await cloudinaryUpload(req.file, "ig");
 
       await prisma.event.create({
-        data: { image: secure_url, 
+        data: {
           title,
+          image: secure_url,
           category,
           location,
           circuit,
           startTime,
           endTime,
           date,
-          userId: req.user?.id!, },
+          userId: req.user?.id!,
+        },
       });
 
       res.status(201).send({
         message: "Post created",
         secure_url,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+  async GetEventTicket(req: Request, res: Response) {
+    try {
+      const { id } = req.query;
+      const data = await prisma.event.findMany({
+        where: {
+          ...(id && { id: id as string }),
+        },
+        include: {
+          tickets: true, // ambil juga semua tiket yang terkait event ini
+        },
+      });
+      res.status(201).send({
+        message: "Data Getting",
+        data,
       });
     } catch (err) {
       console.log(err);
