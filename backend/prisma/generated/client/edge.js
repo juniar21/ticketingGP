@@ -215,7 +215,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\JCWD-0608\\Mini-Project\\backend\\prisma\\generated\\client",
+      "value": "D:\\Ananta\\Purwadhika\\Mini Project\\miniproject\\miniproject-gpv.2\\ticketingGP\\backend\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -229,7 +229,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\JCWD-0608\\Mini-Project\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Ananta\\Purwadhika\\Mini Project\\miniproject\\miniproject-gpv.2\\ticketingGP\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

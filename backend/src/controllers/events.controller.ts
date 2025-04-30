@@ -59,7 +59,7 @@ export class EventsController {
           user: {
             select: {
               id: true,
-              username: true
+              username: true,
             },
           },
         },
@@ -74,37 +74,33 @@ export class EventsController {
     }
   }
 
-  async GetEventAll(req: Request, res: Response){
+  async GetEventAll(req: Request, res: Response) {
     try {
-      const events = await prisma.event.findMany()
+      const events = await prisma.event.findMany();
       res.status(200).send({
         message: `Get All Events`,
         events,
       });
     } catch (err) {
       console.log(err);
-      res.status(400).send(err)
+      res.status(400).send(err);
     }
   }
 
   async createPostCloud(req: Request, res: Response) {
     try {
       if (!req.file) throw { message: "image empty" };
-      const { title,
-        category,
-        location,
-        circuit,
-        startTime,
-        endTime,
-        date, } = req.body;
+      const { title, category, date, startTime, endTime, location, circuit } =
+        req.body;
       const { secure_url } = await cloudinaryUpload(req.file, "ig");
 
       const start = new Date(`${date}T${startTime}`);
       const end = new Date(`${date}T${endTime}`);
 
       await prisma.event.create({
-        data: { image: secure_url, 
+        data: {
           title,
+          image: secure_url,
           category,
           location,
           circuit,
@@ -123,12 +119,12 @@ export class EventsController {
       res.status(400).send(err);
     }
   }
-  async GetEventTicket(req: Request, res: Response){
+  async GetEventTicket(req: Request, res: Response) {
     try {
-      const {eventId} = req.body
-      const data = await prisma.event.findFirst({
+      const { id } = req.query;
+      const data = await prisma.event.findMany({
         where: {
-          id: eventId, // atau kriteria lain
+          ...(id && { id: id as string }),
         },
         include: {
           tickets: true, // ambil juga semua tiket yang terkait event ini
@@ -140,7 +136,7 @@ export class EventsController {
       });
     } catch (err) {
       console.log(err);
-      res.status(400).send(err)
+      res.status(400).send(err);
     }
   }
 
