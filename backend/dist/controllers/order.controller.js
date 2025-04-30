@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = void 0;
 const prisma_1 = __importDefault(require("../prisma"));
 const xendit_1 = __importDefault(require("../helpers/xendit"));
-const client_1 = require("prisma/generated/client");
+const client_1 = require("@prisma/client");
 class Order {
     CreateOrder(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
