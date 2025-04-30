@@ -20,6 +20,7 @@ export class Order {
             userId: req.user?.id!,
           },
         });
+
         await tx.ticket.update({
           data: { quota: { decrement: quantity } },
           where: { id: ticketId },
@@ -46,6 +47,7 @@ export class Order {
       res.status(400).send(err);
     }
   }
+
   async updateStatus(req: Request, res: Response) {
     try {
       const { status, external_id } = req.body;
@@ -130,4 +132,7 @@ export class Order {
       res.status(400).send(err);
     }
   }
+
+  
+  
 }
