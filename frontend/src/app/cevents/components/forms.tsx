@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
+import { Field, Form, Formik, FormikProps } from "formik";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
 import CeventsTitle from "./crEvent";
@@ -17,8 +18,10 @@ const createScheme = yup.object().shape({
   location: yup.string().required("Please select location"),
   circuit: yup.string().required("Please select circuit"),
 });
+
 interface ICreateForm {
   title: string;
+  image: null | File | Blob;
   category: string;
   date: string;
   startTime: string;
@@ -26,13 +29,11 @@ interface ICreateForm {
   location: string;
   circuit: string;
 }
-interface IValue{
-  image: null | File | Blob
-}
 
 export default function CreateForm() {
   const initialValues: ICreateForm = {
     title: "",
+    image: null,
     category: "",
     date: "",
     startTime: "",
@@ -43,53 +44,42 @@ export default function CreateForm() {
   const router = useRouter();
   const { data } = useSession();
 
-  const ImagePost = async (value: IValue) => {
-    try {
-      const formData = new FormData();
-      formData.append("image", value.image as Blob)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const createEvent = async (
-    values: ICreateForm,
-    actions: FormikHelpers<ICreateForm>, 
+    values: ICreateForm
+    // actions: FormikHelpers<ICreateForm>
   ) => {
     try {
-      
-      const startDateTime = new Date(
-        `${values.date}T${values.startTime}:00Z`
-      ).toISOString();
-      const endDateTime = new Date(
-        `${values.date}T${values.endTime}:00Z`
-      ).toISOString();
-      const dateTime = new Date(values.date).toISOString();
-      
-
-      await axios.post(
-        "/events",
-        {
-          title: values.title,
-          category: values.category,
-          startTime: startDateTime,
-          endTime: endDateTime,
-          date: dateTime,
-          location: values.location,
-          circuit: values.circuit,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${data?.accessToken}`,
-          },
-        }
+      const formData = new FormData();
+      formData.append("image", values.image as Blob); // Append image file
+      formData.append("title", values.title);
+      formData.append("category", values.category);
+      formData.append(
+        "startTime",
+        new Date(`${values.date}T${values.startTime}:00Z`).toISOString()
       );
-      actions.resetForm();
-      router.push("/");
-      toast.success("Events Created!");
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      formData.append(
+        "endTime",
+        new Date(`${values.date}T${values.endTime}:00Z`).toISOString()
+      );
+      formData.append("date", new Date(values.date).toISOString());
+      formData.append("location", values.location);
+      formData.append("circuit", values.circuit);
+
+      // Send the data to the backend
+      await axios.post("/events/cloud", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Ensure the content type is set to multipart
+          Authorization: `Bearer ${data?.accessToken}`, // Add the authorization token
+        },
+      });
+
+      // Reset the form and redirect
+      // actions.resetForm();
+      router.push("/"); // Redirect after success
+      toast.success("Event Created!");
     } catch (error: any) {
       console.log(error);
-      toast.error(error.response?.data?.message || "Events Created Failed");
+      toast.error(error.response?.data?.message || "Event Creation Failed");
     }
   };
 
@@ -98,13 +88,15 @@ export default function CreateForm() {
       <Formik
         initialValues={initialValues}
         validationSchema={createScheme}
-        onSubmit={createEvent}
+        onSubmit={(values) => {
+          createEvent(values);
+        }}
       >
         {(props: FormikProps<ICreateForm>) => {
-          const { errors, touched, isSubmitting } = props;
+          const { errors, touched, isSubmitting, setFieldValue } = props;
           return (
             <Form className="flex justify-center">
-              <div className="bg-black m-5 w-[600px] h-[850px] shadow-md/30 subpixel-antialiased rounded-md text-white">
+              <div className="bg-black m-5 w-[600px] h-[950px] shadow-md/30 subpixel-antialiased rounded-md text-white">
                 <CeventsTitle />
                 <div role="padding" className="p-5">
                   <h1 className="font-audio">Title</h1>
@@ -116,6 +108,7 @@ export default function CreateForm() {
                   {touched.title && errors.title ? (
                     <div className="text-red-500">{errors.title}</div>
                   ) : null}
+
                   <p className="font-audio">Photo</p>
                   <input
                     type="file"
@@ -124,15 +117,16 @@ export default function CreateForm() {
                     placeholder="image"
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
-                        ImagePost({ image: e.target.files[0] });
+                        // Update the image file in Formik state
+                        setFieldValue("image", e.target.files[0]);
                       }
                     }}
                   />
-                  {touched.title && errors.title ? (
-                    <div className="text-red-500">{errors.title}</div>
+                  {touched.image && errors.image ? (
+                    <div className="text-red-500">{errors.image}</div>
                   ) : null}
+
                   <h1 className="font-audio">Category</h1>
-                  <label htmlFor="category" className="block mb-2"></label>
                   <Field
                     as="select"
                     name="category"
@@ -142,14 +136,15 @@ export default function CreateForm() {
                     <option value="" disabled>
                       Choose category
                     </option>
-                    <option value="category1">GP Events</option>
-                    <option value="category2">RoadRace Events</option>
+                    <option value="GP Events">GP Events</option>
+                    <option value="RoadRace Events">RoadRace Events</option>
                   </Field>
                   {touched.category && errors.category ? (
                     <div className="text-red-500 shadow-md">
                       {errors.category}
                     </div>
                   ) : null}
+
                   <div
                     role="date"
                     className="mt-[20px] text-white bg-slate-800 w-[650] h-[300px] rounded-md shadow-md border border-black/30"
@@ -216,7 +211,7 @@ export default function CreateForm() {
                   <div>
                     <button
                       type="submit"
-                      onSubmit={() => router.push("/")}
+                      onClick={()=> router.push("/")}
                       className="mt-[20px] rounded-md bg-black border border-blue-500 w-[100px] h-[50px] hover:cursor-pointer hover:bg-blue-900/50"
                     >
                       {isSubmitting ? "loading" : "Submit"}

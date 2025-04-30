@@ -51,7 +51,7 @@ export default function TabComponent() {
     return (
       <div className="grid gap-4 mt-4">
         {eventList.map((event) => (
-          <div key={event.idEvent} className="p-4 border rounded-md bg-gray-800 text-white">
+          <div key={event.id} className="p-4 border rounded-md bg-gray-800 text-white">
             <h3 className="text-lg font-semibold">{event.title}</h3>
             <p className="text-sm">{new Date(event.date).toLocaleString()}</p>
           </div>
