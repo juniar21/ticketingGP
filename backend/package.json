@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "prisma generate",
     "build": "tsc && cp -rv src/templates dist",
     "start": "tsc && node ./dist/index.js",
     "dev": "ts-node-dev ./src/index.ts",
