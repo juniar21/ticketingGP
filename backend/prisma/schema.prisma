@@ -15,15 +15,109 @@ enum Role {
 }
 
 model User {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String
+  username   String   @unique
+  referral   String   @unique
+  referredBy String?
+  fullname   String?
+  Avatar     String?  @default("https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg")
+  isVerify   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  role       Role     @default(USER)
+
+  vouchered Voucher[]
+  points    Poin[]
+  orders    Order[]
+  Event     Event[]
+  reviews     Review[]
+}
+
+model Voucher {
+  id          Int      @id @default(autoincrement())
+  expiredAt   DateTime
+  createdAt   DateTime @default(now())
+  percentage  Int // misal: 10 berarti 10%
+  description String
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Poin {
   id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  username  String   @unique
-  referral  String   @unique
-  fullname  String?
-  Avatar    String?  @default("https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg")
-  isVerify  Boolean  @default(false)
+  amount    Int
+  expiredAt DateTime
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  role      Role     @default(USER)
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  category    String?
+  userId      Int
+  location    String?
+  circuit     String?
+  startTime   DateTime?
+  endTime     DateTime?
+  date        DateTime
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tickets Ticket[]
+  reviews     Review[]
+  user    User     @relation(fields: [userId], references: [id])
+}
+
+model Ticket {
+  id        String   @id @default(uuid())
+  eventId   String
+  price     Int // harga tiket
+  quota     Int // jumlah tiket tersedia
+  category  String // misalnya: VIP, Reguler, dll
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  event  Event   @relation(fields: [eventId], references: [id])
+  orders Order[]
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  userId     Int
+  ticketId   String
+  quantity   Int
+  amount     Int
+  status     OrderStatus @default(PENDING)
+  invoiceUrl String?
+  createdAt  DateTime    @default(now())
+  expiredAt  DateTime
+  updatedAt  DateTime
+  user       User        @relation(fields: [userId], references: [id])
+  ticket     Ticket      @relation(fields: [ticketId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+  EXPIRED
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  rating     Int      // nilai rating, misal 1-5
+  comment    String?  // komentar opsional
+  eventId    String   // event yang direview
+  userId     Int      // user yang kasih review
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  event      Event    @relation(fields: [eventId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
 }

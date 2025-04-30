@@ -1,0 +1,43 @@
+import { NextFunction, Request, Response } from "express";
+import { verify } from "jsonwebtoken";
+import { UserPayload } from "../../custom";
+
+export class AuthMiddleware {
+  verifyToken(req: Request, res: Response, next: NextFunction) {
+    try {
+      const token = req.header("Authorization")?.replace("Bearer ", "");
+      if (!token) throw { message: "Unauthorized!" };
+
+      const verifiedUser = verify(token, process.env.KEY_JWT!);
+
+      req.user = verifiedUser as UserPayload;
+
+      
+      next();
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+
+  verifyPromotor(req: Request, res: Response, next: NextFunction) {
+    try {
+      console.log(req.user);
+      if (req.user?.Role !== "PROMOTOR") throw { message: "Promotor Only" };
+      next();
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+
+  verifyUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      if (req.user?.Role !== "USER") throw { message: "CUSTOMER Only" };
+      next();
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+}

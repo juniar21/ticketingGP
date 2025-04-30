@@ -1,62 +1,100 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import DropdownMenu from "./categorydrop";
+import AnimasiPopScroll from "@/app/anim/popscroll";
+import AnimasiTransition from "@/app/anim/transition";
+import { useRouter } from "next/navigation";
+import { IEvent } from "@/types/typemodel";
+//import { useSession } from "next-auth/react";
+import axios from "@/lib/axios";
+
 
 export default function EventGP() {
-  const event = [
-    {
-      name: "BALI GP",
-      date: "10-02",
-      image:
-        "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453192/gpjakarta_tklbgd.jpg",
-    },
-    {
-      name: "Jakarta GP",
-      date: "08-05",
-      image:
-        "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453138/gpbali_tktpfk.jpg",
-    },
-    {
-      name: "Bandung RoadRace",
-      date: "05-10",
-      image:
-        "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453138/gpbali_tktpfk.jpg",
-    },
-    {
-      name: "Purwadhika GP",
-      date: "15-12",
-      image:
-        "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744453138/gpbali_tktpfk.jpg",
-    },
-  ];
+  const router = useRouter();
+  //const { datas } = useSession();
+  const [events, setEvents] = useState<IEvent[]>([]); 
+  
+  const onGet = async () => {
+  try {
+    const {data} = await axios.get("/events/getAllEve",{
+      // headers: {
+      //   Authorization: `Bearer ${datas?.accessToken}`,
+      // },
+    });
+    const event: IEvent[] = data.events;
+    console.log(event);
+    
+    setEvents(event)
+  } catch (err) {
+    console.log(err);
+    }
+  }
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>("All Events");
+
+  const filterEvents = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  // const filteredEvents =
+  //   selectedCategory === "All Events"
+  //     ? events
+  //     : events.filter((events) => events.category === selectedCategory);
+  
+  useEffect(() => {
+    onGet();
+      }, []);
+
   return (
-    <div className="mt-[30px] flex gap-10 justify-center">
-      {event.map((events, idx) => (
-        <div
-          key={idx}
-          className="bg-white w-[300px] h-[400px] shadow-md/30 flex flex-col rounded-md hover:scale-110"
-        >
-          <Image
-            className="rounded-t-md"
-            src={events.image}
-            alt={events.name}
-            width={300}
-            height={100}
-          />
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-[25px] text-black font-audio font-bold">
-              {events.name}
-            </p>
-            <p className="text-red-500 font-bold font-audio">{events.date}</p>
-            <button className="subpixel-antialiased font-extralight bg-red-500 w-[200px] h-[50px] rounded-4xl shadow-md/50 hover:bg-red-300 hover:cursor-pointer">
-              {" "}
-              Buy Now
-            </button>
-            <button className="mt-[10px] subpixel-antialiased font-extralight bg-slate-300 w-[200px] h-[50px] rounded-4xl shadow-md/50 hover:bg-amber-300 hover:cursor-pointer">
-              {" "}
-              VIP Pass
-            </button>
+    <div>
+      <div
+        role="flex category & judul category"
+        className="flex justify-between px-[90px]"
+      >
+        <h1 className="text-[30px] text-white sm:text-[40px] md:text-[50px] font-bold">
+          {selectedCategory}
+        </h1>
+        <DropdownMenu onCategorySelect={filterEvents} />
+      </div>
+
+      <div className="mt-[30px] flex flex-col items-center">
+        <AnimasiTransition>
+          <div className="flex gap-5 sm:gap-10 justify-center flex-wrap">
+            {events.map((event, idx) => (
+              <div
+                key={idx}
+                className="bg-black w-[100%] sm:w-[300px] h-[400px] shadow-md/30 flex flex-col rounded-md hover:scale-110 mb-5 sm:mb-0"
+              >
+                {/* Image Fix */}
+                <AnimasiPopScroll>
+                  <div className="relative w-full h-[200px] sm:h-[200px]">
+                    <Image
+                      className="rounded-t-md object-cover"
+                      src={event.image ||  "https://res.cloudinary.com/dtsxir6lv/image/upload/v1745220492/download_psaf0b.jpg"
+                      }
+                      alt={event.title}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <p className="text-[20px] sm:text-[25px] text-white font-audio font-bold">
+                      {event.circuit}
+                    </p>
+                    <p className="text-yellow-300 font-bold font-audio">
+                    {new Date(event.date).toLocaleString()}
+                    </p>
+                    <button onClick={()=> router.push(`/eventis/${event.id}`) } className="subpixel-antialiased font-extralight font-audio bg-blue-600/25 border border-sky-500 text-white w-[220px] sm:w-[250px] h-[60px] rounded-4xl shadow-md/50 hover:bg-sky-300/45 hover:cursor-pointer mt-4 sm:mt-6">
+                      Details
+                    </button>
+                  </div>
+                </AnimasiPopScroll>
+              </div>
+            ))}
           </div>
-        </div>
-      ))}
+        </AnimasiTransition>
+      </div>
     </div>
   );
 }

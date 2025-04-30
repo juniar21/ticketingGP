@@ -123,12 +123,78 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   username: 'username',
   referral: 'referral',
+  referredBy: 'referredBy',
   fullname: 'fullname',
   Avatar: 'Avatar',
   isVerify: 'isVerify',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   role: 'role'
+};
+
+exports.Prisma.VoucherScalarFieldEnum = {
+  id: 'id',
+  expiredAt: 'expiredAt',
+  createdAt: 'createdAt',
+  percentage: 'percentage',
+  description: 'description',
+  userId: 'userId'
+};
+
+exports.Prisma.PoinScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  expiredAt: 'expiredAt',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.EventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  category: 'category',
+  userId: 'userId',
+  location: 'location',
+  circuit: 'circuit',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  date: 'date',
+  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TicketScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  price: 'price',
+  quota: 'quota',
+  category: 'category',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  ticketId: 'ticketId',
+  quantity: 'quantity',
+  amount: 'amount',
+  status: 'status',
+  invoiceUrl: 'invoiceUrl',
+  createdAt: 'createdAt',
+  expiredAt: 'expiredAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ReviewScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  comment: 'comment',
+  eventId: 'eventId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -150,8 +216,21 @@ exports.Role = exports.$Enums.Role = {
   PROMOTOR: 'PROMOTOR'
 };
 
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+};
+
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Voucher: 'Voucher',
+  Poin: 'Poin',
+  Event: 'Event',
+  Ticket: 'Ticket',
+  Order: 'Order',
+  Review: 'Review'
 };
 
 /**
