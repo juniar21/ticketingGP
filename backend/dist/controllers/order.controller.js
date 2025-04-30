@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = void 0;
 const prisma_1 = __importDefault(require("../prisma"));
 const xendit_1 = __importDefault(require("../helpers/xendit"));
-const prisma_2 = require("../generated/prisma");
+const client_1 = require("prisma/generated/client");
 class Order {
     CreateOrder(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -64,13 +64,13 @@ class Order {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { status, external_id } = req.body;
-                if (status == prisma_2.OrderStatus.PAID) {
+                if (status == client_1.OrderStatus.PAID) {
                     yield prisma_1.default.order.update({
                         data: { status: "PAID" },
                         where: { id: external_id },
                     });
                 }
-                else if (status == prisma_2.OrderStatus.EXPIRED) {
+                else if (status == client_1.OrderStatus.EXPIRED) {
                     yield prisma_1.default.$transaction((tx) => __awaiter(this, void 0, void 0, function* () {
                         yield tx.order.update({
                             data: { status: "CANCELLED" },
