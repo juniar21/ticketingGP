@@ -28,10 +28,6 @@ export default function TicketPage() {
     return <div>Loading...</div>;
   }
 
-  if (isNaN(eventId)) {
-    return <div>Invalid event ID</div>;
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <TicketForm eventId={eventId} />
