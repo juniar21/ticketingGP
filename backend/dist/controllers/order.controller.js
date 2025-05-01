@@ -128,6 +128,46 @@ class Order {
             }
         });
     }
+    GetOrderById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a, _b, _c;
+            try {
+                const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+                const orderId = req.params.id; // Get the order ID from the request params
+                if (!userId) {
+                    res.status(404).json({ message: "User NOT FOUND" });
+                }
+                // Check if the order exists and belongs to the user
+                const order = yield prisma_1.default.order.findUnique({
+                    where: {
+                        id: orderId,
+                    },
+                    include: {
+                        ticket: {
+                            include: {
+                                event: true, // Fetch event data if needed
+                            },
+                        },
+                        user: true, // Fetch user who purchased the order
+                    },
+                });
+                if (!order) {
+                    throw res.status(404).json({ message: "Order not found" });
+                }
+                if (((_c = (_b = order.ticket) === null || _b === void 0 ? void 0 : _b.event) === null || _c === void 0 ? void 0 : _c.userId) !== userId) {
+                    res.status(403).json({ message: "You do not have access to this order" });
+                }
+                res.status(200).json({
+                    message: "Order fetched successfully",
+                    data: order,
+                });
+            }
+            catch (err) {
+                console.log(err);
+                res.status(400).send(err);
+            }
+        });
+    }
     GetOrderTicket(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;

@@ -55,7 +55,7 @@ class ticketController {
     GetTicket(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { eventId } = req.body; // atau dari req.query, req.params, tergantung kamu kirimnya gimana
+                const { eventId } = req.query; // atau dari req.query, req.params, tergantung kamu kirimnya gimana
                 // pastikan eventId ada
                 if (!eventId) {
                     throw res.status(400).json({ message: "Event ID is required" });
@@ -63,7 +63,7 @@ class ticketController {
                 // cari semua tiket berdasarkan eventId
                 const tickets = yield prisma_1.default.ticket.findMany({
                     where: {
-                        eventId: eventId,
+                        eventId: eventId
                     },
                     orderBy: {
                         createdAt: "desc", // dari yang terbaru

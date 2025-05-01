@@ -15,7 +15,8 @@ class OrderRouter {
         this.router.post("/", this.authMiddleware.verifyToken, this.orderCrontoller.CreateOrder);
         this.router.post("/status", this.orderCrontoller.updateStatus);
         this.router.get("/getOrders", this.authMiddleware.verifyToken, this.authMiddleware.verifyPromotor, this.orderCrontoller.GetOrder);
-        this.router.get("getAllOrders", this.authMiddleware.verifyToken, this.orderCrontoller.GetOrderTicket);
+        this.router.get("/getAllOrders", this.authMiddleware.verifyToken, this.orderCrontoller.GetOrderTicket);
+        this.router.get("/get-order-id/:id", this.authMiddleware.verifyToken, this.orderCrontoller.GetOrderById);
     }
     getRouter() {
         return this.router;
