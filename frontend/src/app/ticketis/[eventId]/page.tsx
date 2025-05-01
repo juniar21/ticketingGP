@@ -6,8 +6,7 @@ import NavbarPage from "@/app/components/navbar/navbar";
 import { useEffect, useState } from "react";
 import axios from "@/lib/axios";
 import { useParams } from "next/navigation";
-import TicketForm from "@/app/ticketForm/page";
-
+import TicketForm from "@/app/ticketForm/components/ticketForm";
 
 export default function TicketDetail() {
   const { eventId } = useParams(); // ambil eventId dari URL
