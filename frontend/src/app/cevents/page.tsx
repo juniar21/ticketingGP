@@ -2,16 +2,16 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
 import { useEffect } from "react";
-import TicketForm from "../ticketForm/components/ticketForm";
+import NavOrganizer from "../(dashboard)/(DashOrganizer)/DashboardOrg/components/navbarOrganizer";
+import NavbarPage from "../components/navbar/navbar";
+import CreateForm from "./components/forms";
 import { toast } from "react-toastify";
 
 export default function TicketPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const params = useParams();
-  const eventId = Number(params.eventId);
+
 
   // Redirect jika tidak login atau bukan organizer
   useEffect(() => {
@@ -29,8 +29,12 @@ export default function TicketPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <TicketForm eventId={eventId} />
+    <div>
+      <NavbarPage />
+      <div className="flex gap-5">
+        <NavOrganizer />
+        <CreateForm />
+      </div>
     </div>
   );
 }
