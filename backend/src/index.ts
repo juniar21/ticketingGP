@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from "express"
+import express, { Application, Request, Response } from "express";
 import { AuthRouter } from "./routers/auth.routes";
 import cors from "cors";
 import { AuthRouterO } from "./routers/authO.routes";
@@ -12,13 +12,17 @@ const PORT = 8000;
 
 const app: Application = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.URL_FE,
+  })
+);
 
-app.get("/", (req:Request, res:Response) =>{
-    res.status(200).send({
-        status: "success",
-        message: "Welcome to my API",
-    });
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).send({
+    status: "success",
+    message: "Welcome to my API",
+  });
 });
 
 app.use("/api/public", express.static(path.join(__dirname, "../public")));
@@ -41,9 +45,6 @@ app.use("/api/events", evenRouter.getRouter());
 const ticketRouter = new TicketRouter();
 app.use("/api/tickets", ticketRouter.getRouter());
 
-
 app.listen(PORT, () => {
-    console.log(`Server Running On http://localhost:${PORT}`);
-    
+  console.log(`Server Running On http://localhost:${PORT}`);
 });
-
