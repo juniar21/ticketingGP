@@ -1,54 +1,54 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Field, Form, Formik, FormikHelpers, FormikProps } from "formik";
+import { Field, Form, Formik, FormikProps } from "formik";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
 import CeventsTitle from "./crEvent";
 import axios from "@/lib/axios";
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
-import ImageUploader from "./ImageUploaders";
- // Pastikan komponen ini ada dan bekerja dengan baik
+import ImageUploader from "./ImageUploaders"
+// Pastikan komponen ini ada dan bekerja dengan baik
 
 const createScheme = yup.object().shape({
   title: yup.string().required("Please input the title"),
+  image: yup.mixed().required("Please input the right type of files"),
   category: yup.string().required("Please input the category"),
   date: yup.string(),
   startTime: yup.string(),
   endTime: yup.string(),
   location: yup.string().required("Please select location"),
   circuit: yup.string().required("Please select circuit"),
-  image: yup.mixed().required("Image is required"),
 });
 
 interface ICreateForm {
   title: string;
+  image: null | File | Blob;
   category: string;
   date: string;
   startTime: string;
   endTime: string;
   location: string;
   circuit: string;
-  image?: File | null;
 }
 
 export default function CreateForm() {
   const initialValues: ICreateForm = {
     title: "",
+    image: null,
     category: "",
     date: "",
     startTime: "",
     endTime: "",
     location: "",
     circuit: "",
-    image: null,
   };
 
   const router = useRouter();
   const { data } = useSession();
 
   const createEvent = async (
-    values: ICreateForm,
-    actions: FormikHelpers<ICreateForm>
+    values: ICreateForm
+    // actions: FormikHelpers<ICreateForm>
   ) => {
     try {
       // Menyiapkan FormData untuk upload
@@ -77,8 +77,7 @@ export default function CreateForm() {
       });
 
       // Reset form setelah submit
-      actions.resetForm();
-      router.push("/"); // Redirect ke halaman utama
+      router.push("/eventsOrg"); // Redirect ke halaman utama
       toast.success("Event Created Successfully!");
     } catch (error: any) {
       console.log(error);
@@ -91,7 +90,9 @@ export default function CreateForm() {
       <Formik
         initialValues={initialValues}
         validationSchema={createScheme}
-        onSubmit={createEvent}
+        onSubmit={(values) => {
+          createEvent(values);
+        }}
       >
         {(props: FormikProps<ICreateForm>) => {
           const { errors, touched, isSubmitting } = props;
@@ -103,7 +104,7 @@ export default function CreateForm() {
                   <h1 className="font-audio">Title</h1>
                   <Field
                     name="title"
-                    className="border w-[650px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
+                    className="border w-[550px] h-[35px] shadow-md rounded-md pl-2 bg-slate-800"
                     placeholder="Title"
                   />
                   {touched.title && errors.title && (
@@ -131,8 +132,8 @@ export default function CreateForm() {
                     <option value="" disabled>
                       Choose category
                     </option>
-                    <option value="category1">GP Events</option>
-                    <option value="category2">RoadRace Events</option>
+                    <option value="GP Events">GP Events</option>
+                    <option value="RoadRace Events">RoadRace Events</option>
                   </Field>
                   {touched.category && errors.category && (
                     <div className="text-red-500 shadow-md">
@@ -140,26 +141,40 @@ export default function CreateForm() {
                     </div>
                   )}
 
-                  <div role="date" className="mt-[20px] text-white bg-slate-800 w-[650] h-[300px] rounded-md shadow-md border border-black/30">
-                    <div role="date" className=" bg-blue-500 w-[650] h-[50px] rounded-t-md flex justify-center items-center">
-                      <p className="font-audio subpixel-antialiased font-bold text-[25px]">DATE</p>
+                  <div
+                    role="date"
+                    className="mt-[20px] text-white bg-slate-800 w-[650] h-[300px] rounded-md shadow-md border border-black/30"
+                  >
+                    <div
+                      role="date"
+                      className=" bg-blue-500 w-[650] h-[50px] rounded-t-md flex justify-center items-center"
+                    >
+                      <p className="font-audio subpixel-antialiased font-bold text-[25px]">
+                        DATE
+                      </p>
                     </div>
                     <div className="p-3">
-                      <p className="block text-sm font-medium font-audio">Date</p>
+                      <p className="block text-sm font-medium font-audio">
+                        Date
+                      </p>
                       <Field
                         type="date"
                         id="date"
                         name="date"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
-                      <p className="block pt-3 text-sm font-medium font-audio">Start Time</p>
+                      <p className="block pt-3 text-sm font-medium font-audio">
+                        Start Time
+                      </p>
                       <Field
                         type="time"
                         id="startTime"
                         name="startTime"
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
-                      <p className="block text-sm font-medium pt-3 font-audio">End Time</p>
+                      <p className="block text-sm font-medium pt-3 font-audio">
+                        End Time
+                      </p>
                       <Field
                         type="time"
                         id="endTime"

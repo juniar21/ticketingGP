@@ -2,19 +2,14 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 const DropdownMenu: React.FC<{
+  categories: string[];
   onCategorySelect: (category: string) => void;
-}> = ({ onCategorySelect }) => {
+}> = ({ categories, onCategorySelect }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const categories = [
-    { name: "All Events", value: "All Events" },
-    { name: "GP Events", value: "GP Events" },
-    { name: "RoadRace Events", value: "RoadRace Events" },
-  ];
-
   const handleCategorySelect = (category: string) => {
-    onCategorySelect(category);
-    setIsOpen(false);
+    onCategorySelect(category); // Mengirimkan kategori yang dipilih ke parent
+    setIsOpen(false); // Menutup dropdown setelah memilih kategori
   };
 
   return (
@@ -36,11 +31,11 @@ const DropdownMenu: React.FC<{
           <div className="py-1 text-black">
             {categories.map((category) => (
               <button
-                key={category.value}
-                onClick={() => handleCategorySelect(category.value)}
+                key={category}
+                onClick={() => handleCategorySelect(category)}
                 className="block w-full px-4 py-2 text-left hover:bg-red-500 rounded-md hover:cursor-pointer"
               >
-                {category.name}
+                {category}
               </button>
             ))}
           </div>

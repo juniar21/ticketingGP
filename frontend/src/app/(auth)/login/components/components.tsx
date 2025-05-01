@@ -70,7 +70,7 @@ export default function LoginForm() {
             <Form className="relative">
               <div>
                 <Image
-                  className="absolute z-0 object-cover h-screen"
+                  className="absolute z-0 object-cover h-screen w-full"
                   src={
                     "https://res.cloudinary.com/dtsxir6lv/image/upload/v1744464384/wallpaperflare.com_wallpaper_k0pj1d.jpg"
                   }

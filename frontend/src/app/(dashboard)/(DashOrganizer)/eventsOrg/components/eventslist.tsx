@@ -2,9 +2,11 @@
 import axios from "@/lib/axios";
 import { IEvent } from "@/types/typemodel";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function TabComponent() {
+  const router = useRouter()
   const { data } = useSession();
   const [activeTab, setActiveTab] = useState("upcoming");
   const [events, setEvents] = useState<IEvent[]>([]);
@@ -54,6 +56,9 @@ export default function TabComponent() {
           <div key={event.id} className="p-4 border rounded-md bg-gray-800 text-white">
             <h3 className="text-lg font-semibold">{event.title}</h3>
             <p className="text-sm">{new Date(event.date).toLocaleString()}</p>
+            <button 
+            onClick={()=> router.push(`/eventis/${event.id}`)}
+            className="mt-2 w-[100px] h-[50px] rounded-md bg-blue-500 text-black"> Details </button>
           </div>
         ))}
       </div>

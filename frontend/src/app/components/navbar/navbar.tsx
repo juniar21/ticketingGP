@@ -40,7 +40,7 @@ export default function NavbarPage() {
       <div className="flex items-center">
         <p
           onClick={() => router.push("/")}
-          className="hover:cursor-pointer text-blue-500 font-extrabold text-[30px]"
+          className="hover:cursor-pointer text-black font-extrabold text-[30px]"
         >
           GP.TIXET
         </p>

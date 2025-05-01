@@ -44,7 +44,7 @@ export class ticketController {
 
   async GetTicket(req: Request, res: Response) {
     try {
-      const { eventId } = req.body; // atau dari req.query, req.params, tergantung kamu kirimnya gimana
+      const { eventId } = req.query; // atau dari req.query, req.params, tergantung kamu kirimnya gimana
 
       // pastikan eventId ada
       if (!eventId) {
@@ -54,7 +54,7 @@ export class ticketController {
       // cari semua tiket berdasarkan eventId
       const tickets = await prisma.ticket.findMany({
         where: {
-          eventId: eventId,
+          eventId: eventId as string
         },
         orderBy: {
           createdAt: "desc", // dari yang terbaru
