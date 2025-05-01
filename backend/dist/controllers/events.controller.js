@@ -64,7 +64,7 @@ class EventsController {
                         user: {
                             select: {
                                 id: true,
-                                username: true
+                                username: true,
                             },
                         },
                     },
@@ -101,20 +101,22 @@ class EventsController {
             try {
                 if (!req.file)
                     throw { message: "image empty" };
-                const { title, category, location, circuit, startTime, endTime, date, } = req.body;
+                const { title, category, date, startTime, endTime, location, circuit } = req.body;
                 const { secure_url } = yield (0, cloudinary_1.cloudinaryUpload)(req.file, "ig");
                 const start = new Date(`${date}T${startTime}`);
                 const end = new Date(`${date}T${endTime}`);
                 yield prisma_1.default.event.create({
-                    data: { image: secure_url,
+                    data: {
                         title,
+                        image: secure_url,
                         category,
                         location,
                         circuit,
                         startTime: start,
                         endTime: end,
                         date: new Date(date),
-                        userId: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id, },
+                        userId: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id,
+                    },
                 });
                 res.status(201).send({
                     message: "Post created",
@@ -130,11 +132,9 @@ class EventsController {
     GetEventTicket(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { eventId } = req.body;
-                const data = yield prisma_1.default.event.findFirst({
-                    where: {
-                        id: eventId, // atau kriteria lain
-                    },
+                const { id } = req.query;
+                const data = yield prisma_1.default.event.findMany({
+                    where: Object.assign({}, (id && { id: id })),
                     include: {
                         tickets: true, // ambil juga semua tiket yang terkait event ini
                     },
