@@ -17,9 +17,9 @@ export default function TicketPage() {
   useEffect(() => {
     if (status === "authenticated") {
       const userRole = session?.user?.role;
-      if (userRole !== "organizer") {
+      if (userRole !== "PROMOTOR") {
         router.push("/login"); // Atau tampilkan pesan akses ditolak
-        toast.error("You are not Organizer"); 
+        toast.error("You are not Promotor"); 
       }
     }
   }, [status, session, router]);
