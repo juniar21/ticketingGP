@@ -8,6 +8,7 @@ import { EventRoutes } from "./routers/events.routes";
 import path from "path";
 import { TicketRouter } from "./routers/ticket.routes";
 
+
 const PORT = 8000;
 
 const app: Application = express();
