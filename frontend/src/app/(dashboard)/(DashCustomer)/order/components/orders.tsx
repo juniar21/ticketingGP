@@ -46,14 +46,17 @@ export default function OrderHistorys() {
   }, [data?.accessToken]);
 
   return (
-    <div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
       {orders.map((order) => (
-        <div className="bg-white w-[300px] ml-5 p-5" key={order.id}>
-          <p>{order.ticket.category}</p>
-          <p>Ticket Id : {order.ticketId}</p>
-          <p>Kuantitas : {order.quantity}</p>
-          <p>Status : {order.status}</p>
-          <p>Amount : {order.amount}</p>
+        <div
+          className="bg-white shadow-lg rounded-2xl p-5 hover:shadow-xl transition-shadow duration-300"
+          key={order.id}
+        >
+          <h3 className="text-lg font-semibold mb-2">{order.ticket.category}</h3>
+          <p className="text-gray-600 text-sm">🎟 Ticket ID: <span className="font-medium">{order.ticketId}</span></p>
+          <p className="text-gray-600 text-sm">🔢 Kuantitas: <span className="font-medium">{order.quantity}</span></p>
+          <p className="text-gray-600 text-sm">📦 Status: <span className="font-medium">{order.status}</span></p>
+          <p className="text-gray-600 text-sm">💵 Amount: <span className="font-medium">Rp {order.amount.toLocaleString()}</span></p>
         </div>
       ))}
     </div>
